@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { graphql, type HeadFC, type PageProps } from "gatsby";
 
 const pageStyles = {
   color: "#232129",
@@ -136,7 +136,7 @@ const links = [
   },
 ];
 
-const IndexPage: React.FC<PageProps> = () => {
+const IndexPage: React.FC<PageProps> = ({ data }) => {
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>
@@ -146,6 +146,17 @@ const IndexPage: React.FC<PageProps> = () => {
           — you just made a Gatsby site! 🎉🎉🎉
         </span>
       </h1>
+      {/* <div>
+        {data.allFile.nodes.map((file, index) =>
+          file.childImageSharp ? (
+            <Img
+              key={index}
+              fluid={file.childImageSharp.fluid}
+              alt={`Image ${index}`}
+            />
+          ) : null,
+        )}
+      </div> */}
       <p style={paragraphStyles}>
         Edit <code style={codeStyles}>src/pages/index.tsx</code> to see this
         page update in real-time. 😎
@@ -189,6 +200,16 @@ const IndexPage: React.FC<PageProps> = () => {
     </main>
   );
 };
+
+export const query = graphql`
+  query {
+    allFile(filter: { extension: { regex: "/(jpg|jpeg|png)/" } }) {
+      nodes {
+        ...fluidImage
+      }
+    }
+  }
+`;
 
 export default IndexPage;
 

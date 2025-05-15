@@ -29,6 +29,22 @@ const config: GatsbyConfig = {
       },
       __key: "images",
     },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@src": "src",
+          "@components": "src/components",
+          "@layouts": "src/layouts",
+          "@pages": "src/pages",
+          "@graphql": "src/graphql"
+        },
+        extensions: [
+          "ts",
+          "tsx",
+        ]
+      }
+    }
   ],
 };
 
