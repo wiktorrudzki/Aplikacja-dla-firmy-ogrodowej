@@ -35,16 +35,14 @@ const config: GatsbyConfig = {
         alias: {
           "@src": "src",
           "@components": "src/components",
+          "@data": "src/data",
           "@layouts": "src/layouts",
           "@pages": "src/pages",
-          "@graphql": "src/graphql"
+          "@graphql": "src/graphql",
         },
-        extensions: [
-          "ts",
-          "tsx",
-        ]
-      }
-    }
+        extensions: ["ts", "tsx"],
+      },
+    },
   ],
 };
 
