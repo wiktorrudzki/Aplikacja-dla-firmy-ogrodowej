@@ -1,5 +1,6 @@
 import * as React from "react";
 import { graphql, type HeadFC, type PageProps } from "gatsby";
+import { Button } from "@chakra-ui/react";
 
 const pageStyles = {
   color: "#232129",
@@ -139,6 +140,9 @@ const links = [
 const IndexPage: React.FC<PageProps> = ({ data }) => {
   return (
     <main style={pageStyles}>
+      <Button bg="green.500" textStyle="extra-large">
+        ZIELONY kolor jest fajny
+      </Button>
       <h1 style={headingStyles}>
         Congratulations
         <br />

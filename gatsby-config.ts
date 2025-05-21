@@ -37,14 +37,13 @@ const config: GatsbyConfig = {
           "@components": "src/components",
           "@layouts": "src/layouts",
           "@pages": "src/pages",
-          "@graphql": "src/graphql"
+          "@graphql": "src/graphql",
+          "@contexts": "src/contexts",
+          "@theme": "./theme.ts",
         },
-        extensions: [
-          "ts",
-          "tsx",
-        ]
-      }
-    }
+        extensions: ["ts", "tsx"],
+      },
+    },
   ],
 };
 
