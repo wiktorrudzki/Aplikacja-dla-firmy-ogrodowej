@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, PageProps } from "gatsby";
 import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
-import { galleryImagesData } from "@data/gallery-images";
+import { galleryImages } from "@data/gallery-images.json";
 
 type ImageNode = {
   relativePath: string;
@@ -17,7 +17,7 @@ interface DataType {
 }
 
 const Gallery = ({ data }: PageProps<DataType>) => {
-  const imageData = galleryImagesData[0];
+  const imageData = galleryImages[0];
   const node = data.images.nodes.find(
     (image) => image.relativePath === imageData.src,
   );
