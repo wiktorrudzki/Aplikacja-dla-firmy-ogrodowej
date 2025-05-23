@@ -1,5 +1,6 @@
 import * as React from "react";
 import { graphql, type HeadFC, type PageProps } from "gatsby";
+import { t } from "@i18n";
 
 const pageStyles = {
   color: "#232129",
@@ -140,7 +141,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>
-        Congratulations
+        {t("test")}
         <br />
         <span style={headingAccentStyles}>
           — you just made a Gatsby site! 🎉🎉🎉
