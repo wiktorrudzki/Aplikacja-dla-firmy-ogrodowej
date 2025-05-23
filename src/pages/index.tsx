@@ -1,6 +1,7 @@
 import * as React from "react";
 import { graphql, type HeadFC, type PageProps } from "gatsby";
 import { Button } from "@chakra-ui/react";
+import { t } from "@i18n";
 
 const pageStyles = {
   color: "#232129",
@@ -159,7 +160,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
         ZIELONY kolor jest fajny
       </Button>
       <h1 style={headingStyles}>
-        Congratulations
+        {t("test")}
         <br />
         <span style={headingAccentStyles}>
           — you just made a Gatsby site! 🎉🎉🎉

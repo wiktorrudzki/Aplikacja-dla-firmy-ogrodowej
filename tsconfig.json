@@ -36,7 +36,7 @@
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
     // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
-    // "resolveJsonModule": true,                        /* Enable importing .json files */
+    "resolveJsonModule": true /* Enable importing .json files */,
     // "noResolve": true,                                /* Disallow `import`s, `require`s or `<reference>`s from expanding the number of files TypeScript should add to a project. */
 
     /* JavaScript Support */
@@ -101,13 +101,15 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "paths": {
+      "@data/*": ["./src/data/*"],
+      "@src/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@layouts/*": ["./src/layouts/*"],
       "@pages/*": ["./src/pages/*"],
       "@graphql/*": ["./src/graphql/*"],
       "@contexts/*": ["./src/contexts/*"],
-      "@src/*": ["./src/*"],
-      "@theme": ["./theme.ts"]
+      "@theme": ["./theme.ts"],
+      "@i18n": ["./src/utils/i18n.ts"]
     }
   },
   "include": [
