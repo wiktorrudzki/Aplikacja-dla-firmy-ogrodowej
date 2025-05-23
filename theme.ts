@@ -8,12 +8,50 @@ const customConfig = defineConfig({
   theme: {
     textStyles: {
       "extra-large": {
-        // TODO - add more text styles (it's just an example)
-        description: "example",
+        value: {
+          fontFamily: "Nunito",
+          fontWeight: "400",
+          fontSize: "60px",
+          lineHeight: "auto",
+        },
+      },
+      "heading-1": {
+        value: {
+          fontFamily: "Poppins",
+          fontWeight: "400",
+          fontSize: "36px",
+          lineHeight: "auto",
+        },
+      },
+      "heading-2": {
+        value: {
+          fontFamily: "Poppins",
+          fontWeight: "500",
+          fontSize: "24px",
+          lineHeight: "auto",
+        },
+      },
+      "heading-3": {
+        value: {
+          fontFamily: "Inter",
+          fontWeight: "400",
+          fontSize: "20px",
+          lineHeight: "auto",
+        },
+      },
+      paragraph: {
+        value: {
+          fontFamily: "Amiko",
+          fontWeight: "400",
+          fontSize: "16px",
+          lineHeight: "auto",
+        },
+      },
+      "extra-extra-large": {
         value: {
           fontFamily: "Anton",
           fontWeight: "400",
-          fontSize: "60px",
+          fontSize: "96px",
           lineHeight: "auto",
         },
       },

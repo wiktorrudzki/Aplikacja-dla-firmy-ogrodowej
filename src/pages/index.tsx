@@ -143,6 +143,21 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
       <Button bg="green.500" textStyle="extra-large">
         ZIELONY kolor jest fajny
       </Button>
+      <Button bg="green.500" textStyle="extra-extra-large">
+        ZIELONY kolor jest fajny
+      </Button>
+      <Button bg="green.500" textStyle="heading-1">
+        ZIELONY kolor jest fajny
+      </Button>
+      <Button bg="green.500" textStyle="heading-2">
+        ZIELONY kolor jest fajny
+      </Button>
+      <Button bg="green.500" textStyle="heading-3">
+        ZIELONY kolor jest fajny
+      </Button>
+      <Button bg="green.500" textStyle="paragraph">
+        ZIELONY kolor jest fajny
+      </Button>
       <h1 style={headingStyles}>
         Congratulations
         <br />
