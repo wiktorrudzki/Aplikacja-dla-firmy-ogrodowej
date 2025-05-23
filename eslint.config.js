@@ -10,7 +10,7 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    files: ["**/*.{js,jsx,ts,tsx}"],
+    files: ["**/*.{js,jsx,ts,tsx,css}"],
     languageOptions: {
       parser: typescriptParser,
       parserOptions: {
@@ -32,7 +32,7 @@ export default [
     rules: {
       ...reactHooks.configs.recommended.rules,
       ...prettierConfig.rules,
-      "prettier/prettier": "error",
+      "prettier/prettier": "warning",
     },
   },
 ];

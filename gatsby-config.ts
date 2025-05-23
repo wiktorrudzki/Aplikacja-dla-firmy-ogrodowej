@@ -39,6 +39,8 @@ const config: GatsbyConfig = {
           "@layouts": "src/layouts",
           "@pages": "src/pages",
           "@graphql": "src/graphql",
+          "@contexts": "src/contexts",
+          "@theme": "./theme.ts",
           "@i18n": "src/utils/i18n.ts",
         },
         extensions: ["ts", "tsx"],
