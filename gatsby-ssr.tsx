@@ -1,0 +1,54 @@
+import React from "react";
+
+export const onRenderBody = ({ setHeadComponents }) => {
+  setHeadComponents([
+    <link
+      rel="preload"
+      href="/fonts/Anton-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossOrigin="anonymous"
+      key="antonFont"
+    />,
+    <link
+      rel="preload"
+      href="/fonts/Amiko-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossOrigin="anonymous"
+      key="antonFont"
+    />,
+    <link
+      rel="preload"
+      href="/fonts/Inter_18pt-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossOrigin="anonymous"
+      key="antonFont"
+    />,
+    <link
+      rel="preload"
+      href="/fonts/Poppins-Medium.ttf"
+      as="font"
+      type="font/ttf"
+      crossOrigin="anonymous"
+      key="antonFont"
+    />,
+    <link
+      rel="preload"
+      href="/fonts/Poppins-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossOrigin="anonymous"
+      key="antonFont"
+    />,
+    <link
+      rel="preload"
+      href="/fonts/Nunito-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossOrigin="anonymous"
+      key="antonFont"
+    />,
+  ]);
+};
