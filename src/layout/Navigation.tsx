@@ -1,26 +1,37 @@
-import { Box, Flex, Link } from "@chakra-ui/react";
-import React from "react";
+import { Box, Flex } from "@chakra-ui/react";
+import React, { useRef } from "react";
+import { useNavigationMode } from "@src/hooks";
+import DesktopNav from "./DesktopNav";
+import MobileNav from "./MobileNav";
+import LogoNav from "./LogoNav";
+import ShowMobileNav from "./ShowMobileNav";
 
 const Navigation = () => {
+  const navRef = useRef<HTMLDivElement>(null);
+
+  const { isScrolled, hidden, navMode, showNav, hideNav } =
+    useNavigationMode(navRef);
+
   return (
     <Box
       as="nav"
+      ref={navRef}
       position="fixed"
       top="0"
       left="0"
-      width="100vw"
-      bg="white"
+      width="100%"
+      bg={isScrolled ? "white" : "transparent"}
       zIndex="1000"
-      paddingY={32}
-      paddingX={32}
+      transition="background-color 0.3s ease"
+      py={{ base: 24, md: 24 }}
+      px={{ base: 16, lg: 50 }}
     >
-      <Flex width="100%" justifyContent="space-between" alignItems="center">
-        <Flex gap={6}>
-          <Link href="#about">O nas</Link>
-          <Link href="#services">Usługi</Link>
-          <Link href="#contact">Kontakt</Link>
-        </Flex>
+      <Flex justify="space-between" align="center" wrap="wrap">
+        <LogoNav navMode={navMode} />
+        <DesktopNav navMode={navMode} />
+        <ShowMobileNav navMode={navMode} showNav={showNav} />
       </Flex>
+      <MobileNav hidden={hidden} navMode={navMode} onClose={hideNav} />
     </Box>
   );
 };
