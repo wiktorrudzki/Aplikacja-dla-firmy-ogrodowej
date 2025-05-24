@@ -6,6 +6,13 @@ import {
 
 const customConfig = defineConfig({
   theme: {
+    semanticTokens: {
+      shadows: {
+        element: {
+          value: "0px 0px 16px rgba(0, 0, 0, 0.1)",
+        },
+      },
+    },
     textStyles: {
       "extra-large": {
         value: {
@@ -55,6 +62,14 @@ const customConfig = defineConfig({
           lineHeight: "auto",
         },
       },
+    },
+    breakpoints: {
+      base: "0em", // 0px
+      sm: "30em", // ~480px
+      md: "48em", // ~768px
+      lg: "62em", // ~992px
+      xl: "80em", // ~1280px
+      "2xl": "96em", // ~1536px
     },
     tokens: {
       colors: {
