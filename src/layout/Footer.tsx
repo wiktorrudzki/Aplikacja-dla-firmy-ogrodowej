@@ -1,18 +1,48 @@
+import React from "react";
 import {
   Flex,
   Heading,
   VStack,
   Text,
   HStack,
-  Link,
   Box,
+  Link,
 } from "@chakra-ui/react";
 import { MdLocationOn, MdMail, MdPhoneIphone } from "react-icons/md";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
-import React from "react";
+import routes from "@data/routes.json";
 import { t } from "@i18n";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery, Link as GatsbyLink } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+
+type LinkProps = {
+  children?: React.ReactNode;
+  to: string;
+};
+
+const FooterLink = ({ children, to, ...props }: LinkProps) => {
+  return (
+    <Link textStyle="paragraph" color="white" asChild {...props}>
+      <GatsbyLink to={to}>{children}</GatsbyLink>
+    </Link>
+  );
+};
+
+type DetailProps = {
+  icon: React.ElementType;
+  children: React.ReactNode;
+};
+
+const FooterContactDetail = ({ icon: Icon, children }: DetailProps) => {
+  return (
+    <HStack>
+      <Icon size="1.5rem" />
+      <Text whiteSpace="pre-line" textStyle="paragraph">
+        {children}
+      </Text>
+    </HStack>
+  );
+};
 
 const Footer = () => {
   const { backgroundImage } = useStaticQuery(graphql`
@@ -52,79 +82,62 @@ const Footer = () => {
           }}
         />
         <VStack align="start">
-          <Heading textStyle="heading-3" fontWeight="bold">
+          <Heading textStyle="heading-2" fontWeight="bold">
             {t("contact-details")}
           </Heading>
-          <HStack>
-            <MdLocationOn size="1.5rem" />
-            <Text whiteSpace="pre-line" textStyle="paragraph">
-              {t("adress-details")}
-            </Text>
-          </HStack>
-          <HStack>
-            <MdMail size="1.5rem" />
+          <FooterContactDetail icon={MdLocationOn}>
+            {t("adress-details")}
+          </FooterContactDetail>
+          <FooterContactDetail icon={MdMail}>
             <Link
               href={`mailto:${t("email-address")}`}
-              color="white"
               textStyle="paragraph"
+              color="white"
             >
               {t("email-address")}
             </Link>
-          </HStack>
-          <HStack>
-            <MdPhoneIphone size="1.5rem" />
+          </FooterContactDetail>
+          <FooterContactDetail icon={MdPhoneIphone}>
             <Link
               href={`tel:${t("telephone-number")}`}
               textStyle="paragraph"
-              color={"white"}
+              color="white"
             >
               {t("telephone-number")}
             </Link>
-          </HStack>
+          </FooterContactDetail>
         </VStack>
 
         <VStack align="start">
-          <Heading textStyle="heading-3" fontWeight="bold">
+          <Heading textStyle="heading-2" fontWeight="bold">
             {t("useful-links")}
           </Heading>
-          <Link href="#" textStyle="paragraph" color="white">
-            {t("homepage")}
-          </Link>
-          <Link href="#" textStyle="paragraph" color="white">
-            {t("about-us")}
-          </Link>
-          <Link href="#" textStyle="paragraph" color="white">
-            {t("gallery")}
-          </Link>
-          <Link href="#" textStyle="paragraph" color="white">
-            {t("contact")}
-          </Link>
-          <Link href="#" textStyle="paragraph" color="white">
-            {t("regulations")}
-          </Link>
+          <FooterLink to={routes.HOME}>{t("homepage")}</FooterLink>
+          <FooterLink to={routes.O_NAS}>{t("about-us")}</FooterLink>
+          <FooterLink to={routes.GALERIA}>{t("gallery")}</FooterLink>
+          <FooterLink to={routes.KONTAKT}>{t("contact")}</FooterLink>
+          <FooterLink to={routes.REGULAMIN}>{t("regulations")}</FooterLink>
         </VStack>
 
         <VStack align="start">
-          <Heading textStyle="heading-3" fontWeight="bold">
+          <Heading textStyle="heading-2" fontWeight="bold">
             {t("offer")}
           </Heading>
-          <Link href="#" textStyle="paragraph" color="white">
-            {t("for-companies")}
-          </Link>
-          <Link href="#" textStyle="paragraph" color="white">
+          <FooterLink to={routes.DLA_FIRM}>{t("for-companies")}</FooterLink>
+          <FooterLink to={routes.KLIENT_INDYWIDUALNY}>
             {t("for-individuals")}
-          </Link>
+          </FooterLink>
         </VStack>
 
         <VStack align="start">
-          <Heading textStyle="heading-3" fontWeight="bold">
+          <Heading textStyle="heading-2" fontWeight="bold">
             {t("our-social-media")}
           </Heading>
           <HStack>
-            <Link href="#">
+            <Link href="https://www.facebook.com/">
               <BsFacebook color="white" size="2rem" />
             </Link>
-            <Link href="#">
+            <Link href="https://www.instagram.com/">
               <BsInstagram color="white" size="2rem" />
             </Link>
           </HStack>
