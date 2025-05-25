@@ -22,7 +22,14 @@ type LinkProps = {
 
 const FooterLink = ({ children, to, ...props }: LinkProps) => {
   return (
-    <Link textStyle="paragraph" color="white" asChild {...props}>
+    <Link
+      textStyle="paragraph"
+      variant="underline"
+      color="white"
+      textDecorationColor="white"
+      asChild
+      {...props}
+    >
       <GatsbyLink to={to}>{children}</GatsbyLink>
     </Link>
   );
@@ -63,7 +70,7 @@ const Footer = () => {
       <Flex
         direction={{ base: "column", md: "row" }}
         justifyContent="space-between"
-        gap={20}
+        gap={5}
         px={20}
         py={70}
         color="white"
@@ -149,7 +156,7 @@ const Footer = () => {
         bgColor="green.500"
         textAlign="center"
         textStyle="paragraph"
-        p={8}
+        p={2}
       >
         {t("footer-copyright")}
       </Box>
