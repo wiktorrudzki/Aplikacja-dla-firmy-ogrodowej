@@ -1,4 +1,4 @@
-import { Container } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { NAVIGATION_MODE } from "@src/types/navigation";
 import { t } from "@src/utils/i18n";
 import React from "react";
@@ -11,10 +11,7 @@ type Props = {
 
 const DesktopNav = ({ navMode }: Props) => {
   return (
-    <Container
-      display={{ base: "none", md: "flex" }}
-      gap={{ base: 24, lg: 64 }}
-    >
+    <Box display={{ base: "none", md: "flex" }} gap={{ base: 6, lg: 16 }}>
       <Link mode={navMode} to={routes.O_NAS}>
         {t("O nas")}
       </Link>
@@ -27,7 +24,7 @@ const DesktopNav = ({ navMode }: Props) => {
       <Link mode={navMode} to={routes.KONTAKT}>
         {t("Kontakt")}
       </Link>
-    </Container>
+    </Box>
   );
 };
 

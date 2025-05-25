@@ -23,8 +23,8 @@ const Navigation = () => {
       bg={isScrolled ? "white" : "transparent"}
       zIndex="1000"
       transition="background-color 0.3s ease"
-      py={{ base: 24, md: 24 }}
-      px={{ base: 16, lg: 50 }}
+      py={{ base: 6, md: 6 }}
+      px={{ base: 4, lg: 12 }}
     >
       <Flex justify="space-between" align="center" wrap="wrap">
         <LogoNav navMode={navMode} />

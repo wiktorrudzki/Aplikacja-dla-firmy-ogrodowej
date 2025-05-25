@@ -23,9 +23,9 @@ const MobileNav = ({ navMode, hidden, onClose }: Props) => {
       width="80%"
       display={{ base: "flex", md: "none" }}
       transform={hidden ? "translateX(100%)" : "translateX(0)"}
-      py={64}
-      px={64}
-      gap={64}
+      py={16}
+      px={16}
+      gap={16}
       transition="transform 0.3s ease"
     >
       <IconButton
@@ -37,7 +37,7 @@ const MobileNav = ({ navMode, hidden, onClose }: Props) => {
         display="flex"
         justifyContent="flex-end"
       >
-        <CgClose size={32} />
+        <CgClose size={32} color="black" />
       </IconButton>
       <Link onClick={onClose} noUnderline to={routes.O_NAS}>
         {t("O nas")}
