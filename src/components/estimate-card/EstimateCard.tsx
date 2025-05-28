@@ -1,4 +1,4 @@
-import { Flex, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import constants from "@src/constants";
 import { t } from "@src/utils/i18n";
 import React from "react";
@@ -10,30 +10,30 @@ type Props = {
 
 const EstimateCard = ({ fixedBottomRight = true }: Props) => {
   return (
-    <Stack
+    <Box
       width="fit-content"
       bg="green.50"
       rounded={32}
-      alignItems="center"
-      gap={0.5}
       py={4}
       px={8}
-      boxShadow="element"
-      position="fixed"
+      boxShadow="based"
+      position={fixedBottomRight ? "fixed" : "initial"}
       bottom={8}
       right={8}
     >
-      <Text textStyle="paragraph" textAlign="center">
-        {t("Skorzystaj z darmowej")}
-      </Text>
-      <Text textStyle="paragraph">{t("wyceny")}</Text>
-      <Flex gap={2} alignItems="center">
-        <MdPhone size={16} color="#6EAF3C" />
-        <Text textAlign="center" textStyle="heading-2" color="green.500">
-          {constants.PHONE_NUMBER}
+      <Stack alignItems="center" gap={0.5}>
+        <Text textStyle="paragraph" textAlign="center">
+          {t("Skorzystaj z darmowej")}
         </Text>
-      </Flex>
-    </Stack>
+        <Text textStyle="paragraph">{t("wyceny")}</Text>
+        <Flex gap={2} alignItems="center">
+          <MdPhone size={16} color="#6EAF3C" />
+          <Text textAlign="center" textStyle="heading-2" color="green.500">
+            {constants.PHONE_NUMBER}
+          </Text>
+        </Flex>
+      </Stack>
+    </Box>
   );
 };
 

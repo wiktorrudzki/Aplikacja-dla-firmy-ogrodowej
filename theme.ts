@@ -4,8 +4,8 @@ const customConfig = defineConfig({
   theme: {
     semanticTokens: {
       shadows: {
-        element: {
-          value: "0px 0px 16px rgba(0, 0, 0, 0.1)",
+        based: {
+          value: "0px 1px 3px rgba(0, 0, 0, 0.1)",
         },
       },
     },
