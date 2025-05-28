@@ -7,7 +7,7 @@ import { EstimateCard } from "@src/components/estimate-card";
 const pageStyles = {
   color: "#232129",
   padding: 96,
-  background: "grey",
+  background: "white",
   height: "150vh",
 };
 const headingStyles = {
@@ -168,7 +168,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
           — you just made a Gatsby site! 🎉🎉🎉
         </span>
       </h1>
-      <EstimateCard showScroller />
+      <EstimateCard />
     </main>
   );
 };
