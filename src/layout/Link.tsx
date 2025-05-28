@@ -1,0 +1,53 @@
+import React from "react";
+import { useLocation } from "@reach/router";
+import { Link } from "gatsby";
+import { Text } from "@chakra-ui/react";
+import { NAVIGATION_MODE } from "@src/types/navigation";
+
+type Props = {
+  to: string;
+  children: React.ReactNode;
+  noUnderline?: boolean;
+  mode?: NAVIGATION_MODE;
+  onClick?: () => void;
+};
+
+const CustomLink = ({
+  to,
+  children,
+  noUnderline,
+  mode = NAVIGATION_MODE.DARK,
+  onClick,
+}: Props) => {
+  const location = useLocation();
+
+  return (
+    <Link onClick={onClick} style={{ textDecoration: "none" }} to={to}>
+      <Text
+        textStyle="heading-3"
+        color={mode === NAVIGATION_MODE.DARK ? "black" : "white"}
+        position="relative"
+        textDecoration="none"
+        margin={0}
+        _after={
+          location.pathname.includes(to) && !noUnderline
+            ? {
+                content: '""',
+                position: "absolute",
+                left: "10%",
+                bottom: "-5px",
+                width: "80%",
+                height: "3px",
+                bg: mode === NAVIGATION_MODE.DARK ? "black" : "white",
+                borderRadius: "3px",
+              }
+            : {}
+        }
+      >
+        {children}
+      </Text>
+    </Link>
+  );
+};
+
+export default CustomLink;

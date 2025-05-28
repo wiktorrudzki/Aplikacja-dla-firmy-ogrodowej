@@ -10,12 +10,12 @@ const MainCard = ({ children }: Props) => {
     <Box
       bgGradient="radial-gradient(circle at bottom right, #EBF8FF, #EBF4E4)" // hardcode colors becuase cannot reference the variable from here
       py={{
-        base: 16,
-        lg: 48,
+        base: 4,
+        lg: 12,
       }}
       px={{
-        base: 32,
-        lg: 64,
+        base: 8,
+        lg: 16,
       }}
       borderRadius={16}
       boxShadow="element"

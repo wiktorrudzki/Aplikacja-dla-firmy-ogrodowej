@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
+import { Stack } from "@chakra-ui/react";
 
 type Props = {
   children: React.ReactNode;
@@ -8,11 +9,11 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div>
+    <Stack>
       <Navigation />
       {children}
       <Footer />
-    </div>
+    </Stack>
   );
 };
 

@@ -44,5 +44,13 @@
   font-display: swap;
   font-style: normal;
   font-named-instance: "Regular";
-  src: url("/fonts/Inter-18pt-Regular.ttf") format("truetype");
+  src: url("/fonts/Inter_18pt-Regular.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
 }

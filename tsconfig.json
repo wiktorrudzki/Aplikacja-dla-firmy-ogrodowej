@@ -109,7 +109,8 @@
       "@graphql/*": ["./src/graphql/*"],
       "@contexts/*": ["./src/contexts/*"],
       "@theme": ["./theme.ts"],
-      "@i18n": ["./src/utils/i18n.ts"]
+      "@i18n": ["./src/utils/i18n.ts"],
+      "@hooks": ["./src/hooks/*"]
     }
   },
   "include": [
