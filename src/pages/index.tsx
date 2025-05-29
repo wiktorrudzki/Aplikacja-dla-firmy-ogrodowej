@@ -2,68 +2,52 @@ import * as React from "react";
 import { HeadFC, PageProps } from "gatsby";
 import { t } from "@i18n";
 import { StaticImage } from "gatsby-plugin-image";
-import { Flex, Box, VStack, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
+import { Panel, PanelStack } from "@src/components/homePage";
+import ROUTES from "@data/routes.json";
 
-const ImageStyle: React.CSSProperties = {
-  height: "100%",
-  position: "absolute",
-  top: 0,
-  left: 0,
-};
-
-const GradientOverlay: React.CSSProperties = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  width: "100%",
-  height: "100%",
-  background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent)",
-};
-
-const Panel = ({ children }: { children: React.ReactNode }) => (
-  <Flex
-    position="relative"
-    height={{ base: "50vh", md: "100vh" }}
-    width={{ base: "100vw", md: "50vw" }}
-    justifyContent="center"
-    alignItems="center"
-  >
-    {children}
-  </Flex>
+const HouseStaticImageElement = (
+  <StaticImage
+    src="../assets/images/house.jpg"
+    alt="skyscraper"
+    loading="eager"
+    className="panel__bg-image"
+  />
 );
-
-const StackStyle: React.CSSProperties = {
-  zIndex: 1,
-  color: "white",
-  textAlign: "center",
-};
+// TODO: replace this with higher resolution image
+const SkyscraperStaticImageElement = (
+  <StaticImage
+    src="../assets/images/skyscraper.jpg"
+    alt="house"
+    loading="eager"
+    className="panel__bg-image"
+  />
+);
 
 const IndexPage: React.FC<PageProps> = ({}) => {
   return (
-    <Flex as="main" flexDir={{ base: "column", md: "row" }}>
-      <Panel>
-        <StaticImage
-          src="../assets/images/skyscraper.jpg"
-          alt="skyscraper"
-          loading="eager"
-          style={ImageStyle}
-        />
-        <Box style={GradientOverlay} />
-        <VStack style={StackStyle}>
-          <Text>asd</Text>
-        </VStack>
+    <Flex
+      as="main"
+      flexDir={{ base: "column", lg: "row" }}
+      height="100vh"
+      width="100vw"
+    >
+      <Panel
+        BackgroundStaticImage={HouseStaticImageElement}
+        paddingTop={[15, 0]}
+      >
+        <PanelStack
+          title={t("individual-client")}
+          to={ROUTES.KLIENT_INDYWIDUALNY}
+        >
+          {t("individual-client-homepage")}
+        </PanelStack>
       </Panel>
-      <Panel>
-        <StaticImage
-          src="../assets/images/house.jpg"
-          alt="house"
-          loading="eager"
-          style={ImageStyle}
-        />
-        <Box style={GradientOverlay} />
-        <VStack style={StackStyle}>
-          <Text>asd</Text>
-        </VStack>
+
+      <Panel BackgroundStaticImage={SkyscraperStaticImageElement}>
+        <PanelStack title={t("business-client")} to={ROUTES.DLA_FIRM}>
+          {t("business-client-homepage")}
+        </PanelStack>
       </Panel>
     </Flex>
   );

@@ -1,3 +1,8 @@
 {
-  "test": "Testowanie"
+  "test": "Testowanie",
+  "explore-offer": "Poznaj ofertę",
+  "business-client": "Klient Biznesowy",
+  "business-client-homepage": "Zadbaj z nami o swoją przestrzeń wokół domu – od projektu po kompleksową realizację ogrodu. Sprawdź nasze realizacje i zobacz, co możemy zrobić dla Ciebie!",
+  "individual-client": "Klient Indywidualny",
+  "individual-client-homepage": "Profesjonalna obsługa terenów zewnętrznych Twojej firmy – od zakładania zieleni, przez jej pielęgnację, aż po odśnieżanie i rośliny do biura. Skontaktuj się z nami – doradzimy i zaproponujemy najlepsze rozwiązania."
 }
