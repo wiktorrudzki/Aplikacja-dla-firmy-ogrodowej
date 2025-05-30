@@ -16,7 +16,7 @@ const PanelStack = ({ title, children, to }: PanelStackProps) => {
       gap={[5, 30]}
       color="white"
       textAlign="center"
-      maxWidth={800}
+      maxWidth="xl"
     >
       <Heading
         as="h1"

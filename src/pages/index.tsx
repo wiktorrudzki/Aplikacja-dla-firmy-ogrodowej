@@ -14,7 +14,7 @@ const HouseStaticImageElement = (
     className="panel__bg-image"
   />
 );
-// TODO: replace this with higher resolution image
+
 const SkyscraperStaticImageElement = (
   <StaticImage
     src="../assets/images/skyscraper.jpg"
