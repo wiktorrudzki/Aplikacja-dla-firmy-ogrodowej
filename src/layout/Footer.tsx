@@ -1,83 +1,26 @@
 import React from "react";
-import {
-  Flex,
-  Heading,
-  VStack,
-  Text,
-  HStack,
-  Box,
-  Link,
-} from "@chakra-ui/react";
+import { Flex, Heading, VStack, HStack, Box, Link } from "@chakra-ui/react";
 import { MdLocationOn, MdMail, MdPhoneIphone } from "react-icons/md";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
 import routes from "@data/routes.json";
 import { t } from "@i18n";
-import { graphql, useStaticQuery, Link as GatsbyLink } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-
-type LinkProps = {
-  children?: React.ReactNode;
-  to: string;
-};
-
-const FooterLink = ({ children, to, ...props }: LinkProps) => {
-  return (
-    <Link
-      textStyle="paragraph"
-      variant="underline"
-      color="white"
-      textDecorationColor="white"
-      asChild
-      {...props}
-    >
-      <GatsbyLink to={to}>{children}</GatsbyLink>
-    </Link>
-  );
-};
-
-type DetailProps = {
-  icon: React.ElementType;
-  children: React.ReactNode;
-};
-
-const FooterContactDetail = ({ icon: Icon, children }: DetailProps) => {
-  return (
-    <HStack>
-      <Icon size="1.5rem" />
-      <Text whiteSpace="pre-line" textStyle="paragraph">
-        {children}
-      </Text>
-    </HStack>
-  );
-};
+import { StaticImage } from "gatsby-plugin-image";
+import { FooterContactDetail, FooterLink } from "@src/components/footer";
 
 const Footer = () => {
-  const { backgroundImage } = useStaticQuery(graphql`
-    {
-      backgroundImage: file(
-        sourceInstanceName: { eq: "images" }
-        relativePath: { eq: "grass.jpg" }
-      ) {
-        ...GatsbyImageFragment
-      }
-    }
-  `);
-
-  const image = getImage(backgroundImage);
-
   return (
     <footer>
       <Flex
         direction={{ base: "column", md: "row" }}
         justifyContent="space-between"
-        gap={5}
-        px={20}
-        py={70}
+        gap={[10, 5]}
+        px={[5, 20]}
+        py={[20, 70]}
         color="white"
         style={{ position: "relative" }}
       >
-        <GatsbyImage
-          image={image!}
+        <StaticImage
+          src="../assets/images/grass.jpg"
           alt="Tło trawy"
           style={{
             width: "100%",
