@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   Box,
+  Container,
   Flex,
   Grid,
   GridItem,
@@ -75,55 +76,60 @@ const HeroSlider = () => {
                 <GridItem
                   gridArea="1/1"
                   alignSelf="center"
-                  maxWidth="2xl"
                   position="relative"
                   color="white"
                 >
-                  <Flex direction="column" gap={[6]}>
-                    <Heading
-                      as="h2"
-                      textStyle="heading-2"
-                      textTransform="uppercase"
-                    >
-                      {t("our-values")}
-                    </Heading>
-                    <Heading
-                      as="h1"
-                      textStyle="extra-extra-large"
-                      textTransform="uppercase"
-                    >
-                      {slide.title}
-                    </Heading>
-                    <Text textStyle="paragraph">{slide.description}</Text>
-                  </Flex>
+                  <Container>
+                    <Flex direction="column" gap={[6]} maxWidth="2xl">
+                      <Heading
+                        as="h2"
+                        textStyle="heading-2"
+                        textTransform="uppercase"
+                      >
+                        {t("our-values")}
+                      </Heading>
+                      <Heading
+                        as="h1"
+                        textStyle="extra-extra-large"
+                        textTransform="uppercase"
+                      >
+                        {slide.title}
+                      </Heading>
+                      <Text textStyle="paragraph">{slide.description}</Text>
+                    </Flex>
+                  </Container>
                 </GridItem>
               </Grid>
             </SwiperSlide>
           ))}
         </Swiper>
       </GridItem>
+
       <GridItem
         gridArea="1/1"
         zIndex={1}
         height="fit-content"
+        width="100%"
         placeSelf="end"
         color="white"
       >
-        <Flex alignItems="center" justifyContent="flex-end" gap={3} p={5}>
-          <SliderButton type="prev">
-            <MdKeyboardArrowLeft />
-          </SliderButton>
-          <SliderButton type="next">
-            <MdKeyboardArrowRight />
-          </SliderButton>
-          <ProgressBar
-            className="swiper-pagination"
-            height={1}
-            width="sm"
-            bgColor={white}
-            barColor={green}
-          />
-        </Flex>
+        <Container>
+          <Flex alignItems="center" justifyContent="flex-end" gap={3} p={5}>
+            <SliderButton type="prev">
+              <MdKeyboardArrowLeft />
+            </SliderButton>
+            <SliderButton type="next">
+              <MdKeyboardArrowRight />
+            </SliderButton>
+            <ProgressBar
+              className="swiper-pagination"
+              height={1}
+              width="sm"
+              bgColor={white}
+              barColor={green}
+            />
+          </Flex>
+        </Container>
       </GridItem>
     </Grid>
   );

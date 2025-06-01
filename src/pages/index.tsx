@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql, type HeadFC, type PageProps } from "gatsby";
-import { Button } from "@chakra-ui/react";
+import { Button, Container } from "@chakra-ui/react";
 import { t } from "@i18n";
 
 const pageStyles = {
