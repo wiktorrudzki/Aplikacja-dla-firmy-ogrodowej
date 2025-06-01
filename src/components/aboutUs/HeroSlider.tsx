@@ -8,15 +8,14 @@ import {
   Heading,
   IconButton,
   Text,
-  useToken,
 } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { t } from "@i18n";
 import slides from "@data/ourValuesSlides";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import styled from "@emotion/styled";
 import "swiper/css";
+import "./HeroSlider.css";
 
 interface SliderButton extends React.PropsWithChildren {
   type: "prev" | "next";
@@ -38,19 +37,13 @@ const SliderButton = ({ children, type, ...props }: SliderButton) => (
   </IconButton>
 );
 
-const ProgressBar = styled(Flex)<{ bgColor: string; barColor: string }>`
-  background-color: ${({ bgColor }) => bgColor};
-
-  & .about-us-progress-fill {
-    width: 100%;
-    background-color: ${({ barColor }) => barColor};
-    transform-origin: left top;
-  }
-`;
+const formatCurrentSlide = (currentSlide: number) => {
+  if (currentSlide < 10) return `0${currentSlide}`;
+  return currentSlide;
+};
 
 const HeroSlider = () => {
-  const [green, white] = useToken("colors", ["green.500", "white"]);
-
+  const [currentSlide, setCurrentSlide] = React.useState(1);
   return (
     <Grid>
       <GridItem gridArea="1/1">
@@ -65,14 +58,25 @@ const HeroSlider = () => {
             nextEl: ".about-us-swiper-button-next",
             prevEl: ".about-us-swiper-button-prev",
           }}
+          onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex + 1)}
           // autoplay={{ delay: 5000 }}
-          loop
+          // loop
           style={{ height: "100vh", width: "100vw" }}
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
               <Grid height="100vh">
-                <GridItem gridArea="1/1">{slide.imageElement}</GridItem>
+                <GridItem gridArea="1/1" position="relative">
+                  {slide.imageElement}
+                  <Box
+                    position="absolute"
+                    width="100%"
+                    height="100%"
+                    top="0"
+                    left="0"
+                    backgroundColor="blackAlpha.600"
+                  />
+                </GridItem>
                 <GridItem
                   gridArea="1/1"
                   alignSelf="center"
@@ -121,13 +125,10 @@ const HeroSlider = () => {
             <SliderButton type="next">
               <MdKeyboardArrowRight />
             </SliderButton>
-            <ProgressBar
-              className="swiper-pagination"
-              height={1}
-              width="sm"
-              bgColor={white}
-              barColor={green}
-            />
+            <Flex className="swiper-pagination" height={1} width="sm" />
+            <Heading as="h2" textStyle="extra-extra-large" w={24}>
+              {formatCurrentSlide(currentSlide)}
+            </Heading>
           </Flex>
         </Container>
       </GridItem>
