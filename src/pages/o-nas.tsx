@@ -1,10 +1,11 @@
 import { Box } from "@chakra-ui/react";
+import { HeroSlider } from "@src/components/aboutUs";
 import React from "react";
 
 const About = () => {
   return (
-    <Box height="125vh" bg="black">
-      About
+    <Box>
+      <HeroSlider />
     </Box>
   );
 };
