@@ -27,12 +27,7 @@ const SkyscraperStaticImageElement = (
 
 const IndexPage: GatsbyPageWithLayout = () => {
   return (
-    <Flex
-      as="main"
-      flexDir={{ base: "column", lg: "row" }}
-      height="100vh"
-      width="100vw"
-    >
+    <Flex as="main" flexDir={{ base: "column", lg: "row" }} height="100vh">
       <Panel
         backgroundStaticImage={HouseStaticImageElement}
         paddingTop={[15, 0]}
@@ -53,6 +48,8 @@ const IndexPage: GatsbyPageWithLayout = () => {
     </Flex>
   );
 };
+
+IndexPage.hideFooter = true;
 
 export default IndexPage;
 
