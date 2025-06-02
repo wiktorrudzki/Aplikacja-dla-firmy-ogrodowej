@@ -2,12 +2,12 @@ import * as React from "react";
 import { GridProps, Grid, GridItem, VStack, Text } from "@chakra-ui/react";
 import "./Panel.css";
 
-interface PanelProps extends GridProps {
+type PanelProps = GridProps & {
   children: React.ReactNode;
-  BackgroundStaticImage: React.JSX.Element;
-}
+  backgroundStaticImage: React.JSX.Element;
+};
 
-const Panel = ({ children, BackgroundStaticImage, ...props }: PanelProps) => {
+const Panel = ({ children, backgroundStaticImage, ...props }: PanelProps) => {
   return (
     <Grid
       as="section"
@@ -16,7 +16,7 @@ const Panel = ({ children, BackgroundStaticImage, ...props }: PanelProps) => {
       _hover={{ flex: 1.2 }}
       className="panel"
     >
-      <GridItem gridArea="1/1">{BackgroundStaticImage}</GridItem>
+      <GridItem gridArea="1/1">{backgroundStaticImage}</GridItem>
       <GridItem
         gridArea="1/1"
         position="relative"

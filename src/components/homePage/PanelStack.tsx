@@ -3,11 +3,11 @@ import { VStack, Text, Heading } from "@chakra-ui/react";
 import PanelButton from "./PanelButton";
 import { t } from "@i18n";
 
-interface PanelStackProps {
+type PanelStackProps = {
   title: string;
   children: React.ReactNode;
   to: string;
-}
+};
 
 const PanelStack = ({ title, children, to }: PanelStackProps) => {
   return (

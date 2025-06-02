@@ -33,7 +33,7 @@ const IndexPage: React.FC<PageProps> = ({}) => {
       width="100vw"
     >
       <Panel
-        BackgroundStaticImage={HouseStaticImageElement}
+        backgroundStaticImage={HouseStaticImageElement}
         paddingTop={[15, 0]}
       >
         <PanelStack
@@ -44,7 +44,7 @@ const IndexPage: React.FC<PageProps> = ({}) => {
         </PanelStack>
       </Panel>
 
-      <Panel BackgroundStaticImage={SkyscraperStaticImageElement}>
+      <Panel backgroundStaticImage={SkyscraperStaticImageElement}>
         <PanelStack title={t("business-client")} to={ROUTES.DLA_FIRM}>
           {t("business-client-homepage")}
         </PanelStack>

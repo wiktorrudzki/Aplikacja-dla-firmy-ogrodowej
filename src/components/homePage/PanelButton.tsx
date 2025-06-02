@@ -2,10 +2,10 @@ import { Button } from "@chakra-ui/react";
 import { Link } from "gatsby";
 import * as React from "react";
 
-interface PanelButtonProps {
+type PanelButtonProps = {
   to: string;
   children: React.ReactNode;
-}
+};
 
 const PanelButton = ({ to, children }: PanelButtonProps) => (
   <Button
