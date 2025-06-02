@@ -91,6 +91,17 @@ const HeroSlider = () => {
                         as="h2"
                         textStyle="heading-2"
                         textTransform="uppercase"
+                        position="relative"
+                        _before={{
+                          content: '""',
+                          position: "absolute",
+                          left: "0",
+                          top: "-6",
+                          height: "3px",
+                          rounded: "full",
+                          width: "16",
+                          backgroundColor: "white",
+                        }}
                       >
                         {t("our-values")}
                       </Heading>
