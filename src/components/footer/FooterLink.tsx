@@ -7,19 +7,16 @@ type LinkProps = {
   to: string;
 };
 
-const FooterLink = ({ children, to, ...props }: LinkProps) => {
-  return (
-    <Link
-      textStyle="paragraph"
-      variant="underline"
-      color="white"
-      textDecorationColor="white"
-      asChild
-      {...props}
-    >
-      <GatsbyLink to={to}>{children}</GatsbyLink>
-    </Link>
-  );
-};
-
+const FooterLink = ({ children, to, ...props }: LinkProps) => (
+  <Link
+    textStyle="paragraph"
+    variant="underline"
+    color="white"
+    textDecorationColor="white"
+    asChild
+    {...props}
+  >
+    <GatsbyLink to={to}>{children}</GatsbyLink>
+  </Link>
+);
 export default FooterLink;

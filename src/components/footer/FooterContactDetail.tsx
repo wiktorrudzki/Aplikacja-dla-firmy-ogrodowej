@@ -6,15 +6,13 @@ type DetailProps = {
   children: React.ReactNode;
 };
 
-const FooterContactDetail = ({ icon: Icon, children }: DetailProps) => {
-  return (
-    <HStack>
-      <Icon size="1.5rem" />
-      <Text whiteSpace="pre-line" textStyle="paragraph">
-        {children}
-      </Text>
-    </HStack>
-  );
-};
+const FooterContactDetail = ({ icon: Icon, children }: DetailProps) => (
+  <HStack>
+    <Icon size="1.5rem" />
+    <Text whiteSpace="pre-line" textStyle="paragraph">
+      {children}
+    </Text>
+  </HStack>
+);
 
 export default FooterContactDetail;
