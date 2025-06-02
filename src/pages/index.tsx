@@ -5,6 +5,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Flex } from "@chakra-ui/react";
 import { Panel, PanelStack } from "@src/components/homePage";
 import ROUTES from "@data/routes.json";
+import { GatsbyPageWithLayout } from "@src/types/page";
 
 const HouseStaticImageElement = (
   <StaticImage
@@ -24,7 +25,7 @@ const SkyscraperStaticImageElement = (
   />
 );
 
-const IndexPage: React.FC<PageProps> = ({}) => {
+const IndexPage: GatsbyPageWithLayout = () => {
   return (
     <Flex
       as="main"

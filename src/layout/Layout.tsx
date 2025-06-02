@@ -5,14 +5,15 @@ import { Stack } from "@chakra-ui/react";
 
 type Props = {
   children: React.ReactNode;
+  showFooter: boolean;
 };
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ showFooter, children }: Props) => {
   return (
     <Stack>
       <Navigation />
       {children}
-      <Footer />
+      {showFooter && <Footer />}
     </Stack>
   );
 };
