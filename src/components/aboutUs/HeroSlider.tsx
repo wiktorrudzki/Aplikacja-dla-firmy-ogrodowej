@@ -27,7 +27,7 @@ const SliderButton = ({ children, type, ...props }: SliderButton) => (
     variant="outline"
     borderWidth={2}
     rounded="full"
-    size="2xl"
+    size={["xl", "2xl"]}
     color="white"
     _hover={{ color: "black" }}
     className={`swiper-button about-us-swiper-button-${type}`}
@@ -45,8 +45,8 @@ const formatCurrentSlide = (currentSlide: number) => {
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = React.useState(1);
   return (
-    <Grid>
-      <GridItem gridArea="1/1">
+    <Grid height="100svh">
+      <GridItem gridArea="1/1" overflowX="hidden">
         <Swiper
           modules={[Autoplay, Navigation, Pagination]}
           pagination={{
@@ -60,12 +60,14 @@ const HeroSlider = () => {
           }}
           onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex + 1)}
           // autoplay={{ delay: 5000 }}
-          // loop
-          style={{ height: "100vh", width: "100vw" }}
+          style={{
+            height: "100svh",
+            width: "100vw",
+          }}
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
-              <Grid height="100vh">
+              <Grid height="100%">
                 <GridItem gridArea="1/1" position="relative">
                   {slide.imageElement}
                   <Box
@@ -84,7 +86,7 @@ const HeroSlider = () => {
                   color="white"
                 >
                   <Container>
-                    <Flex direction="column" gap={[6]} maxWidth="2xl">
+                    <Flex direction="column" gap={[3, 6]} maxWidth="2xl">
                       <Heading
                         as="h2"
                         textStyle="heading-2"
@@ -96,6 +98,8 @@ const HeroSlider = () => {
                         as="h1"
                         textStyle="extra-extra-large"
                         textTransform="uppercase"
+                        fontSize={["4rem"]}
+                        wordBreak="break-word"
                       >
                         {slide.title}
                       </Heading>
@@ -118,15 +122,29 @@ const HeroSlider = () => {
         color="white"
       >
         <Container>
-          <Flex alignItems="center" justifyContent="flex-end" gap={3} p={5}>
+          <Flex
+            alignItems="center"
+            justifyContent="flex-end"
+            gap={[3, 5]}
+            py={5}
+          >
             <SliderButton type="prev">
               <MdKeyboardArrowLeft />
             </SliderButton>
             <SliderButton type="next">
               <MdKeyboardArrowRight />
             </SliderButton>
-            <Flex className="swiper-pagination" height={1} width="sm" />
-            <Heading as="h2" textStyle="extra-extra-large" w={24}>
+            <Flex
+              className="swiper-pagination"
+              height={1}
+              width={["24", "32", "60", "sm"]}
+            />
+            <Heading
+              as="h2"
+              textStyle="extra-extra-large"
+              fontSize={["3.5rem", "5rem"]}
+              w="2ch"
+            >
               {formatCurrentSlide(currentSlide)}
             </Heading>
           </Flex>
