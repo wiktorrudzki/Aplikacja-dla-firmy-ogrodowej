@@ -32,7 +32,7 @@ export default [
     rules: {
       ...reactHooks.configs.recommended.rules,
       ...prettierConfig.rules,
-      "prettier/prettier": "warning",
+      "prettier/prettier": "warn",
     },
   },
 ];

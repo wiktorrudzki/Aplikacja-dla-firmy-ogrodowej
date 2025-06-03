@@ -1,3 +1,18 @@
 {
-  "test": "Testowanie"
+  "test": "Testowanie",
+  "footer-copyright": "© 2025 Usługi Ogrodnicze Mateusz Bernacki - All rights reserved.",
+  "contact-details": "Dane kontaktowe",
+  "adress-details": "Usługi Ogrodnicze Mateusz Bernacki\nul. Nowa 117\n44-264 Jankowice Rybnickie\nNIP: 123-456-789",
+  "email-address": "ogrodnikbernacki@gmail.com",
+  "telephone-number": "+48 731 169 911",
+  "useful-links": "Przydatne linki",
+  "homepage": "Strona główna",
+  "about-us": "O nas",
+  "gallery": "Galeria",
+  "contact": "Kontakt",
+  "regulations": "Regulamin",
+  "offer": "Oferta",
+  "for-companies": "Dla firm",
+  "for-individuals": "Dla osób prywatnych",
+  "our-social-media": "Nasze social media"
 }

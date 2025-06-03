@@ -38,9 +38,7 @@ export const pageQuery = graphql`
     images: allFile(filter: { sourceInstanceName: { eq: "images" } }) {
       nodes {
         relativePath
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
-        }
+        ...GatsbyImageFragment
       }
     }
   }
