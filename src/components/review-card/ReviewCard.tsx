@@ -6,6 +6,7 @@ type Props = {
   reviewer: string;
   description: string;
   rating: number;
+  blurred?: boolean;
 };
 
 const getStarArray = (value: number) => {
@@ -24,8 +25,16 @@ const getStarArray = (value: number) => {
   return stars;
 };
 
-const ReviewCard = ({ reviewer, description, rating }: Props) => (
-  <Card.Root maxWidth={430}>
+const ReviewCard = ({
+  reviewer,
+  description,
+  rating,
+  blurred = false,
+}: Props) => (
+  <Card.Root
+    maxWidth={430}
+    style={{ filter: blurred ? "blur(6px)" : undefined }}
+  >
     <Card.Header textStyle="heading-3" width="100%">
       <Flex justifyContent="space-between" wrap="wrap">
         {reviewer}

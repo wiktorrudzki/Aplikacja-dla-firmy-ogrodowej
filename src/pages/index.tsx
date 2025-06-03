@@ -213,6 +213,12 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
         description="Świetne wykonanie ogrodów, a także ich sprawna pielęgnacja. Bardzo zadowolony!"
         rating={4.5}
       />
+      <ReviewCard
+        reviewer="Jan Kowalski"
+        description="Świetne wykonanie ogrodów, a także ich sprawna pielęgnacja. Bardzo zadowolony!"
+        rating={3}
+        blurred
+      />
     </main>
   );
 };
