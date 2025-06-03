@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link, HeadFC, PageProps } from "gatsby";
+import { GatsbyPageWithLayout } from "@src/types/page";
 
 const pageStyles = {
   color: "#232129",
@@ -23,7 +24,7 @@ const codeStyles = {
   borderRadius: 4,
 };
 
-const NotFoundPage: React.FC<PageProps> = () => {
+const NotFoundPage: GatsbyPageWithLayout<PageProps> = () => {
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>Page not found</h1>

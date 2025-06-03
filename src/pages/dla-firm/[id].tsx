@@ -1,6 +1,7 @@
+import { GatsbyPageWithLayout } from "@src/types/page";
 import React from "react";
 
-const CompanyOffer = () => {
+const CompanyOffer: GatsbyPageWithLayout = () => {
   return <div>CompanyOffer</div>;
 };
 
