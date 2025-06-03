@@ -1,5 +1,5 @@
 import * as React from "react";
-import { graphql, type HeadFC, type PageProps } from "gatsby";
+import { type HeadFC, type PageProps } from "gatsby";
 import { Button } from "@chakra-ui/react";
 import { t } from "@i18n";
 import { MainCard } from "@src/components/main-card";
@@ -172,16 +172,6 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
     </main>
   );
 };
-
-export const query = graphql`
-  query {
-    allFile(filter: { extension: { regex: "/(jpg|jpeg|png)/" } }) {
-      nodes {
-        ...fluidImage
-      }
-    }
-  }
-`;
 
 export default IndexPage;
 
