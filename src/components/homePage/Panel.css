@@ -1,0 +1,10 @@
+.panel__bg-image {
+  height: 100%;
+  width: 100%;
+  transition: filter 700ms ease;
+  filter: brightness(0.3);
+}
+
+.panel:hover .panel__bg-image {
+  filter: brightness(1);
+}
