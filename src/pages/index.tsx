@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HeadFC, PageProps } from "gatsby";
+import { HeadFC } from "gatsby";
 import { t } from "@i18n";
 import { StaticImage } from "gatsby-plugin-image";
 import { Flex } from "@chakra-ui/react";
