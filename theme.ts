@@ -15,7 +15,7 @@ const customConfig = defineConfig({
           fontFamily: "Nunito",
           fontWeight: "400",
           fontSize: "60px",
-          lineHeight: "auto",
+          lineHeight: "normal",
         },
       },
       "heading-1": {
@@ -23,7 +23,7 @@ const customConfig = defineConfig({
           fontFamily: "Poppins",
           fontWeight: "400",
           fontSize: "36px",
-          lineHeight: "auto",
+          lineHeight: "normal",
         },
       },
       "heading-2": {
@@ -31,7 +31,7 @@ const customConfig = defineConfig({
           fontFamily: "Poppins",
           fontWeight: "500",
           fontSize: "24px",
-          lineHeight: "auto",
+          lineHeight: "normal",
         },
       },
       "heading-3": {
@@ -39,7 +39,7 @@ const customConfig = defineConfig({
           fontFamily: "Inter",
           fontWeight: "400",
           fontSize: "20px",
-          lineHeight: "auto",
+          lineHeight: "normal",
         },
       },
       paragraph: {
@@ -47,7 +47,7 @@ const customConfig = defineConfig({
           fontFamily: "Amiko",
           fontWeight: "400",
           fontSize: "16px",
-          lineHeight: "auto",
+          lineHeight: "normal",
         },
       },
       "extra-extra-large": {
@@ -55,7 +55,7 @@ const customConfig = defineConfig({
           fontFamily: "Anton",
           fontWeight: "400",
           fontSize: "96px",
-          lineHeight: "auto",
+          lineHeight: "normal",
         },
       },
     },
