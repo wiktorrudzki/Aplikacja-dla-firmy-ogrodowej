@@ -1,4 +1,14 @@
 import React from "react";
+import ColorProvider from "./src/contexts/ColorProvider.tsx";
+import Layout from "./src/layout/Layout.tsx";
+
+export const wrapRootElement = ({ element }) => {
+  return <ColorProvider>{element}</ColorProvider>;
+};
+
+export const wrapPageElement = ({ element, props }) => {
+  return <Layout {...props}>{element}</Layout>;
+};
 
 export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([

@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, PageProps } from "gatsby";
 import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
 import { galleryImages } from "@data/gallery-images.json";
+import { GatsbyPageWithLayout } from "@src/types/page";
 
 type ImageNode = {
   relativePath: string;
@@ -16,7 +17,7 @@ interface DataType {
   };
 }
 
-const Gallery = ({ data }: PageProps<DataType>) => {
+const Gallery: GatsbyPageWithLayout<PageProps<DataType>> = ({ data }) => {
   const imageData = galleryImages[0];
   const node = data.images.nodes.find(
     (image) => image.relativePath === imageData.src,

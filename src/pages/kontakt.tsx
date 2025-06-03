@@ -7,11 +7,12 @@ import {
 } from "@src/components/contact-card";
 import { MainCard } from "@src/components/main-card";
 import { t } from "@src/utils/i18n";
+import { GatsbyPageWithLayout } from "@src/types/page";
 import React from "react";
 import { BiPhone } from "react-icons/bi";
 import { FiMail, FiMap } from "react-icons/fi";
 
-const Contact = () => (
+const Contact: GatsbyPageWithLayout = () => (
   <Container
     marginTop={{
       base: `${24 * 2 + 48}px`,
