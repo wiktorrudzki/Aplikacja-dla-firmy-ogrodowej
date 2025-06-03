@@ -3,8 +3,10 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Slide } from "@src/types/slide";
 
 const imageStyle: React.CSSProperties = {
+  position: "fixed",
   height: "100%",
   width: "100%",
+  filter: "brightness(0.5)",
 };
 
 const OurValuesSlides: Slide[] = [
