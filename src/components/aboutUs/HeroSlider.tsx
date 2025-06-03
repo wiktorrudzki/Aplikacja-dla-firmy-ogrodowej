@@ -59,7 +59,7 @@ const HeroSlider = () => {
             prevEl: ".about-us-swiper-button-prev",
           }}
           onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex + 1)}
-          // autoplay={{ delay: 5000 }}
+          autoplay={{ delay: 5000 }}
           style={{
             height: "100svh",
             width: "100vw",
@@ -68,7 +68,7 @@ const HeroSlider = () => {
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
               <Grid height="100%">
-                <GridItem gridArea="1/1" position="relative">
+                <GridItem gridArea="1/1" position="relative" height="100svh">
                   {slide.imageElement}
                   <Box
                     position="absolute"
