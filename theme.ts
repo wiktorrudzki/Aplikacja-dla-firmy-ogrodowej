@@ -2,6 +2,13 @@ import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
 const customConfig = defineConfig({
   theme: {
+    semanticTokens: {
+      shadows: {
+        element: {
+          value: "0px 0px 16px rgba(0, 0, 0, 0.1)",
+        },
+      },
+    },
     textStyles: {
       "extra-large": {
         value: {

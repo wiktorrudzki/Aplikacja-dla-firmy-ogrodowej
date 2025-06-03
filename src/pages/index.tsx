@@ -1,7 +1,8 @@
 import * as React from "react";
-import { graphql, type HeadFC, type PageProps } from "gatsby";
+import { type HeadFC, type PageProps } from "gatsby";
 import { Button } from "@chakra-ui/react";
 import { t } from "@i18n";
+import { MainCard } from "@src/components/main-card";
 
 const pageStyles = {
   color: "#232129",
@@ -167,19 +168,10 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
           — you just made a Gatsby site! 🎉🎉🎉
         </span>
       </h1>
+      <MainCard>dfsadas</MainCard>
     </main>
   );
 };
-
-export const query = graphql`
-  query {
-    allFile(filter: { extension: { regex: "/(jpg|jpeg|png)/" } }) {
-      nodes {
-        ...fluidImage
-      }
-    }
-  }
-`;
 
 export default IndexPage;
 

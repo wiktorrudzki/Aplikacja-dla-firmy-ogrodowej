@@ -9,7 +9,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <Stack>
+    <Stack gap={0}>
       <Navigation />
       {children}
       <Footer />
