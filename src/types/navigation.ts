@@ -7,7 +7,6 @@ export type NavigationMode = {
   isScrolled: boolean;
   hidden: boolean;
   navMode: NAVIGATION_MODE;
-  height: number;
   showNav: () => void;
   hideNav: () => void;
 };
