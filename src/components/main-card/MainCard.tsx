@@ -1,4 +1,4 @@
-import { Box, Stack } from "@chakra-ui/react";
+import { Container, Stack } from "@chakra-ui/react";
 import React from "react";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 
 const MainCard = ({ children }: Props) => {
   return (
-    <Box
+    <Container
       bgGradient="radial-gradient(circle at bottom right, #EBF8FF, #EBF4E4)" // hardcode colors becuase cannot reference the variable from here
       py={{
         base: 4,
@@ -21,7 +21,7 @@ const MainCard = ({ children }: Props) => {
       boxShadow="element"
     >
       <Stack alignItems="center">{children}</Stack>
-    </Box>
+    </Container>
   );
 };
 
