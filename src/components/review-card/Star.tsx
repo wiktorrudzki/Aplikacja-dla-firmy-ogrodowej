@@ -1,17 +1,16 @@
+import { Box } from "@chakra-ui/react";
 import React from "react";
 import { IoStarHalfOutline, IoStarOutline, IoStarSharp } from "react-icons/io5";
 
 type Props = { value: number };
 
-const color = "#D69E2E";
-
 const Star = ({ value }: Props) =>
   value === 1 ? (
-    <IoStarSharp color={color} />
+    <Box as={IoStarSharp} color="yellow.500" />
   ) : value === 0.5 ? (
-    <IoStarHalfOutline color={color} />
+    <Box as={IoStarHalfOutline} color="yellow.500" />
   ) : (
-    <IoStarOutline color={color} />
+    <Box as={IoStarOutline} color="yellow.500" />
   );
 
 export default Star;
