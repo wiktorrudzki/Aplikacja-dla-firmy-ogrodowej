@@ -4,14 +4,19 @@ import React from "react";
 
 const VisitDescription = () => {
   return (
-    <Stack alignItems="center" gap={0.5}>
+    <Stack alignItems="center" gap={0}>
       <Text textStyle="paragraph">
         {t("Usługi ogrodnicze")} <chakra.span color="green.500">M</chakra.span>
         ateusz <chakra.span color="green.500">B</chakra.span>ernacki
       </Text>
-      <Text textStyle="paragraph">{`${t("ul. Nowa 117")}`}</Text>
-      <Text textStyle="paragraph">{`${t("44-264 Jankowice Rybnickie")}`}</Text>
-      <Text textStyle="paragraph">{`${t("NIP: 123-456-789")}`}</Text>
+      <Text
+        width="100%"
+        textAlign="center"
+        whiteSpace="pre-line"
+        textStyle="paragraph"
+      >
+        {t("address-details-shorten")}
+      </Text>
     </Stack>
   );
 };
