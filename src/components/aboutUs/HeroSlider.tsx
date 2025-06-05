@@ -2,7 +2,7 @@ import * as React from "react";
 import { Box } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import slides from "@data/ourValuesSlides";
+import slides from "@data/OurValuesSlides";
 import "swiper/css";
 import "./HeroSlider.css";
 import SliderControls from "./SliderControls";
@@ -21,7 +21,7 @@ const HeroSlider = () => (
         nextEl: ".about-us-swiper-button-next",
         prevEl: ".about-us-swiper-button-prev",
       }}
-      autoplay={{ delay: 5000 }}
+      // autoplay={{ delay: 8000 }}
       style={{ height: "100svh" }}
     >
       {slides.map((slide) => (

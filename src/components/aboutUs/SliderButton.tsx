@@ -1,9 +1,9 @@
 import { IconButton } from "@chakra-ui/react";
 import * as React from "react";
 
-interface SliderButtonProps extends React.PropsWithChildren {
+type SliderButtonProps = React.PropsWithChildren & {
   type: "prev" | "next";
-}
+};
 
 const SliderButton = ({ children, type, ...props }: SliderButtonProps) => (
   <IconButton
