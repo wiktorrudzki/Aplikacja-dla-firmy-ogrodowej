@@ -21,7 +21,7 @@ const HeroSlider = () => (
         nextEl: ".about-us-swiper-button-next",
         prevEl: ".about-us-swiper-button-prev",
       }}
-      // autoplay={{ delay: 8000 }}
+      autoplay={{ delay: 8000 }}
       style={{ height: "100svh" }}
     >
       {slides.map((slide) => (
