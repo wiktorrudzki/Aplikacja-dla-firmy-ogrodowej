@@ -13,22 +13,20 @@ const SliderControls = () => (
     width="100%"
     color="white"
   >
-    <Container>
-      <Flex alignItems="center" justifyContent="flex-end" gap={[3, 5]} py={5}>
-        <SliderButton type="prev">
-          <MdKeyboardArrowLeft />
-        </SliderButton>
-        <SliderButton type="next">
-          <MdKeyboardArrowRight />
-        </SliderButton>
-        <Flex
-          className="swiper-pagination"
-          height={1}
-          width={["24", "32", "60", "sm"]}
-        />
-        <SliderCounter />
-      </Flex>
-    </Container>
+    <Flex alignItems="center" justifyContent="flex-end" gap={[3, 5]} p={5}>
+      <SliderButton type="prev">
+        <MdKeyboardArrowLeft />
+      </SliderButton>
+      <SliderButton type="next">
+        <MdKeyboardArrowRight />
+      </SliderButton>
+      <Flex
+        className="swiper-pagination"
+        height={1}
+        width={["24", "32", "60", "sm"]}
+      />
+      <SliderCounter />
+    </Flex>
   </Box>
 );
 
