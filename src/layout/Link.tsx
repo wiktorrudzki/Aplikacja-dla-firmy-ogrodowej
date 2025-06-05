@@ -36,9 +36,9 @@ const CustomLink = ({
                 left: "10%",
                 bottom: "-5px",
                 width: "80%",
-                height: "3px",
+                height: "2px",
                 bg: mode === NAVIGATION_MODE.DARK ? "black" : "white",
-                borderRadius: "3px",
+                borderRadius: "2px",
               }
             : {}
         }
