@@ -6,7 +6,7 @@ import routes from "@data/routes.json";
 import { t } from "@i18n";
 import { StaticImage } from "gatsby-plugin-image";
 import { FooterContactDetail, FooterLink } from "@src/components/footer";
-import { Heading4, Paragraph } from "@src/components/typography";
+import { Heading2, Paragraph } from "@src/components/typography";
 
 const Footer = () => {
   return (
@@ -33,7 +33,7 @@ const Footer = () => {
           }}
         />
         <VStack align="start">
-          <Heading4>{t("contact-details")}</Heading4>
+          <Heading2>{t("contact-details")}</Heading2>
           <FooterContactDetail icon={MdLocationOn}>
             {t("adress-details")}
           </FooterContactDetail>
@@ -50,7 +50,7 @@ const Footer = () => {
         </VStack>
 
         <VStack align="start">
-          <Heading4>{t("useful-links")}</Heading4>
+          <Heading2>{t("useful-links")}</Heading2>
           <FooterLink to={routes.HOME}>{t("homepage")}</FooterLink>
           <FooterLink to={routes.O_NAS}>{t("about-us")}</FooterLink>
           <FooterLink to={routes.GALERIA}>{t("gallery")}</FooterLink>
@@ -59,7 +59,7 @@ const Footer = () => {
         </VStack>
 
         <VStack align="start">
-          <Heading4>{t("offer")}</Heading4>
+          <Heading2>{t("offer")}</Heading2>
           <FooterLink to={routes.DLA_FIRM}>{t("for-companies")}</FooterLink>
           <FooterLink to={routes.KLIENT_INDYWIDUALNY}>
             {t("for-individuals")}
@@ -67,7 +67,7 @@ const Footer = () => {
         </VStack>
 
         <VStack align="start">
-          <Heading4>{t("our-social-media")}</Heading4>
+          <Heading2>{t("our-social-media")}</Heading2>
           <HStack>
             <Link href="https://www.facebook.com/">
               <BsFacebook color="white" size="2rem" />

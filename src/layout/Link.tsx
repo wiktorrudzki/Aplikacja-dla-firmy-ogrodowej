@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import { NAVIGATION_MODE } from "@src/types/navigation";
-import { Heading5 } from "@src/components/typography";
+import { Heading3 } from "@src/components/typography";
 
 type Props = {
   to: string;
@@ -23,7 +23,7 @@ const CustomLink = ({
 
   return (
     <Link onClick={onClick} style={{ textDecoration: "none" }} to={to}>
-      <Heading5
+      <Heading3
         color={mode === NAVIGATION_MODE.DARK ? "black" : "white"}
         position="relative"
         textDecoration="none"
@@ -44,7 +44,7 @@ const CustomLink = ({
         }
       >
         {children}
-      </Heading5>
+      </Heading3>
     </Link>
   );
 };

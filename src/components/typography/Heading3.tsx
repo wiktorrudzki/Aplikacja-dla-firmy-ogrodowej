@@ -3,7 +3,7 @@ import { HeadingType } from "@src/types/typography";
 import React from "react";
 
 const Heading3 = ({ children, ...props }: HeadingType) => (
-  <Heading as="h3" fontWeight="normal" size={{ base: "3xl" }} {...props}>
+  <Heading as="h3" fontWeight="normal" size={{ base: "xl" }} {...props}>
     {children}
   </Heading>
 );
