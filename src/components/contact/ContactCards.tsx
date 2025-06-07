@@ -9,6 +9,7 @@ import {
 import { t } from "@src/utils/i18n";
 import { FiMail, FiMap } from "react-icons/fi";
 import { BiPhone } from "react-icons/bi";
+import { Link } from "gatsby";
 
 const ContactCards = () => (
   <Flex
@@ -32,18 +33,22 @@ const ContactCards = () => (
       Icon={FiMap}
       iconMode="color"
     />
-    <ContactCard
-      title={t("Zadzwoń do nas!")}
-      description={<CallDescription />}
-      Icon={BiPhone}
-      iconMode="fill"
-    />
-    <ContactCard
-      title={t("Napisz do nas!")}
-      description={<MailDescription />}
-      Icon={FiMail}
-      iconMode="color"
-    />
+    <Link to={`tel:${t("telephone-number")}`}>
+      <ContactCard
+        title={t("Zadzwoń do nas!")}
+        description={<CallDescription />}
+        Icon={BiPhone}
+        iconMode="fill"
+      />
+    </Link>
+    <Link to={`mailto:${t("email-address")}`}>
+      <ContactCard
+        title={t("Napisz do nas!")}
+        description={<MailDescription />}
+        Icon={FiMail}
+        iconMode="color"
+      />
+    </Link>
   </Flex>
 );
 
