@@ -1,9 +1,29 @@
-import servicesCard from "@data/ServicesCards";
-import { ServiceCard } from "@src/components/service-card";
+import { DataType, GalleryImage, ImageNode } from "@src/types/images";
 import { GatsbyPageWithLayout } from "@src/types/page";
-import React from "react";
+import { graphql, PageProps } from "gatsby";
+import React, { useMemo } from "react";
+import galleryImages from "@data/gallery-images";
+import galleryCategories from "@data/gallery-categories.json";
+import { ServiceCards } from "@src/components/service-card";
+import { companyServicesCards } from "@data/servicesCards";
+import { Service } from "@src/types/services";
 
-const IndexPage: GatsbyPageWithLayout = () => {
+const imagesPaths = galleryImages
+  .filter((image) => image.category.includes(galleryCategories.DLA_FIRM))
+  .map((image) => image.src);
+
+const IndexPage: GatsbyPageWithLayout<PageProps<DataType>> = ({ data }) => {
+  const images = useMemo(
+    () =>
+      data.images.nodes
+        .filter(({ relativePath }) => imagesPaths.includes(relativePath))
+        .map((image) => ({
+          ...image,
+          ...galleryImages.find((g) => g.src === image.relativePath),
+        })),
+    [data],
+  );
+
   return (
     <div
       style={{
@@ -13,11 +33,27 @@ const IndexPage: GatsbyPageWithLayout = () => {
         alignItems: "center",
       }}
     >
-      {servicesCard.map((card) => (
-        <ServiceCard card={card} key={card.text} />
-      ))}
+      <ServiceCards
+        services={images.map((image) => ({
+          ...(companyServicesCards.find(
+            (c) => c.imageId === image.id,
+          ) as Service),
+          image: image as GalleryImage & ImageNode,
+        }))}
+      />
     </div>
   );
 };
 
 export default IndexPage;
+
+export const pageQuery = graphql`
+  {
+    images: allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+      nodes {
+        relativePath
+        ...GatsbyImageFragment
+      }
+    }
+  }
+`;
