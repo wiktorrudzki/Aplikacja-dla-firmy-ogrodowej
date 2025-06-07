@@ -1,4 +1,4 @@
-import { Container } from "@chakra-ui/react";
+import { Container, Stack } from "@chakra-ui/react";
 import React from "react";
 
 type Props = {
@@ -20,7 +20,7 @@ const MainCard = ({ children }: Props) => {
       borderRadius={16}
       boxShadow="element"
     >
-      {children}
+      <Stack alignItems="center">{children}</Stack>
     </Container>
   );
 };
