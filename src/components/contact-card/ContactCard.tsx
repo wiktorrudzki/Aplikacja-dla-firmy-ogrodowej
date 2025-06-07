@@ -1,11 +1,4 @@
-import {
-  Box,
-  Container,
-  Stack,
-  Text,
-  useBreakpointValue,
-} from "@chakra-ui/react";
-import constants from "@src/constants";
+import { Box, Container, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { IconType } from "react-icons";
 
@@ -17,29 +10,19 @@ type Props = {
 };
 
 const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
-  const iconSize = useBreakpointValue({
-    base: constants.contactCardIconBaseSizeRem * 4,
-    md: constants.contactCardIconMdSizeRem * 4,
-  });
-  const top = useBreakpointValue({
-    base: -constants.contactCardIconBaseOffsetRem * 4,
-    md: -constants.contactCardIconMdOffsetRem * 4,
-  });
-
   return (
-    <Container width="fit-content" margin={0} padding={0}>
+    <Container width="fit-content">
       <Box
         as={Icon}
-        width={iconSize}
-        height={iconSize}
-        fill={iconMode === "fill" ? "green.500" : "transparent"}
-        color={iconMode === "color" ? "green.500" : "transparent"}
-        left={{
-          base: `calc(50% - ${constants.contactCardIconBaseOffsetRem}rem)`,
-          md: `calc(50% - ${constants.contactCardIconMdOffsetRem}rem)`,
+        width={16}
+        height={16}
+        fill={iconMode === "fill" ? "green.500" : "transparent"} // cannot use chakra colors outside chakra components
+        color={iconMode === "color" ? "green.500" : "transparent"} // cannot use chakra colors outside chakra components
+        style={{
+          position: "absolute",
+          top: "-2.5rem",
+          left: "calc(50% - 2rem)",
         }}
-        top={top}
-        position="absolute"
       />
 
       <Stack

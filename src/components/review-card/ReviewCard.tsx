@@ -33,7 +33,7 @@ const ReviewCard = ({
 }: Props) => (
   <Card.Root
     maxWidth={430}
-    style={{ filter: blurred ? `blur(6px)` : undefined }}
+    style={{ filter: blurred ? "blur(6px)" : undefined }}
   >
     <Card.Header textStyle="heading-3" width="100%">
       <Flex justifyContent="space-between" wrap="wrap">

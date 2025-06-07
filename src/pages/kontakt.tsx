@@ -1,36 +1,47 @@
-import { Stack, Text } from "@chakra-ui/react";
-import { MainCard } from "@src/components/main-card";
+import {
+  CallDescription,
+  ContactCard,
+  MailDescription,
+  VisitDescription,
+} from "@src/components/contact-card";
 import { t } from "@src/utils/i18n";
-import { GatsbyPageWithLayout } from "@src/types/page";
 import React from "react";
-import { ContactCards, GoogleMap } from "@src/components/contact";
-import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
-import constants from "@src/constants";
+import { BiPhone } from "react-icons/bi";
+import { FiMail, FiMap } from "react-icons/fi";
 
-const Contact: GatsbyPageWithLayout = () => (
-  <NavigationMarginContainer paddingTop={8} paddingBottom={8}>
-    <MainCard>
-      <Stack
-        gap={{ base: 8, md: 16 }}
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Text
-          marginBottom={{
-            base: `${constants.contactCardIconBaseOffsetRem}rem`,
-            md: `${constants.contactCardIconMdOffsetRem}rem`,
-          }}
-          textStyle={{ base: "heading-2", md: "heading-1" }}
-          textTransform="uppercase"
-          textAlign="center"
-        >
-          {t("Chcesz się z nami skontaktować?")}
-        </Text>
-        <ContactCards />
-        <GoogleMap />
-      </Stack>
-    </MainCard>
-  </NavigationMarginContainer>
-);
+const Contact = () => {
+  return (
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        background: "lightgreen",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <ContactCard
+        title={t("Odwiedź nas!")}
+        description={<VisitDescription />}
+        Icon={FiMap}
+        iconMode="color"
+      />
+      <ContactCard
+        title={t("Zadzwoń do nas!")}
+        description={<CallDescription />}
+        Icon={BiPhone}
+        iconMode="fill"
+      />
+      <ContactCard
+        title={t("Napisz do nas!")}
+        description={<MailDescription />}
+        Icon={FiMail}
+        iconMode="color"
+      />
+    </div>
+  );
+};
 
 export default Contact;
