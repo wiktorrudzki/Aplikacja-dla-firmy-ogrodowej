@@ -1,10 +1,10 @@
 import { IconButton, Stack } from "@chakra-ui/react";
 import { NAVIGATION_MODE } from "@src/types/navigation";
 import React from "react";
-import routes from "@data/routes.json";
 import { CgClose } from "react-icons/cg";
 import Link from "./Link";
 import { t } from "@src/utils/i18n";
+import { ROUTES } from "@src/constants";
 
 type Props = {
   hidden: boolean;
@@ -39,16 +39,16 @@ const MobileNav = ({ navMode, hidden, onClose }: Props) => {
       >
         <CgClose size={32} color="black" />
       </IconButton>
-      <Link onClick={onClose} noUnderline to={routes.O_NAS}>
+      <Link onClick={onClose} noUnderline to={ROUTES.O_NAS}>
         {t("O nas")}
       </Link>
-      <Link onClick={onClose} noUnderline to={routes.DLA_FIRM}>
+      <Link onClick={onClose} noUnderline to={ROUTES.DLA_FIRM}>
         {t("Usługi")}
       </Link>
-      <Link onClick={onClose} noUnderline to={routes.GALERIA}>
+      <Link onClick={onClose} noUnderline to={ROUTES.GALERIA}>
         {t("Galeria")}
       </Link>
-      <Link onClick={onClose} noUnderline to={routes.KONTAKT}>
+      <Link onClick={onClose} noUnderline to={ROUTES.KONTAKT}>
         {t("Kontakt")}
       </Link>
     </Stack>

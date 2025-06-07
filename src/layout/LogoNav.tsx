@@ -6,7 +6,7 @@ import logoWhite from "../assets/icons/logo-white.svg";
 import logoBlack from "../assets/icons/logo-black.svg";
 import logoWhiteMobile from "../assets/icons/logo-white-mobile.svg";
 import logoBlackMobile from "../assets/icons/logo-black-mobile.svg";
-import routes from "@data/routes.json";
+import { ROUTES } from "@src/constants";
 
 type Props = {
   navMode: NAVIGATION_MODE;
@@ -19,7 +19,7 @@ const LogoNav = ({ navMode }: Props) => {
   });
 
   return (
-    <Link to={routes.HOME} noUnderline>
+    <Link to={ROUTES.HOME} noUnderline>
       <Image src={logoSrc} alt="logo" />
     </Link>
   );
