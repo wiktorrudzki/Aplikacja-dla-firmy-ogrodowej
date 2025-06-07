@@ -58,7 +58,7 @@ const customConfig = defineConfig({
           fontFamily: "Anton",
           fontWeight: "400",
           fontSize: "96px",
-          lineHeight: "normal",
+          lineHeight: "1.25",
         },
       },
     },
