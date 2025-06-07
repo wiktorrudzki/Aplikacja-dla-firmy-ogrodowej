@@ -1,5 +1,5 @@
 import { useLocation } from "@reach/router";
-import { NAVIGATION_MODE } from "@src/types/navigation";
+import { NAVIGATION_MODE, NavigationMode } from "@src/types/navigation";
 import React, {
   RefObject,
   useCallback,
@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import routes from "@data/routes.json";
 
-const useNavigationMode = (ref: RefObject<HTMLDivElement>) => {
+const useNavigationMode = (ref: RefObject<HTMLDivElement>): NavigationMode => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hidden, setHidden] = useState(true);
 
@@ -17,7 +17,7 @@ const useNavigationMode = (ref: RefObject<HTMLDivElement>) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const navHeight = ref.current?.offsetHeight || 0;
+      const navHeight = ref.current?.offsetHeight ?? 0;
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > navHeight);
     };

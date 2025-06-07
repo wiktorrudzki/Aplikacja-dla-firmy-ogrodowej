@@ -1,0 +1,9 @@
+.swiper-pagination {
+  background-color: var(--chakra-colors-white);
+}
+
+.about-us-progress-fill {
+  width: 100%;
+  background-color: var(--chakra-colors-green-500);
+  transform-origin: left top;
+}
