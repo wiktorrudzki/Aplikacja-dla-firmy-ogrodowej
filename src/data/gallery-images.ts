@@ -1,5 +1,3 @@
-import galleryCategories from "./gallery-categories.json";
-
 const galleryImages = [
   {
     id: "1",
@@ -17,7 +15,7 @@ const galleryImages = [
     id: "3",
     src: "garden maintenance.jpg",
     alt: "Taras",
-    category: [galleryCategories.DLA_FIRM],
+    category: [],
   },
   {
     id: "4",
@@ -29,7 +27,7 @@ const galleryImages = [
     id: "5",
     src: "garden with path.webp",
     alt: "Taras",
-    category: [galleryCategories.DLA_FIRM],
+    category: [],
   },
   {
     id: "6",
@@ -41,13 +39,13 @@ const galleryImages = [
     id: "7",
     src: "path in snow.jpg",
     alt: "Taras",
-    category: [galleryCategories.DLA_FIRM],
+    category: [],
   },
   {
     id: "8",
     src: "plants.jpg",
     alt: "Trawnik",
-    category: [galleryCategories.DLA_FIRM],
+    category: [],
   },
   {
     id: "9",
@@ -71,7 +69,7 @@ const galleryImages = [
     id: "12",
     src: "square.jpg",
     alt: "Trawnik",
-    category: [galleryCategories.DLA_FIRM],
+    category: [],
   },
   {
     id: "13",
