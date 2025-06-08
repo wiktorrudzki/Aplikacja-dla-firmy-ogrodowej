@@ -1,13 +1,8 @@
-import { IconType } from "react-icons";
-import services from "@data/services.json";
-import { GalleryImage, ImageNode } from "./images";
+import { ImageDataLike } from "gatsby-plugin-image";
 
 export type Service = {
-  text: keyof typeof services;
-  icon: IconType;
-  imageId: string;
-};
-
-export type ServiceCard = Service & {
-  image: GalleryImage & ImageNode;
+  title: string;
+  icon: string;
+  featuredImage: ImageDataLike;
+  alt: string;
 };

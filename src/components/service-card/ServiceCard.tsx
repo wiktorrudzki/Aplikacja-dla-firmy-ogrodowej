@@ -1,21 +1,20 @@
 import { Box, Stack, Text } from "@chakra-ui/react";
-import { ServiceCard as ServiceCardType } from "@src/types/services";
+import { getIconFromName } from "@src/helpers";
+import { Service } from "@src/types/services";
 import { t } from "@src/utils/i18n";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 
 type Props = {
-  card: ServiceCardType;
+  service: Service;
 };
 
-const ServiceCard = ({ card }: Props) => {
-  const { image } = card;
+const ServiceCard = ({ service }: Props) => {
+  const image = getImage(service.featuredImage);
 
-  const value = getImage(image?.childImageSharp?.gatsbyImageData);
+  if (!image) return null;
 
-  if (!value) {
-    return null;
-  }
+  const Icon = getIconFromName(service.icon);
 
   return (
     <Stack
@@ -37,12 +36,12 @@ const ServiceCard = ({ card }: Props) => {
           zIndex: -1,
           borderRadius: 8,
         }}
-        image={value}
-        alt={image.alt ?? t("Brak tekstu alternatywnego")}
+        image={image}
+        alt={service.alt}
       />
-      <Box color="white" width={20} height={20} as={card.icon} />
+      <Box color="white" width={20} height={20} as={Icon} />
       <Text textAlign="center" textStyle="heading-2" color="white">
-        {t(card.text)}
+        {t(service.title)}
       </Text>
     </Stack>
   );

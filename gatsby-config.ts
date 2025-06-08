@@ -10,6 +10,7 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+    `gatsby-plugin-mdx`,
     { resolve: "gatsby-plugin-google-gtag", options: { trackingIds: [] } },
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
@@ -28,6 +29,14 @@ const config: GatsbyConfig = {
         path: "./src/assets/images/",
       },
       __key: "images",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "content",
+        path: `./src/content/`,
+      },
+      __key: "content",
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
