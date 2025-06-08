@@ -12,57 +12,21 @@ const customConfig = defineConfig({
         },
       },
     },
-    textStyles: {
-      "extra-large": {
-        value: {
-          fontFamily: "Nunito",
-          fontWeight: "400",
-          fontSize: "60px",
-          lineHeight: "normal",
-        },
-      },
-      "heading-1": {
-        value: {
-          fontFamily: "Poppins",
-          fontWeight: "400",
-          fontSize: "36px",
-          lineHeight: "normal",
-        },
-      },
-      "heading-2": {
-        value: {
-          fontFamily: "Poppins",
-          fontWeight: "500",
-          fontSize: "24px",
-          lineHeight: "normal",
-        },
-      },
-      "heading-3": {
-        value: {
-          fontFamily: "Inter",
-          fontWeight: "400",
-          fontSize: "20px",
-          lineHeight: "normal",
-        },
-      },
-      paragraph: {
-        value: {
-          fontFamily: "Amiko",
-          fontWeight: "400",
-          fontSize: "16px",
-          lineHeight: "normal",
-        },
-      },
-      "extra-extra-large": {
-        value: {
-          fontFamily: "Anton",
-          fontWeight: "400",
-          fontSize: "96px",
-          lineHeight: "1.25",
-        },
-      },
-    },
     tokens: {
+      fonts: {
+        "extra-extra-large": {
+          value: `Anton , -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
+        },
+        "extra-large": {
+          value: `Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
+        },
+        heading: {
+          value: `Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
+        },
+        body: {
+          value: `Amiko, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif`,
+        },
+      },
       colors: {
         green: {
           50: { value: "#EBF4E4" },

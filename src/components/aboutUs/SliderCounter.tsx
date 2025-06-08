@@ -1,7 +1,7 @@
-import { Heading } from "@chakra-ui/react";
 import * as React from "react";
 import { useSwiper } from "swiper/react";
 import { Swiper } from "swiper/types";
+import { ExtraExtraLargeHeading } from "../typography";
 
 const formatCurrentSlide = (currentSlide: number) =>
   currentSlide < 10 ? `0${currentSlide}` : currentSlide;
@@ -21,9 +21,9 @@ export const SliderCounter = () => {
   }, [swiper, handleSlideChange]);
 
   return (
-    <Heading as="h2" textStyle="extra-extra-large" w="2ch">
+    <ExtraExtraLargeHeading w="2.5ch">
       {formatCurrentSlide(currentSlide)}
-    </Heading>
+    </ExtraExtraLargeHeading>
   );
 };
 
