@@ -1,58 +1,46 @@
-import { DataType, GalleryImage, ImageNode } from "@src/types/images";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { graphql, PageProps } from "gatsby";
-import React, { useMemo } from "react";
-import galleryImages from "@data/gallery-images";
-import galleryCategories from "@data/gallery-categories.json";
+import React from "react";
 import { ServiceCards } from "@src/components/service-card";
-import { companyServicesCards } from "@data/servicesCards";
+import { GraphQL } from "@src/types/grapql";
 import { Service } from "@src/types/services";
 
-const imagesPaths = galleryImages
-  .filter((image) => image.category.includes(galleryCategories.DLA_FIRM))
-  .map((image) => image.src);
-
-const IndexPage: GatsbyPageWithLayout<PageProps<DataType>> = ({ data }) => {
-  const images = useMemo(
-    () =>
-      data.images.nodes
-        .filter(({ relativePath }) => imagesPaths.includes(relativePath))
-        .map((image) => ({
-          ...image,
-          ...galleryImages.find((g) => g.src === image.relativePath),
-        })),
-    [data],
-  );
-
-  return (
-    <div
-      style={{
-        height: "100svh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <ServiceCards
-        services={images.map((image) => ({
-          ...(companyServicesCards.find(
-            (c) => c.imageId === image.id,
-          ) as Service),
-          image: image as GalleryImage & ImageNode,
-        }))}
-      />
-    </div>
-  );
-};
+const IndexPage: GatsbyPageWithLayout<PageProps<GraphQL<Service>>> = ({
+  data: { data },
+}) => (
+  <div
+    style={{
+      height: "100svh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <ServiceCards services={data.nodes.map((node) => node.frontmatter)} />
+  </div>
+);
 
 export default IndexPage;
 
 export const pageQuery = graphql`
   {
-    images: allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+    data: allMdx(
+      filter: {
+        internal: { contentFilePath: { regex: "/services/" } }
+        frontmatter: { categories: { in: ["DLA_FIRM"] } }
+      }
+    ) {
       nodes {
-        relativePath
-        ...GatsbyImageFragment
+        frontmatter {
+          title
+          alt
+          icon
+          featuredImage {
+            childImageSharp {
+              gatsbyImageData(width: 600, placeholder: BLURRED)
+            }
+          }
+        }
       }
     }
   }
