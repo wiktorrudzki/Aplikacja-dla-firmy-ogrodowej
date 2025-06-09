@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GridProps, Grid, GridItem, VStack, Text } from "@chakra-ui/react";
+import { GridProps, Grid, GridItem } from "@chakra-ui/react";
 import "./Panel.css";
 
 type PanelProps = GridProps & {
