@@ -1,9 +1,10 @@
-import { Box, Stack, Text } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import { getIconFromName } from "@src/helpers";
 import { Service } from "@src/types/services";
 import { t } from "@src/utils/i18n";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
+import { Heading2 } from "../typography";
 
 type Props = {
   service: Service;
@@ -40,9 +41,9 @@ const ServiceCard = ({ service }: Props) => {
         alt={service.alt}
       />
       <Box color="white" width={20} height={20} as={Icon} />
-      <Text textAlign="center" textStyle="heading-2" color="white">
+      <Heading2 fontWeight={700} color="white" textAlign="center">
         {t(service.title)}
-      </Text>
+      </Heading2>
     </Stack>
   );
 };
