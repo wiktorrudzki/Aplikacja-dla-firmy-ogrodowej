@@ -2,12 +2,14 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Aplikacja_ogrodnicza`,
-    siteUrl: `http://localhost`,
+    title: `Usługi Ogrodnicze Mateusz Bernacki`,
+    description: `Jesteśmy profesjonalną firmą ogrodniczą realizującą kompleksowe usługi związane z zakładaniem i pielęgnacją ogrodów.`,
+    author: "Mateusz Bernacki",
+    keywords:
+      "usługi ogrodnicze,ogrodnik,zakładanie ogrodów,pielęgnacja ogrodów",
+    image: `/siteimage.jpg`,
+    siteUrl: `https://www.ogrody.rybnik.pl/`,
   },
-  // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-  // If you use VSCode you can also use the GraphQL plugin
-  // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
     { resolve: "gatsby-plugin-google-gtag", options: { trackingIds: [] } },
