@@ -7,6 +7,7 @@ import "./HeroSlider.css";
 import SliderControls from "./SliderControls";
 import Slide from "./Slide";
 import { Slide as SlideType } from "@src/types/slide";
+import { nextXElementsFromList } from "@src/helpers";
 
 type Props = {
   slides: SlideType[];
@@ -28,9 +29,12 @@ const HeroSlider = ({ slides }: Props) => (
       autoplay={{ delay: 8000 }}
       style={{ height: "100svh" }}
     >
-      {slides.map((slide) => (
+      {slides.map((slide, index) => (
         <SwiperSlide key={slide.id}>
-          <Slide slide={slide} />
+          <Slide
+            slide={slide}
+            nextSlides={nextXElementsFromList(slides, index, 2)}
+          />
         </SwiperSlide>
       ))}
       <SliderControls />
