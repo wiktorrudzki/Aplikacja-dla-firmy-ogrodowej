@@ -14,6 +14,7 @@ const config: GatsbyConfig = {
   plugins: [
     { resolve: "gatsby-plugin-google-gtag", options: { trackingIds: [] } },
     "gatsby-plugin-image",
+    "gatsby-plugin-robots-txt",
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
