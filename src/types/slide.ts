@@ -1,6 +1,9 @@
+import { ImageDataLike } from "gatsby-plugin-image";
+
 export type Slide = {
   id: number;
   title: string;
   description: string;
-  imageElement: React.JSX.Element;
+  featuredImage: ImageDataLike;
+  alt: string;
 };

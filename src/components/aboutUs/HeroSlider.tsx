@@ -2,13 +2,17 @@ import * as React from "react";
 import { Box } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import slides from "@data/ourValuesSlides";
 import "swiper/css";
 import "./HeroSlider.css";
 import SliderControls from "./SliderControls";
 import Slide from "./Slide";
+import { Slide as SlideType } from "@src/types/slide";
 
-const HeroSlider = () => (
+type Props = {
+  slides: SlideType[];
+};
+
+const HeroSlider = ({ slides }: Props) => (
   <Box overflowX="hidden">
     <Swiper
       modules={[Autoplay, Navigation, Pagination]}
