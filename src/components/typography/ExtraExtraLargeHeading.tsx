@@ -9,7 +9,7 @@ const ExtraExtraLargeHeading = ({ children, ...props }: HeadingType) => (
     textTransform="uppercase"
     fontFamily="extra-extra-large"
     letterSpacing="wide"
-    size={{ base: "5xl", lg: "7xl" }}
+    size={{ base: "4xl", md: "5xl", lg: "7xl" }}
     {...props}
   >
     {children}

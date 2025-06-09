@@ -27,7 +27,7 @@ const Panel = ({ children, backgroundStaticImage, ...props }: PanelProps) => {
           "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent)"
         }
       />
-      <GridItem
+      <Grid
         gridArea="1/1"
         position="relative"
         placeContent="center"
@@ -35,7 +35,7 @@ const Panel = ({ children, backgroundStaticImage, ...props }: PanelProps) => {
         {...props}
       >
         {children}
-      </GridItem>
+      </Grid>
     </Grid>
   );
 };
