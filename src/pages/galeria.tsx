@@ -1,8 +1,10 @@
 import React from "react";
-import { graphql, PageProps } from "gatsby";
+import { graphql, HeadFC, PageProps } from "gatsby";
 import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
 import { galleryImages } from "@data/gallery-images.json";
 import { GatsbyPageWithLayout } from "@src/types/page";
+import { SEO } from "@src/components/seo";
+import { t } from "@i18n";
 
 type ImageNode = {
   relativePath: string;
@@ -33,6 +35,10 @@ const Gallery: GatsbyPageWithLayout<PageProps<DataType>> = ({ data }) => {
 };
 
 export default Gallery;
+
+export const Head: HeadFC = ({ location }) => (
+  <SEO title={t("contact")} path={location.pathname} />
+);
 
 export const pageQuery = graphql`
   {

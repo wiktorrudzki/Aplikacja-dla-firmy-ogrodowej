@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Link, HeadFC, PageProps } from "gatsby";
 import { GatsbyPageWithLayout } from "@src/types/page";
+import { SEO } from "@src/components/seo";
+import { t } from "@src/utils/i18n";
 
 const pageStyles = {
   color: "#232129",
@@ -47,4 +49,6 @@ const NotFoundPage: GatsbyPageWithLayout<PageProps> = () => {
 
 export default NotFoundPage;
 
-export const Head: HeadFC = () => <title>Not found</title>;
+export const Head: HeadFC = ({ location }) => (
+  <SEO title={t("not-found")} path={location.pathname} />
+);
