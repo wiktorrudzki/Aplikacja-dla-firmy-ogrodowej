@@ -1,9 +1,13 @@
-import { DataType } from "@src/types/images";
+import { ServiceCards } from "@src/components/service-card";
+import { GraphQL } from "@src/types/grapql";
 import { GatsbyPageWithLayout } from "@src/types/page";
+import { Service } from "@src/types/services";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
-const IndexPage: GatsbyPageWithLayout<PageProps<DataType>> = ({ data }) => {
+const IndexPage: GatsbyPageWithLayout<PageProps<GraphQL<Service>>> = ({
+  data: { data },
+}) => {
   return (
     <div
       style={{
@@ -12,7 +16,9 @@ const IndexPage: GatsbyPageWithLayout<PageProps<DataType>> = ({ data }) => {
         justifyContent: "center",
         alignItems: "center",
       }}
-    ></div>
+    >
+      <ServiceCards services={data.nodes.map((node) => node.frontmatter)} />
+    </div>
   );
 };
 
@@ -20,10 +26,23 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   {
-    images: allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+    data: allMdx(
+      filter: {
+        internal: { contentFilePath: { regex: "/services/" } }
+        frontmatter: { categories: { in: ["KLIENT_INDYWIDUALNY"] } }
+      }
+    ) {
       nodes {
-        relativePath
-        ...GatsbyImageFragment
+        frontmatter {
+          title
+          alt
+          icon
+          featuredImage {
+            childImageSharp {
+              gatsbyImageData(width: 600, placeholder: BLURRED)
+            }
+          }
+        }
       }
     }
   }
