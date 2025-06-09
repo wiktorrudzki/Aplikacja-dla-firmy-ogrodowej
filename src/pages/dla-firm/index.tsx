@@ -31,16 +31,7 @@ export const pageQuery = graphql`
       }
     ) {
       nodes {
-        frontmatter {
-          title
-          alt
-          icon
-          featuredImage {
-            childImageSharp {
-              gatsbyImageData(width: 600, placeholder: BLURRED)
-            }
-          }
-        }
+        ...ServiceFields
       }
     }
   }
