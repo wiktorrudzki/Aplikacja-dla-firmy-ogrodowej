@@ -1,5 +1,5 @@
 import { VStack } from "@chakra-ui/react";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { ExtraLargeHeading, Paragraph } from "../typography";
 import { NumberCardData } from "@src/types/cards";
 
