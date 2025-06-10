@@ -3,16 +3,12 @@ import { ImageDetails } from "@src/types/images";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 
-type ContentCardProps = StackProps & {
+type Props = StackProps & {
   children?: React.ReactNode;
   backgroundImageDetails?: ImageDetails;
 };
 
-function ContentCard({
-  children,
-  backgroundImageDetails,
-  ...props
-}: ContentCardProps) {
+function ContentCard({ children, backgroundImageDetails, ...props }: Props) {
   const [borderRadius] = useToken("spacing", "4");
   const [cyan, green, white] = useToken("colors", [
     "cyan.700",

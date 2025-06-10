@@ -3,17 +3,15 @@ import { ROUTES } from "@src/constants";
 import { Link } from "gatsby";
 import React from "react";
 
-type ContentCardButtonProps = {
+type Props = {
   to: ROUTES;
   children: React.ReactNode;
 };
 
-function ContentCardButton({ to, children }: ContentCardButtonProps) {
-  return (
-    <Button colorPalette="green" rounded="full" paddingX={[4, 12, 16]} asChild>
-      <Link to={to}>{children}</Link>
-    </Button>
-  );
-}
+const ContentCardButton = ({ to, children }: Props) => (
+  <Button colorPalette="green" rounded="full" paddingX={[4, 12, 16]} asChild>
+    <Link to={to}>{children}</Link>
+  </Button>
+);
 
 export default ContentCardButton;

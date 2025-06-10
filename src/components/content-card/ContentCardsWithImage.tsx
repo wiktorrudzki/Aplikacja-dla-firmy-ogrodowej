@@ -3,7 +3,7 @@ import React from "react";
 import ContentCard from "./ContentCard";
 import { ImageDetails } from "@src/types/images";
 
-type ContentCardsWithImageProps = {
+type Props = {
   children: React.ReactNode;
   backgroundImageDetails: ImageDetails;
   imageFirst?: boolean;
@@ -13,7 +13,7 @@ function ContentCardsWithImage({
   children,
   backgroundImageDetails,
   imageFirst = false,
-}: ContentCardsWithImageProps) {
+}: Props) {
   const elements = [<ContentCard gap={[6, 12]}>{children}</ContentCard>];
   const ImageContentCard = (
     <ContentCard backgroundImageDetails={backgroundImageDetails} />
