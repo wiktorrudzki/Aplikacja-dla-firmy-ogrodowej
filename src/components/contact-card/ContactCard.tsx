@@ -1,13 +1,8 @@
-import {
-  Box,
-  Container,
-  Stack,
-  Text,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Box, Container, Stack, useBreakpointValue } from "@chakra-ui/react";
 import constants from "@src/constants";
 import React from "react";
 import { IconType } from "react-icons";
+import { Heading2 } from "../typography";
 
 type Props = {
   title: string;
@@ -50,7 +45,7 @@ const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Text textStyle="heading-2">{title}</Text>
+        <Heading2>{title}</Heading2>
         {description}
       </Stack>
     </Container>

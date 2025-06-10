@@ -1,8 +1,8 @@
-import { Box, Flex, Stack, Text } from "@chakra-ui/react";
-import constants from "@src/constants";
+import { Box, Flex, Stack } from "@chakra-ui/react";
 import { t } from "@src/utils/i18n";
 import React from "react";
 import { MdPhone } from "react-icons/md";
+import { Heading2, Paragraph } from "../typography";
 
 type Props = {
   fixedBottomRight?: boolean;
@@ -21,15 +21,13 @@ const EstimateCard = ({ fixedBottomRight = true }: Props) => (
     right={8}
   >
     <Stack alignItems="center" gap={0.5}>
-      <Text textStyle="paragraph" textAlign="center">
-        {t("Skorzystaj z darmowej")}
-      </Text>
-      <Text textStyle="paragraph">{t("wyceny")}</Text>
+      <Paragraph textAlign="center">{t("Skorzystaj z darmowej")}</Paragraph>
+      <Paragraph>{t("wyceny")}</Paragraph>
       <Flex gap={2} alignItems="center">
         <MdPhone size={16} color="#6EAF3C" />
-        <Text textAlign="center" textStyle="heading-2" color="green.500">
+        <Heading2 textAlign="center" color="green.500">
           {t("telephone-number")}
-        </Text>
+        </Heading2>
       </Flex>
     </Stack>
   </Box>
