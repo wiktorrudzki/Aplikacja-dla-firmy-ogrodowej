@@ -1,8 +1,8 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Slide as SlideType } from "@src/types/slide";
 import { t } from "@src/utils/i18n";
 import * as React from "react";
-import { ExtraExtraLargeHeading, Heading2 } from "../typography";
+import { ExtraExtraLargeHeading, Heading2, Paragraph } from "../typography";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 type Props = { slide: SlideType };
@@ -45,7 +45,7 @@ const Slide = ({ slide }: Props) => (
           {t("our-values")}
         </Heading2>
         <ExtraExtraLargeHeading>{t(slide.title)}</ExtraExtraLargeHeading>
-        <Text textStyle="paragraph">{t(slide.description)}</Text>
+        <Paragraph>{t(slide.description)}</Paragraph>
       </Flex>
     </Box>
   </>
