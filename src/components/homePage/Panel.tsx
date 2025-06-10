@@ -15,8 +15,11 @@ const Panel = ({ children, backgroundStaticImage, ...props }: PanelProps) => {
       transition="flex-grow 700ms ease"
       _hover={{ flex: 1.2 }}
       className="panel"
+      position="relative"
     >
-      <GridItem gridArea="1/1">{backgroundStaticImage}</GridItem>
+      <GridItem position="absolute" top={0} left={0} height={"100%"}>
+        {backgroundStaticImage}
+      </GridItem>
       <GridItem
         gridArea="1/1"
         position="relative"
@@ -24,7 +27,7 @@ const Panel = ({ children, backgroundStaticImage, ...props }: PanelProps) => {
           "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent)"
         }
       />
-      <GridItem
+      <Grid
         gridArea="1/1"
         position="relative"
         placeContent="center"
@@ -32,7 +35,7 @@ const Panel = ({ children, backgroundStaticImage, ...props }: PanelProps) => {
         {...props}
       >
         {children}
-      </GridItem>
+      </Grid>
     </Grid>
   );
 };
