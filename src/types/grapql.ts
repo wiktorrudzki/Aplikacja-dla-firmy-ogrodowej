@@ -1,4 +1,4 @@
-export type GraphQL<T extends {}> = {
+export type GraphQLNodesData<T extends {}> = {
   data: {
     nodes: { frontmatter: T }[];
   };
