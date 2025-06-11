@@ -2,10 +2,10 @@ import { GatsbyPageWithLayout } from "@src/types/page";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 import { ServiceCards } from "@src/components/service-card";
-import { GraphQLNodesData } from "@src/types/grapql";
+import { GraphQLMdxNodes } from "@src/types/graphql";
 import { Service } from "@src/types/services";
 
-const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLNodesData<Service>>> = ({
+const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLMdxNodes<Service>>> = ({
   data: { data },
 }) => (
   <div
