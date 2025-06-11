@@ -1,10 +1,11 @@
 import React from "react";
-import { Flex, Heading, VStack, HStack, Box, Link } from "@chakra-ui/react";
+import { Flex, VStack, HStack, Link } from "@chakra-ui/react";
 import { MdLocationOn, MdMail, MdPhoneIphone } from "react-icons/md";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { t } from "@i18n";
 import { StaticImage } from "gatsby-plugin-image";
 import { FooterContactDetail, FooterLink } from "@src/components/footer";
+import { Heading2, Paragraph } from "@src/components/typography";
 import { ROUTES } from "@src/constants";
 
 const Footer = () => {
@@ -32,36 +33,24 @@ const Footer = () => {
           }}
         />
         <VStack align="start">
-          <Heading textStyle="heading-2" fontWeight="bold">
-            {t("contact-details")}
-          </Heading>
+          <Heading2>{t("contact-details")}</Heading2>
           <FooterContactDetail icon={MdLocationOn}>
             {t("adress-details")}
           </FooterContactDetail>
           <FooterContactDetail icon={MdMail}>
-            <Link
-              href={`mailto:${t("email-address")}`}
-              textStyle="paragraph"
-              color="white"
-            >
+            <Link href={`mailto:${t("email-address")}`} color="white">
               {t("email-address")}
             </Link>
           </FooterContactDetail>
           <FooterContactDetail icon={MdPhoneIphone}>
-            <Link
-              href={`tel:${t("telephone-number")}`}
-              textStyle="paragraph"
-              color="white"
-            >
+            <Link href={`tel:${t("telephone-number")}`} color="white">
               {t("telephone-number")}
             </Link>
           </FooterContactDetail>
         </VStack>
 
         <VStack align="start">
-          <Heading textStyle="heading-2" fontWeight="bold">
-            {t("useful-links")}
-          </Heading>
+          <Heading2>{t("useful-links")}</Heading2>
           <FooterLink to={ROUTES.HOME}>{t("homepage")}</FooterLink>
           <FooterLink to={ROUTES.O_NAS}>{t("about-us")}</FooterLink>
           <FooterLink to={ROUTES.GALERIA}>{t("gallery")}</FooterLink>
@@ -70,9 +59,7 @@ const Footer = () => {
         </VStack>
 
         <VStack align="start">
-          <Heading textStyle="heading-2" fontWeight="bold">
-            {t("offer")}
-          </Heading>
+          <Heading2>{t("offer")}</Heading2>
           <FooterLink to={ROUTES.DLA_FIRM}>{t("for-companies")}</FooterLink>
           <FooterLink to={ROUTES.KLIENT_INDYWIDUALNY}>
             {t("for-individuals")}
@@ -80,9 +67,7 @@ const Footer = () => {
         </VStack>
 
         <VStack align="start">
-          <Heading textStyle="heading-2" fontWeight="bold">
-            {t("our-social-media")}
-          </Heading>
+          <Heading2>{t("our-social-media")}</Heading2>
           <HStack>
             <Link href="https://www.facebook.com/">
               <BsFacebook color="white" size="2rem" />
@@ -94,15 +79,9 @@ const Footer = () => {
         </VStack>
       </Flex>
 
-      <Box
-        color="white"
-        bgColor="green.500"
-        textAlign="center"
-        textStyle="paragraph"
-        p={2}
-      >
+      <Paragraph color="white" bgColor="green.500" textAlign="center" p={2}>
         {t("footer-copyright")}
-      </Box>
+      </Paragraph>
     </footer>
   );
 };

@@ -1,5 +1,6 @@
-import { HStack, Text } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 import * as React from "react";
+import { Paragraph } from "@src/components/typography";
 
 type DetailProps = {
   icon: React.ElementType;
@@ -9,9 +10,7 @@ type DetailProps = {
 const FooterContactDetail = ({ icon: Icon, children }: DetailProps) => (
   <HStack>
     <Icon size="1.5rem" />
-    <Text whiteSpace="pre-line" textStyle="paragraph">
-      {children}
-    </Text>
+    <Paragraph whiteSpace="pre-line">{children}</Paragraph>
   </HStack>
 );
 

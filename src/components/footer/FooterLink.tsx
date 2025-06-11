@@ -9,7 +9,6 @@ type LinkProps = {
 
 const FooterLink = ({ children, to, ...props }: LinkProps) => (
   <Link
-    textStyle="paragraph"
     variant="underline"
     color="white"
     textDecorationColor="white"

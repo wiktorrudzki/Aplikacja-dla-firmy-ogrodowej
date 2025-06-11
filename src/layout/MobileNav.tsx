@@ -23,9 +23,9 @@ const MobileNav = ({ navMode, hidden, onClose }: Props) => {
       width="80%"
       display={{ base: "flex", md: "none" }}
       transform={hidden ? "translateX(100%)" : "translateX(0)"}
-      py={16}
-      px={16}
-      gap={16}
+      py={8}
+      px={8}
+      gap={10}
       transition="transform 0.3s ease"
     >
       <IconButton

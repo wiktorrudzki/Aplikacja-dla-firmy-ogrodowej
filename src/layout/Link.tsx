@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
-import { Text } from "@chakra-ui/react";
 import { NAVIGATION_MODE } from "@src/types/navigation";
+import { Heading3 } from "@src/components/typography";
 
 type Props = {
   to: string;
@@ -23,8 +23,7 @@ const CustomLink = ({
 
   return (
     <Link onClick={onClick} style={{ textDecoration: "none" }} to={to}>
-      <Text
-        textStyle="heading-3"
+      <Heading3
         color={mode === NAVIGATION_MODE.DARK ? "black" : "white"}
         position="relative"
         textDecoration="none"
@@ -37,15 +36,15 @@ const CustomLink = ({
                 left: "10%",
                 bottom: "-5px",
                 width: "80%",
-                height: "3px",
+                height: "2px",
                 bg: mode === NAVIGATION_MODE.DARK ? "black" : "white",
-                borderRadius: "3px",
+                borderRadius: "2px",
               }
             : {}
         }
       >
         {children}
-      </Text>
+      </Heading3>
     </Link>
   );
 };

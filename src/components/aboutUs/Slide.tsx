@@ -1,7 +1,8 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { Slide as SlideType } from "@src/types/slide";
 import { t } from "@src/utils/i18n";
 import * as React from "react";
+import { ExtraExtraLargeHeading, Heading2 } from "../typography";
 
 type Props = { slide: SlideType };
 
@@ -16,9 +17,7 @@ const Slide = ({ slide }: Props) => (
         position="relative"
         m={[3, 5]}
       >
-        <Heading
-          as="h2"
-          textStyle="heading-2"
+        <Heading2
           textTransform="uppercase"
           _before={{
             content: '""',
@@ -32,15 +31,8 @@ const Slide = ({ slide }: Props) => (
           }}
         >
           {t("our-values")}
-        </Heading>
-        <Heading
-          as="h1"
-          textStyle="extra-extra-large"
-          textTransform="uppercase"
-          wordBreak="break-word"
-        >
-          {slide.title}
-        </Heading>
+        </Heading2>
+        <ExtraExtraLargeHeading>{slide.title}</ExtraExtraLargeHeading>
         <Text textStyle="paragraph">{slide.description}</Text>
       </Flex>
     </Box>
