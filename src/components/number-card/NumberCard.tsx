@@ -1,13 +1,14 @@
 import { VStack } from "@chakra-ui/react";
 import React from "react";
 import { ExtraLargeHeading, Paragraph } from "../typography";
-import { NumberCardData } from "@src/types/cards";
+import { NumberCardDetails } from "@src/types/cards";
+import { t } from "@i18n";
 
 type Props = {
-  data: NumberCardData;
+  details: NumberCardDetails;
 };
 
-const NumberCard = ({ data }: Props) => (
+const NumberCard = ({ details }: Props) => (
   <VStack
     textAlign="center"
     bgColor="green.50"
@@ -16,10 +17,10 @@ const NumberCard = ({ data }: Props) => (
     shadow="element"
   >
     <ExtraLargeHeading fontWeight="extrabold" color="green.500">
-      {data.format ? data.format(data.value) : data.value}
+      {details.format ? details.format(details.value) : details.value}
     </ExtraLargeHeading>
     <Paragraph textTransform="uppercase" width="min-content" fontWeight="bold">
-      {data.description}
+      {t(details.descriptionKey)}
     </Paragraph>
   </VStack>
 );

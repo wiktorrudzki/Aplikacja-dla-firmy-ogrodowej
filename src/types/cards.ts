@@ -1,5 +1,5 @@
-export type NumberCardData = {
+export type NumberCardDetails = {
   value: number;
   format?: (value: number) => string;
-  description: string;
+  descriptionKey: string;
 };
