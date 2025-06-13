@@ -44,7 +44,7 @@ const Gallery: GatsbyPageWithLayout<PageProps<DataType>> = ({ data }) => {
 export default Gallery;
 
 export const Head: HeadFC = ({ location }) => (
-  <SEO title={t("contact")} path={location.pathname} />
+  <SEO title={t("gallery")} path={location.pathname} />
 );
 
 export const pageQuery = graphql`

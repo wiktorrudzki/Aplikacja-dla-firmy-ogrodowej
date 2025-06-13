@@ -27,7 +27,7 @@ const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLMdxNodes<Service>>> = ({
 export default IndexPage;
 
 export const Head: HeadFC = ({ location }) => (
-  <SEO title={t("individual-client")} path={location.pathname} />
+  <SEO title={t("business-client")} path={location.pathname} />
 );
 export const pageQuery = graphql`
   {
