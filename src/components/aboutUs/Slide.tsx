@@ -1,14 +1,26 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Slide as SlideType } from "@src/types/slide";
 import { t } from "@src/utils/i18n";
 import * as React from "react";
-import { ExtraExtraLargeHeading, Heading2 } from "../typography";
+import { ExtraExtraLargeHeading, Heading2, Paragraph } from "../typography";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 type Props = { slide: SlideType };
 
 const Slide = ({ slide }: Props) => (
   <>
-    {slide.imageElement}
+    {getImage(slide.featuredImage) != undefined ? (
+      <GatsbyImage
+        image={getImage(slide.featuredImage)!}
+        alt={slide.alt}
+        style={{
+          position: "fixed",
+          height: "100%",
+          width: "100%",
+          filter: "brightness(0.5)",
+        }}
+      />
+    ) : null}
     <Box color="white" height="100%" placeContent="center">
       <Flex
         direction="column"
@@ -32,8 +44,8 @@ const Slide = ({ slide }: Props) => (
         >
           {t("our-values")}
         </Heading2>
-        <ExtraExtraLargeHeading>{slide.title}</ExtraExtraLargeHeading>
-        <Text textStyle="paragraph">{slide.description}</Text>
+        <ExtraExtraLargeHeading>{t(slide.title)}</ExtraExtraLargeHeading>
+        <Paragraph>{t(slide.description)}</Paragraph>
       </Flex>
     </Box>
   </>
