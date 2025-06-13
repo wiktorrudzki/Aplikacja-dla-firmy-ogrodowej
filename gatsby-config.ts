@@ -12,6 +12,7 @@ const config: GatsbyConfig = {
   },
   graphqlTypegen: true,
   plugins: [
+    `gatsby-plugin-mdx`,
     { resolve: "gatsby-plugin-google-gtag", options: { trackingIds: [] } },
     "gatsby-plugin-image",
     "gatsby-plugin-robots-txt",
@@ -31,6 +32,14 @@ const config: GatsbyConfig = {
         path: "./src/assets/images/",
       },
       __key: "images",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "content",
+        path: `./src/content/`,
+      },
+      __key: "content",
     },
     {
       resolve: `gatsby-plugin-alias-imports`,

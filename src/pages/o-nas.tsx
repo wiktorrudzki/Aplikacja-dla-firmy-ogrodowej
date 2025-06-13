@@ -6,13 +6,11 @@ import { t } from "@i18n";
 import { HeadFC } from "gatsby";
 import React from "react";
 
-const About: GatsbyPageWithLayout = () => {
-  return (
-    <Box>
-      <HeroSlider />
-    </Box>
-  );
-};
+const About: GatsbyPageWithLayout = () => (
+  <Box>
+    <HeroSlider />
+  </Box>
+);
 
 export default About;
 

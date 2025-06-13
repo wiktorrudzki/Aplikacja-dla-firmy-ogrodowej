@@ -1,9 +1,8 @@
 import { ImageDataLike } from "gatsby-plugin-image";
 
-export type Slide = {
-  id: number;
+export type Service = {
   title: string;
-  description: string;
+  icon: string;
   featuredImage: ImageDataLike;
   alt: string;
 };

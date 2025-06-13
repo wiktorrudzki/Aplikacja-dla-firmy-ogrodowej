@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, HeadFC, PageProps } from "gatsby";
 import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
-import { galleryImages } from "@data/gallery-images.json";
+import galleryImages from "@data/gallery-images";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { SEO } from "@src/components/seo";
 import { t } from "@i18n";
@@ -29,6 +29,13 @@ const Gallery: GatsbyPageWithLayout<PageProps<DataType>> = ({ data }) => {
   return (
     <div>
       <h1>Gallery</h1>
+      {data.images.nodes.map((node) => (
+        <GatsbyImage
+          key={"dasdsa"}
+          image={getImage(node?.childImageSharp?.gatsbyImageData!)!}
+          alt={"dsd"}
+        />
+      ))}
       <GatsbyImage image={image!} alt={imageData.alt} />
     </div>
   );
