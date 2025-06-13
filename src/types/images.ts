@@ -1,7 +1,17 @@
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import galleryImages from "@data/gallery-images";
+import { ImageDataLike } from "gatsby-plugin-image";
 
-export type ImageDetails = {
-  data: IGatsbyImageData;
-  alt: string;
-  style?: React.CSSProperties;
+export type ImageNode = {
+  relativePath: string;
+  childImageSharp: {
+    gatsbyImageData: ImageDataLike;
+  };
 };
+
+export type DataType = {
+  images: {
+    nodes: ImageNode[];
+  };
+};
+
+export type GalleryImage = (typeof galleryImages)[number];
