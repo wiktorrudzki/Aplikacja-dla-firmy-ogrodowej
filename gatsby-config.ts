@@ -6,7 +6,7 @@ const config: GatsbyConfig = {
     description: `Jesteśmy profesjonalną firmą ogrodniczą realizującą kompleksowe usługi związane z zakładaniem i pielęgnacją ogrodów.`,
     author: "Mateusz Bernacki",
     keywords:
-      "usługi ogrodnicze,ogrodnik,zakładanie ogrodów,pielęgnacja ogrodów",
+      "usługi ogrodnicze,ogrodnik,zakładanie ogrodów,pielęgnacja ogrodów,ogrody,tarasy,trawniki,Mateusz Bernacki,Rybnik,ogrody Rybnik",
     image: `/siteimage.jpg`,
     siteUrl: `https://www.ogrody.rybnik.pl/`,
   },

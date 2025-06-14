@@ -1,6 +1,6 @@
 import { lang } from "@i18n";
-import { graphql, useStaticQuery } from "gatsby";
-import React from "react";
+import useSiteMetadata from "@src/hooks/useSiteMetaData";
+import React, { useMemo } from "react";
 
 type SEOProps = {
   title: string;
@@ -8,19 +8,6 @@ type SEOProps = {
   image?: string;
   path: string;
   children?: React.ReactNode;
-};
-
-type siteMetadata = {
-  site: {
-    siteMetadata: {
-      title: string;
-      description: string;
-      author: string;
-      keywords: string;
-      image: string;
-      siteUrl: string;
-    };
-  };
 };
 
 type SEOTag =
@@ -32,30 +19,35 @@ type SEOTag =
     };
 
 function SEO({ title, description, image, path, children }: SEOProps) {
-  const { site } = useStaticQuery<siteMetadata>(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-          description
-          author
-          keywords
-          image
-          siteUrl
-        }
-      }
-    }
-  `);
-  const siteTitle = `${site.siteMetadata.title}${title ? ` - ${title}` : ""}`;
+  const site = useSiteMetadata();
+
+  const siteTitle = useMemo(
+    () => `${site.siteMetadata.title}${title ? ` - ${title}` : ""}`,
+    [site.siteMetadata.title, title],
+  );
+
+  const siteDescription = useMemo(
+    () => description || site.siteMetadata.description,
+    [description, site.siteMetadata.description],
+  );
+
+  const sitePath = useMemo(
+    () => `${site.siteMetadata.siteUrl}${path || ""}`,
+    [path, site.siteMetadata.siteUrl],
+  );
 
   const SEOTags: SEOTag[] = [
     {
       name: "description",
-      content: description ? description : site.siteMetadata.description,
+      content: siteDescription,
     },
     {
       name: "keywords",
       content: site.siteMetadata.keywords,
+    },
+    {
+      property: "og:locale",
+      content: lang,
     },
     {
       property: "og:site_name",
@@ -67,7 +59,7 @@ function SEO({ title, description, image, path, children }: SEOProps) {
     },
     {
       property: "og:description",
-      content: description ? description : site.siteMetadata.description,
+      content: siteDescription,
     },
     {
       property: "og:image",
@@ -75,11 +67,20 @@ function SEO({ title, description, image, path, children }: SEOProps) {
     },
     {
       property: "og:url",
-      content: `${site.siteMetadata.siteUrl}${path || ""}`,
+      content: sitePath,
     },
     {
       property: "og:type",
       content: "website",
+    },
+    { name: "twitter:site", content: site.siteMetadata.siteUrl },
+    {
+      name: "twitter:image",
+      content: image ? image : site.siteMetadata.image,
+    },
+    {
+      name: "twitter:url",
+      content: sitePath,
     },
     {
       name: "twitter:creator",
@@ -87,11 +88,11 @@ function SEO({ title, description, image, path, children }: SEOProps) {
     },
     {
       name: "twitter:title",
-      content: title ? title : site.siteMetadata.title,
+      content: siteTitle,
     },
     {
       name: "twitter:description",
-      content: description ? description : site.siteMetadata.description,
+      content: siteDescription,
     },
     {
       name: "twitter:card",
