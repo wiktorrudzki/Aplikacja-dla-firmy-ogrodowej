@@ -2,18 +2,19 @@ import { GatsbyPageWithLayout } from "@src/types/page";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 import { ServiceCards } from "@src/components/service-card";
-import { GraphQL } from "@src/types/grapql";
+import { GraphQLMdxNodes } from "@src/types/graphql";
 import { Service } from "@src/types/services";
 
-const IndexPage: GatsbyPageWithLayout<PageProps<GraphQL<Service>>> = ({
+const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLMdxNodes<Service>>> = ({
   data: { data },
 }) => (
   <div
     style={{
-      height: "100svh",
+      minHeight: "100svh",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      flexDirection: "column",
     }}
   >
     <ServiceCards services={data.nodes.map((node) => node.frontmatter)} />

@@ -19,14 +19,14 @@ const ServiceCard = ({ service }: Props) => {
 
   return (
     <Stack
+      position="relative"
       rounded={8}
-      width={300}
-      height={300}
+      width={{ base: 48, sm: 64, lg: 72 }}
+      height={{ base: 48, sm: 64, lg: 72 }}
       bg="rgba(0,0,0,0.25)"
+      gap={4}
       justify="center"
       align="center"
-      gap={4}
-      position="relative"
     >
       <GatsbyImage
         objectFit="cover"
@@ -40,7 +40,12 @@ const ServiceCard = ({ service }: Props) => {
         image={image}
         alt={service.alt}
       />
-      <Box color="white" width={20} height={20} as={Icon} />
+      <Box
+        color="white"
+        width={{ base: 12, sm: 16, md: 20 }}
+        height={{ base: 12, sm: 16, md: 20 }}
+        as={Icon}
+      />
       <Heading2 fontWeight={700} color="white" textAlign="center">
         {t(service.title)}
       </Heading2>

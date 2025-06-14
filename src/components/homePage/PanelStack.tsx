@@ -14,7 +14,7 @@ const PanelStack = ({ title, children, to }: PanelStackProps) => {
   return (
     <VStack
       p={[1, 4]}
-      gap={[5, 30]}
+      gap={[3, 5, 30]}
       color="white"
       textAlign="center"
       maxWidth="xl"

@@ -30,7 +30,7 @@ const IndexPage: GatsbyPageWithLayout = () => {
     <Flex as="main" flexDir={{ base: "column", lg: "row" }} height="100vh">
       <Panel
         backgroundStaticImage={HouseStaticImageElement}
-        paddingTop={[15, 0]}
+        marginTop={[20, 0]}
       >
         <PanelStack
           title={t("individual-client")}

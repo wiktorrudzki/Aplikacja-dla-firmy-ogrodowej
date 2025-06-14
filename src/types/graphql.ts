@@ -1,4 +1,4 @@
-export type GraphQL<T extends {}> = {
+export type GraphQLMdxNodes<T extends {}> = {
   data: {
     nodes: { frontmatter: T }[];
   };
