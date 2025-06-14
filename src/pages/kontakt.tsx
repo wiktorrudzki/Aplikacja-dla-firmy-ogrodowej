@@ -6,6 +6,7 @@ import React from "react";
 import { ContactCards, GoogleMap } from "@src/components/contact";
 import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
 import constants from "@src/constants";
+import { Heading1 } from "@src/components/typography";
 
 const Contact: GatsbyPageWithLayout = () => (
   <NavigationMarginContainer paddingTop={8} paddingBottom={8}>
@@ -15,17 +16,16 @@ const Contact: GatsbyPageWithLayout = () => (
         justifyContent="space-between"
         alignItems="center"
       >
-        <Text
+        <Heading1
           marginBottom={{
             base: `${constants.contactCardIconBaseOffsetRem}rem`,
             md: `${constants.contactCardIconMdOffsetRem}rem`,
           }}
-          textStyle={{ base: "heading-2", md: "heading-1" }}
           textTransform="uppercase"
           textAlign="center"
         >
           {t("Chcesz się z nami skontaktować?")}
-        </Text>
+        </Heading1>
         <ContactCards />
         <GoogleMap />
       </Stack>

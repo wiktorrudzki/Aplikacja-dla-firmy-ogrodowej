@@ -45,7 +45,7 @@ const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Heading2>{title}</Heading2>
+        <Heading2 fontWeight="medium">{title}</Heading2>
         {description}
       </Stack>
     </Container>
