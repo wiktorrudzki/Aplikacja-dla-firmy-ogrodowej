@@ -21,6 +21,7 @@ const config: GatsbyConfig = {
       },
     },
     "gatsby-plugin-sharp",
+    `gatsby-transformer-json`,
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
@@ -28,15 +29,13 @@ const config: GatsbyConfig = {
         name: "images",
         path: "./src/assets/images/",
       },
-      __key: "images",
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "content",
-        path: `./src/content/`,
+        path: "./src/content/",
       },
-      __key: "content",
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
