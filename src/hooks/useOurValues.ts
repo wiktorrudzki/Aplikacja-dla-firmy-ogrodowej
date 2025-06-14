@@ -1,9 +1,9 @@
-import { GraphQL } from "@src/types/grapql";
+import { GraphQLMdxNodes } from "@src/types/graphql";
 import { Slide } from "@src/types/slide";
 import { graphql, useStaticQuery } from "gatsby";
 
 const useOurValues = () => {
-  const data: GraphQL<Slide> = useStaticQuery(graphql`
+  const data: GraphQLMdxNodes<Slide> = useStaticQuery(graphql`
     {
       data: allMdx(
         filter: { internal: { contentFilePath: { regex: "/our-values/" } } }
