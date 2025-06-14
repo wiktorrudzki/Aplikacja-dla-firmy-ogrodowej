@@ -3,7 +3,7 @@ import React from "react";
 import { Heading1 } from "../typography";
 import { NumberCard } from "../number-card";
 import { t } from "@i18n";
-import { OurNumbers } from "@data/OurNumbers";
+import { ourNumbers } from "@data/ourNumbers";
 
 function OurCompanyInNumbers() {
   const green = useToken("colors", ["green.100"]);
@@ -20,7 +20,7 @@ function OurCompanyInNumbers() {
         {" " + t("in-numbers")}
       </Heading1>
       <Wrap gap={[6, 10]} justify="center" p={[6, 10]}>
-        {OurNumbers.map((cardDetails, index) => (
+        {ourNumbers.map((cardDetails, index) => (
           <NumberCard
             details={cardDetails}
             key={`${index}_${cardDetails.descriptionKey}`}

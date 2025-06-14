@@ -1,6 +1,6 @@
 import { NumberCardDetails } from "@src/types/cards";
 
-export const OurNumbers: NumberCardDetails[] = [
+export const ourNumbers: NumberCardDetails[] = [
   {
     value: 8,
     format: (v) => `${v}+`,
