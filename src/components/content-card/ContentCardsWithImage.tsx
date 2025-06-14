@@ -14,9 +14,16 @@ function ContentCardsWithImage({
   backgroundImageDetails,
   imageFirst = false,
 }: Props) {
-  const elements = [<ContentCard gap={[6, 12]}>{children}</ContentCard>];
+  const elements = [
+    <ContentCard gap={[6, 12]} key={`Content-${backgroundImageDetails.alt}`}>
+      {children}
+    </ContentCard>,
+  ];
   const ImageContentCard = (
-    <ContentCard backgroundImageDetails={backgroundImageDetails} />
+    <ContentCard
+      backgroundImageDetails={backgroundImageDetails}
+      key={`Image-${backgroundImageDetails.alt}`}
+    />
   );
 
   imageFirst
