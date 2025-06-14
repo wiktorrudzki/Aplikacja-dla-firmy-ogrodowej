@@ -1,13 +1,16 @@
 import { Box } from "@chakra-ui/react";
-import { HeroSlider } from "@src/components/aboutUs";
+import { HeroSlider, OurCompanyInNumbers } from "@src/components/aboutUs";
 import { GatsbyPageWithLayout } from "@src/types/page";
 
 import React from "react";
 
-const About: GatsbyPageWithLayout = () => (
-  <Box>
-    <HeroSlider />
-  </Box>
-);
+const About: GatsbyPageWithLayout = () => {
+  return (
+    <Box>
+      <HeroSlider />
+      <OurCompanyInNumbers />
+    </Box>
+  );
+};
 
 export default About;
