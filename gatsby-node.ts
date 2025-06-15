@@ -1,7 +1,14 @@
 import { GatsbyNode, Node } from "gatsby";
 import MillionLint from "@million/lint";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import { GalleryJsonNode, ImageJsonNode } from "@src/types/graphql";
+import { createFilePath } from "gatsby-source-filesystem";
+import {
+  GalleryJsonNode,
+  ImageJsonNode,
+  ServiceNode,
+  MdxNode,
+  ServiceFrontmatter,
+} from "@src/types/graphql";
 
 export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
   stage,
@@ -19,8 +26,7 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
   ({ actions }) => {
-    const { createTypes } = actions;
-    const typeDefs = `
+    actions.createTypes(`
     type ImageJson implements Node {
       title: String!
       altKey: String!
@@ -30,10 +36,27 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
     type GalleryJson implements Node {
       categoryNameKey: String!
       imageTitles: [String!]!
-      images: [ImageJson!]!
+      imageJsons: [ImageJson!]!
     }
-  `;
-    createTypes(typeDefs);
+    interface IService @nodeInterface {
+      id: ID!
+      title: String!
+      slug: String!
+      imageTitle: String!
+      imageJson: ImageJson
+      iconMapKey: String!
+      categories: [String!]!
+    }
+    type Service implements IService & Node @dontInfer {
+      id: ID!
+      title: String!
+      slug: String!
+      imageTitle: String!
+      imageJson: ImageJson
+      iconMapKey: String!
+      categories: [String!]!
+    }
+  `);
   };
 
 const createNodeMap = <T extends Node>(
@@ -71,12 +94,52 @@ export const createResolvers: GatsbyNode["createResolvers"] = ({
   const imageJsonNodes = getNodesByType("ImageJson");
   const imageJsonMap = createNodeMap(imageJsonNodes, "title");
   const GalleryJson = {
-    images: {
+    imageJsons: {
       type: ["ImageJson"],
       resolve: (source: GalleryJsonNode) =>
         source.imageTitles?.map((title) => imageJsonMap.get(title)),
     },
   };
 
-  createResolvers({ ImageJson, GalleryJson });
+  const Service = {
+    imageJson: {
+      type: "ImageJson",
+      resolve: (source: ServiceNode) => imageJsonMap.get(source.imageTitle!),
+    },
+  };
+
+  createResolvers({ ImageJson, GalleryJson, Service });
+};
+
+export const onCreateNode: GatsbyNode["onCreateNode"] = ({
+  node,
+  getNode,
+  actions,
+  createNodeId,
+}) => {
+  if (
+    node.internal.type !== `Mdx` ||
+    !node.internal.contentFilePath?.match("/services/")
+  )
+    return;
+
+  const serviceMdx = node as MdxNode<ServiceFrontmatter>;
+
+  const serviceNode: ServiceNode = {
+    id: createNodeId(`Service-${node.id}`),
+    title: serviceMdx.frontmatter.title,
+    slug: createFilePath({ node, getNode, basePath: "services" }),
+    imageTitle: serviceMdx.frontmatter.imageTitle,
+    iconMapKey: serviceMdx.frontmatter.iconMapKey,
+    categories: serviceMdx.frontmatter.categories,
+    body: serviceMdx.body,
+    parent: node.id,
+    children: [],
+    internal: {
+      type: "Service",
+      contentDigest: node.internal.contentDigest,
+      owner: "",
+    },
+  };
+  actions.createNode(serviceNode);
 };

@@ -7,6 +7,11 @@ export type GraphQLMdxNodes<T extends {}> = {
   };
 };
 
+export type MdxNode<T extends {}> = Node & {
+  frontmatter: T;
+  body: string;
+};
+
 export type ImageJsonNode = Node & {
   title?: string;
   altKey?: string;
@@ -17,5 +22,23 @@ export type ImageJsonNode = Node & {
 export type GalleryJsonNode = Node & {
   categoryNameKey?: string;
   imageTitles?: string[];
-  images?: ImageJsonNode[];
+  imageJsons?: ImageJsonNode[];
+};
+
+export type ServiceFrontmatter = Node & {
+  title?: string;
+  imageTitle?: string;
+  iconMapKey?: string;
+  categories?: string[];
+};
+
+export type ServiceNode = Node & {
+  id?: string;
+  title?: string;
+  slug?: string;
+  imageTitle?: string;
+  imageJson?: ImageJsonNode;
+  iconMapKey?: string;
+  categories?: string[];
+  body?: string;
 };

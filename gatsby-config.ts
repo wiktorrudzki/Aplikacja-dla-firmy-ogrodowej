@@ -33,6 +33,14 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        name: "services",
+        path: `./src/content/services/`,
+        extensions: [`.mdx`, `.md`],
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         name: "content",
         path: "./src/content/",
       },
