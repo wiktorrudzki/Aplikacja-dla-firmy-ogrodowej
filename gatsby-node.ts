@@ -25,38 +25,51 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
 };
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
-  ({ actions }) => {
-    actions.createTypes(`
-    type ImageJson implements Node {
-      title: String!
-      altKey: String!
-      relativePath: String!
-      childImageSharp: ImageSharp
-    }
-    type GalleryJson implements Node {
-      categoryNameKey: String!
-      imageTitles: [String!]!
-      imageJsons: [ImageJson!]!
-    }
-    interface IService @nodeInterface {
-      id: ID!
-      title: String!
-      slug: String!
-      imageTitle: String!
-      imageJson: ImageJson
-      iconMapKey: String!
-      categories: [String!]!
-    }
-    type Service implements IService & Node @dontInfer {
-      id: ID!
-      title: String!
-      slug: String!
-      imageTitle: String!
-      imageJson: ImageJson
-      iconMapKey: String!
-      categories: [String!]!
-    }
-  `);
+  ({ schema }) => {
+    schema.buildInterfaceType({
+      name: "IService",
+      fields: {
+        id: "ID!",
+        title: "String!",
+        slug: "String!",
+        imageTitle: "String!",
+        imageJson: "ImageJson",
+        iconMapKey: "String!",
+        categories: "[String!]!",
+      },
+    });
+    schema.buildObjectType({
+      name: "ImageJson",
+      interfaces: ["Node"],
+      fields: {
+        title: "String!",
+        altKey: "String!",
+        relativePath: "String!",
+        childImageSharp: "ImageSharp",
+      },
+    });
+    schema.buildObjectType({
+      name: "GalleryJson",
+      interfaces: ["Node"],
+      fields: {
+        categoryNameKey: "String!",
+        imageTitles: "[String!]!",
+        imageJsons: "[ImageJson!]!",
+      },
+    });
+    schema.buildObjectType({
+      name: "Service",
+      interfaces: ["IService", "Node"],
+      fields: {
+        id: "ID!",
+        title: "String!",
+        slug: "String!",
+        imageTitle: "String!",
+        imageJson: "ImageJson",
+        iconMapKey: "String!",
+        categories: "[String!]!",
+      },
+    });
   };
 
 const createNodeMap = <T extends Node>(
