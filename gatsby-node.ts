@@ -25,104 +25,90 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
 };
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
-  ({ schema }) => {
-    schema.buildInterfaceType({
-      name: "IService",
-      fields: {
-        id: "ID!",
-        title: "String!",
-        slug: "String!",
-        imageTitle: "String!",
-        imageJson: "ImageJson",
-        iconMapKey: "String!",
-        categories: "[String!]!",
-      },
-    });
-    schema.buildObjectType({
-      name: "ImageJson",
-      interfaces: ["Node"],
-      fields: {
-        title: "String!",
-        altKey: "String!",
-        relativePath: "String!",
-        childImageSharp: "ImageSharp",
-      },
-    });
-    schema.buildObjectType({
-      name: "GalleryJson",
-      interfaces: ["Node"],
-      fields: {
-        categoryNameKey: "String!",
-        imageTitles: "[String!]!",
-        imageJsons: "[ImageJson!]!",
-      },
-    });
-    schema.buildObjectType({
-      name: "Service",
-      interfaces: ["IService", "Node"],
-      fields: {
-        id: "ID!",
-        title: "String!",
-        slug: "String!",
-        imageTitle: "String!",
-        imageJson: "ImageJson",
-        iconMapKey: "String!",
-        categories: "[String!]!",
-      },
-    });
+  ({ actions, schema }) => {
+    const typeDefs = [
+      schema.buildInterfaceType({
+        name: "IService",
+        fields: {
+          id: "ID!",
+          title: "String!",
+          slug: "String!",
+          imageTitle: "String!",
+          imageJson: "ImageJson",
+          iconMapKey: "String!",
+          categories: "[String!]!",
+        },
+      }),
+      schema.buildObjectType({
+        name: "ImageJson",
+        interfaces: ["Node"],
+        fields: {
+          title: "String!",
+          altKey: "String!",
+          relativePath: "String!",
+          childImageSharp: {
+            type: "ImageSharp!",
+            resolve: async (source: ImageJsonNode, _args, context) => {
+              const fileNode = await context.nodeModel.findOne({
+                type: "File",
+                query: {
+                  filter: { relativePath: { eq: source.relativePath } },
+                },
+              });
+              if (!fileNode || !fileNode.children?.length) return null;
+              return await context.nodeModel.getNodeById({
+                id: fileNode.children[0],
+                type: "ImageSharp",
+              });
+            },
+          },
+        },
+      }),
+      schema.buildObjectType({
+        name: "GalleryJson",
+        interfaces: ["Node"],
+        fields: {
+          categoryNameKey: "String!",
+          imageTitles: "[String!]!",
+          imageJsons: {
+            type: "[ImageJson!]!",
+            resolve: async (source: GalleryJsonNode, _args, context) => {
+              const { entries } = await context.nodeModel.findAll({
+                type: "ImageJson",
+                query: {
+                  filter: { title: { in: source.imageTitles } },
+                },
+              });
+              return entries;
+            },
+          },
+        },
+      }),
+      schema.buildObjectType({
+        name: "Service",
+        interfaces: ["IService", "Node"],
+        fields: {
+          id: "ID!",
+          title: "String!",
+          slug: "String!",
+          imageTitle: "String!",
+          imageJson: {
+            type: "ImageJson!",
+            resolve: async (source: ServiceNode, _args, context) =>
+              await context.nodeModel.findOne({
+                type: "ImageJson",
+                query: {
+                  filter: { title: { eq: source.imageTitle } },
+                },
+              }),
+          },
+          iconMapKey: "String!",
+          categories: "[String!]!",
+        },
+      }),
+    ];
+    actions.createTypes(typeDefs);
   };
-
-const createNodeMap = <T extends Node>(
-  nodes: T[],
-  key: keyof T,
-): Map<string, T> => {
-  const map = new Map<string, T>();
-  nodes.forEach((node) => {
-    const keyValue = node[key] as string;
-    if (keyValue) map.set(keyValue, node);
-  });
-  return map;
-};
-
-export const createResolvers: GatsbyNode["createResolvers"] = ({
-  createResolvers,
-  getNodesByType,
-  getNode,
-}) => {
-  const images = getNodesByType("File").filter(
-    (node) => node.sourceInstanceName === "images",
-  );
-  const imageMap = createNodeMap(images, "relativePath");
-  const ImageJson = {
-    childImageSharp: {
-      type: "ImageSharp",
-      resolve: (source: ImageJsonNode) =>
-        imageMap
-          .get(source.relativePath!)
-          ?.children.map(getNode)
-          .find((child) => child?.internal?.type === "ImageSharp"),
-    },
-  };
-
-  const imageJsonNodes = getNodesByType("ImageJson");
-  const imageJsonMap = createNodeMap(imageJsonNodes, "title");
-  const GalleryJson = {
-    imageJsons: {
-      type: ["ImageJson"],
-      resolve: (source: GalleryJsonNode) =>
-        source.imageTitles?.map((title) => imageJsonMap.get(title)),
-    },
-  };
-
-  const Service = {
-    imageJson: {
-      type: "ImageJson",
-      resolve: (source: ServiceNode) => imageJsonMap.get(source.imageTitle!),
-    },
-  };
-
-  createResolvers({ ImageJson, GalleryJson, Service });
-};
 
 export const onCreateNode: GatsbyNode["onCreateNode"] = ({
   node,
