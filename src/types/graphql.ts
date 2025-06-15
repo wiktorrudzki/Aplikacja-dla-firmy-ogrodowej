@@ -13,3 +13,9 @@ export type ImageJsonNode = Node & {
   relativePath?: string;
   childImageSharp?: { gatsbyImageData: ImageDataLike };
 };
+
+export type GalleryJsonNode = Node & {
+  categoryNameKey?: string;
+  imageTitles?: string[];
+  images?: ImageJsonNode[];
+};

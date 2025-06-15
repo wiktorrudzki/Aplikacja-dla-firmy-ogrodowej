@@ -1,7 +1,7 @@
 import { GatsbyNode, Node } from "gatsby";
 import MillionLint from "@million/lint";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import { ImageJsonNode } from "@src/types/graphql";
+import { GalleryJsonNode, ImageJsonNode } from "@src/types/graphql";
 
 export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
   stage,
@@ -26,6 +26,11 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       altKey: String!
       relativePath: String!
       childImageSharp: ImageSharp
+    }
+    type GalleryJson implements Node {
+      categoryNameKey: String!
+      imageTitles: [String!]!
+      images: [ImageJson!]!
     }
   `;
     createTypes(typeDefs);
@@ -63,5 +68,15 @@ export const createResolvers: GatsbyNode["createResolvers"] = ({
     },
   };
 
-  createResolvers({ ImageJson });
+  const imageJsonNodes = getNodesByType("ImageJson");
+  const imageJsonMap = createNodeMap(imageJsonNodes, "title");
+  const GalleryJson = {
+    images: {
+      type: ["ImageJson"],
+      resolve: (source: GalleryJsonNode) =>
+        source.imageTitles?.map((title) => imageJsonMap.get(title)),
+    },
+  };
+
+  createResolvers({ ImageJson, GalleryJson });
 };
