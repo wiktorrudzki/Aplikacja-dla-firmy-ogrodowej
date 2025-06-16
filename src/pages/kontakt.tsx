@@ -1,12 +1,13 @@
-import { Stack, Text } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import { MainCard } from "@src/components/main-card";
 import { t } from "@src/utils/i18n";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import React from "react";
-import { ContactCards, GoogleMap } from "@src/components/contact";
+import { ContactCards } from "@src/components/contact";
 import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
 import constants from "@src/constants";
 import { Heading1 } from "@src/components/typography";
+import { GoogleMap } from "@src/components/google-map";
 
 const Contact: GatsbyPageWithLayout = () => (
   <NavigationMarginContainer paddingTop={8} paddingBottom={8}>
