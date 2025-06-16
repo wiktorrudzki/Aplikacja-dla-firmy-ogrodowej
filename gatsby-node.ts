@@ -1,4 +1,4 @@
-import { GatsbyNode, Node } from "gatsby";
+import { GatsbyNode } from "gatsby";
 import MillionLint from "@million/lint";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import { createFilePath } from "gatsby-source-filesystem";
@@ -8,9 +8,9 @@ import {
   ServiceNode,
   MdxNode,
   ServiceFrontmatter,
-  GalleryCategory,
   ServiceCategory,
 } from "@src/types/graphql";
+import path from "path";
 
 export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
   stage,
@@ -51,6 +51,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       schema.buildObjectType({
         name: "Service",
         interfaces: ["IService", "Node"],
+        directives: [{ name: "@dontInfer" }],
         fields: {
           id: "ID!",
           title: "String!",
@@ -73,6 +74,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       schema.buildObjectType({
         name: "ImageJson",
         interfaces: ["Node"],
+        directives: [{ name: "@dontInfer" }],
         fields: {
           title: "String!",
           altKey: "String!",
@@ -97,6 +99,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       }),
       schema.buildObjectType({
         name: "GalleryJson",
+        directives: [{ name: "@dontInfer" }],
         interfaces: ["Node"],
         fields: {
           category: "GalleryCategory!",
@@ -159,4 +162,40 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     },
   };
   actions.createNode(serviceNode);
+};
+
+export const createPages: GatsbyNode["createPages"] = async ({
+  graphql,
+  actions,
+}) => {
+  const templateComponent = path.resolve(`./src/templates/Service.tsx`);
+  const result = await graphql<{ allService: { nodes: ServiceNode[] } }>(`
+    {
+      allService {
+        nodes {
+          id
+          slug
+          categories
+          body
+          imageJson {
+            altKey
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+  `);
+  if (result.errors) throw result.errors;
+
+  result.data?.allService.nodes.forEach((node) => {
+    node.categories?.forEach((category) =>
+      actions.createPage({
+        path: `${category}${node.slug}`,
+        component: templateComponent,
+        context: node,
+      }),
+    );
+  });
 };
