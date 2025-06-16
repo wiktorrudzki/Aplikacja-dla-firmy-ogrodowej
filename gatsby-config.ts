@@ -20,7 +20,16 @@ const config: GatsbyConfig = {
         icon: "src/assets/images/icon.png",
       },
     },
-    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-plugin-sharp",
+      options: {
+        defaults: {
+          formats: ["auto", "webp", "avif"],
+          placeholder: "blurred",
+        },
+      },
+    },
+    `gatsby-transformer-json`,
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
@@ -28,15 +37,21 @@ const config: GatsbyConfig = {
         name: "images",
         path: "./src/assets/images/",
       },
-      __key: "images",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "services",
+        path: `./src/content/services/`,
+        extensions: [`.mdx`, `.md`],
+      },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "content",
-        path: `./src/content/`,
+        path: "./src/content/",
       },
-      __key: "content",
     },
     {
       resolve: `gatsby-plugin-alias-imports`,
