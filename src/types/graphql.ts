@@ -20,10 +20,17 @@ export type ImageJsonNode = Node & {
 };
 
 export type GalleryJsonNode = Node & {
-  categoryNameKey?: string;
+  category?: GalleryCategory;
   imageTitles?: string[];
   imageJsons?: ImageJsonNode[];
 };
+
+export enum GalleryCategory {
+  OUR_WORK = "OUR_WORK",
+  LAWNS = "LAWNS",
+  TERRACES = "TERRACES",
+  VEGETATION = "VEGETATION",
+}
 
 export type ServiceFrontmatter = Node & {
   title?: string;
@@ -39,6 +46,11 @@ export type ServiceNode = Node & {
   imageTitle?: string;
   imageJson?: ImageJsonNode;
   iconMapKey?: string;
-  categories?: string[];
+  categories?: ServiceCategory[];
   body?: string;
 };
+
+export enum ServiceCategory {
+  INDIVIDUAL_CLIENT = "INDIVIDUAL_CLIENT",
+  BUSINESS_CLIENT = "BUSINESS_CLIENT",
+}

@@ -8,6 +8,8 @@ import {
   ServiceNode,
   MdxNode,
   ServiceFrontmatter,
+  GalleryCategory,
+  ServiceCategory,
 } from "@src/types/graphql";
 
 export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
@@ -27,6 +29,13 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
   ({ actions, schema }) => {
     const typeDefs = [
+      schema.buildEnumType({
+        name: "ServiceCategory",
+        values: {
+          INDIVIDUAL_CLIENT: { value: "INDIVIDUAL_CLIENT" },
+          BUSINESS_CLIENT: { value: "BUSINESS_CLIENT" },
+        },
+      }),
       schema.buildInterfaceType({
         name: "IService",
         fields: {
@@ -36,7 +45,29 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           imageTitle: "String!",
           imageJson: "ImageJson",
           iconMapKey: "String!",
-          categories: "[String!]!",
+          categories: "[ServiceCategory!]!",
+        },
+      }),
+      schema.buildObjectType({
+        name: "Service",
+        interfaces: ["IService", "Node"],
+        fields: {
+          id: "ID!",
+          title: "String!",
+          slug: "String!",
+          imageTitle: "String!",
+          imageJson: {
+            type: "ImageJson!",
+            resolve: async (source: ServiceNode, _args, context) =>
+              await context.nodeModel.findOne({
+                type: "ImageJson",
+                query: {
+                  filter: { title: { eq: source.imageTitle } },
+                },
+              }),
+          },
+          iconMapKey: "String!",
+          categories: "[ServiceCategory!]!",
         },
       }),
       schema.buildObjectType({
@@ -68,7 +99,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         name: "GalleryJson",
         interfaces: ["Node"],
         fields: {
-          categoryNameKey: "String!",
+          category: "GalleryCategory!",
           imageTitles: "[String!]!",
           imageJsons: {
             type: "[ImageJson!]!",
@@ -84,26 +115,13 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           },
         },
       }),
-      schema.buildObjectType({
-        name: "Service",
-        interfaces: ["IService", "Node"],
-        fields: {
-          id: "ID!",
-          title: "String!",
-          slug: "String!",
-          imageTitle: "String!",
-          imageJson: {
-            type: "ImageJson!",
-            resolve: async (source: ServiceNode, _args, context) =>
-              await context.nodeModel.findOne({
-                type: "ImageJson",
-                query: {
-                  filter: { title: { eq: source.imageTitle } },
-                },
-              }),
-          },
-          iconMapKey: "String!",
-          categories: "[String!]!",
+      schema.buildEnumType({
+        name: "GalleryCategory",
+        values: {
+          OUR_WORK: { value: "OUR_WORK" },
+          LAWNS: { value: "LAWNS" },
+          TERRACES: { value: "TERRACES" },
+          VEGETATION: { value: "VEGETATION" },
         },
       }),
     ];
@@ -130,7 +148,7 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     slug: createFilePath({ node, getNode, basePath: "services" }),
     imageTitle: serviceMdx.frontmatter.imageTitle,
     iconMapKey: serviceMdx.frontmatter.iconMapKey,
-    categories: serviceMdx.frontmatter.categories,
+    categories: serviceMdx.frontmatter.categories as ServiceCategory[],
     body: serviceMdx.body,
     parent: node.id,
     children: [],
