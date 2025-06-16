@@ -3,9 +3,10 @@ import { MainCard } from "@src/components/main-card";
 import { t } from "@src/utils/i18n";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import React from "react";
-import { ContactCards, GoogleMap } from "@src/components/contact";
+import { ContactCards } from "@src/components/contact";
 import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
 import constants from "@src/constants";
+import { GoogleMap } from "@src/components/google-map";
 
 const Contact: GatsbyPageWithLayout = () => (
   <NavigationMarginContainer paddingTop={8} paddingBottom={8}>

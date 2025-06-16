@@ -1,14 +1,16 @@
-import { Container } from "@chakra-ui/react";
+import { Container, ContainerProps, useToken } from "@chakra-ui/react";
 import React from "react";
 
-type Props = {
+type Props = ContainerProps & {
   children: React.ReactNode;
 };
 
-const MainCard = ({ children }: Props) => {
+const MainCard = ({ children, ...passThorughProps }: Props) => {
+  const mainCard = useToken("colors", ["mainCard.50", "mainCard.100"]);
+
   return (
     <Container
-      bgGradient="radial-gradient(circle at bottom right, #EBF8FF, #EBF4E4)" // hardcode colors becuase cannot reference the variable from here
+      bgGradient={`radial-gradient(circle at bottom right, ${mainCard[0]}, ${mainCard[1]})`}
       py={{
         base: 4,
         lg: 12,
@@ -19,6 +21,7 @@ const MainCard = ({ children }: Props) => {
       }}
       borderRadius={16}
       boxShadow="element"
+      {...passThorughProps}
     >
       {children}
     </Container>
