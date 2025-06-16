@@ -22,7 +22,7 @@ const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
   });
 
   return (
-    <Container width="fit-content" margin={0} padding={0}>
+    <Container width="fit-content" margin="0 auto" padding={0}>
       <Box
         as={Icon}
         width={iconSize}
