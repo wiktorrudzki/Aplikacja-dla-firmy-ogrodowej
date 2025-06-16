@@ -20,7 +20,15 @@ const config: GatsbyConfig = {
         icon: "src/assets/images/icon.png",
       },
     },
-    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-plugin-sharp",
+      options: {
+        defaults: {
+          formats: ["auto", "webp", "avif"],
+          placeholder: "blurred",
+        },
+      },
+    },
     `gatsby-transformer-json`,
     "gatsby-transformer-sharp",
     {

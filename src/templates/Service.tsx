@@ -8,6 +8,7 @@ import {
 import { ServiceNode } from "@src/types/graphql";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { t } from "@i18n";
+import { getIconFromName } from "@src/helpers";
 
 type Props = {
   pageContext: Required<ServiceNode>;
@@ -19,9 +20,10 @@ const ServicePageTemplate = ({ pageContext }: Props) => {
   const image = getImage(pageContext.imageJson.childImageSharp ?? null);
 
   if (!image) return;
-
+  const Icon = getIconFromName(pageContext.iconMapKey);
   return (
     <>
+      <Icon />
       <ExtraExtraLargeHeading>{pageContext.id}</ExtraExtraLargeHeading>
       <GatsbyImage image={image} alt={t(pageContext.imageJson.altKey ?? "")} />
       <MDXProvider components={shortcodes}>{pageContext.body}</MDXProvider>

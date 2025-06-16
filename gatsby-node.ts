@@ -177,6 +177,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
           slug
           categories
           body
+          iconMapKey
           imageJson {
             altKey
             childImageSharp {

@@ -7,6 +7,12 @@ export type GraphQLMdxNodes<T extends {}> = {
   };
 };
 
+export type GraphQL<T extends {}> = {
+  data: {
+    nodes: T[];
+  };
+};
+
 export type MdxNode<T extends {}> = Node & {
   frontmatter: T;
   body: string;
