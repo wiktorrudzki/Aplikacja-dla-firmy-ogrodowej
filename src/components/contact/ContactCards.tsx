@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Wrap } from "@chakra-ui/react";
 import React from "react";
 import {
   CallDescription,
@@ -12,18 +12,13 @@ import { BiPhone } from "react-icons/bi";
 import { Link } from "gatsby";
 
 const ContactCards = () => (
-  <Flex
+  <Wrap
     width="100%"
-    wrap="wrap"
     margin="auto"
     justifyContent="space-between"
     gap={{
       base: 16,
       xl: 8,
-    }}
-    flexDirection={{
-      base: "column",
-      xl: "row",
     }}
     alignItems="center"
   >
@@ -33,7 +28,7 @@ const ContactCards = () => (
       Icon={FiMap}
       iconMode="color"
     />
-    <Link to={`tel:${t("telephone-number")}`}>
+    <Link style={{ margin: "0 auto" }} to={`tel:${t("telephone-number")}`}>
       <ContactCard
         title={t("Zadzwoń do nas!")}
         description={<CallDescription />}
@@ -41,7 +36,7 @@ const ContactCards = () => (
         iconMode="fill"
       />
     </Link>
-    <Link to={`mailto:${t("email-address")}`}>
+    <Link style={{ margin: "0 auto" }} to={`mailto:${t("email-address")}`}>
       <ContactCard
         title={t("Napisz do nas!")}
         description={<MailDescription />}
@@ -49,7 +44,7 @@ const ContactCards = () => (
         iconMode="color"
       />
     </Link>
-  </Flex>
+  </Wrap>
 );
 
 export default ContactCards;
