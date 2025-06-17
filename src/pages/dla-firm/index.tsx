@@ -5,9 +5,9 @@ import { HeadFC } from "gatsby";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 import { ServiceCards } from "@src/components/service-card";
-import { GraphQL, ServiceNode } from "@src/types/graphql";
+import { GraphQLNodes, ServiceNode } from "@src/types/graphql";
 
-const IndexPage: GatsbyPageWithLayout<PageProps<GraphQL<ServiceNode>>> = ({
+const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLNodes<ServiceNode>>> = ({
   data: { data },
 }) => (
   <div

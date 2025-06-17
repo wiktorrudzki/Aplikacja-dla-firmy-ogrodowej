@@ -2,13 +2,13 @@ import { SEO } from "@src/components/seo";
 import { t } from "@i18n";
 import { HeadFC } from "gatsby";
 import { ServiceCards } from "@src/components/service-card";
-import { GraphQL } from "@src/types/graphql";
+import { GraphQLNodes } from "@src/types/graphql";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { ServiceNode } from "@src/types/graphql";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
-const IndexPage: GatsbyPageWithLayout<PageProps<GraphQL<ServiceNode>>> = ({
+const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLNodes<ServiceNode>>> = ({
   data: { data },
 }) => {
   return (
