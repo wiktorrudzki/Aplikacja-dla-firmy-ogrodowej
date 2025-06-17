@@ -1,13 +1,13 @@
 import { Node } from "gatsby";
 import { ImageDataLike } from "gatsby-plugin-image";
 
-export type GraphQLNodes<T extends {}> = {
-  data: {
+export type GraphQLNodes<P extends string, T extends {}> = {
+  [K in P]: {
     nodes: T[];
   };
 };
 
-export type MdxNode<T extends {}> = Node & {
+export type MdxNode<T> = Node & {
   frontmatter: T;
   body: string;
 };

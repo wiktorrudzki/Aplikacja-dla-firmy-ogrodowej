@@ -8,9 +8,9 @@ import { ServiceNode } from "@src/types/graphql";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
-const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLNodes<ServiceNode>>> = ({
-  data: { data },
-}) => {
+const IndexPage: GatsbyPageWithLayout<
+  PageProps<GraphQLNodes<"allService", ServiceNode>>
+> = ({ data: { allService } }) => {
   return (
     <div
       style={{
@@ -20,7 +20,7 @@ const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLNodes<ServiceNode>>> = ({
         alignItems: "center",
       }}
     >
-      <ServiceCards services={data.nodes} />
+      <ServiceCards services={allService.nodes} />
     </div>
   );
 };
@@ -32,7 +32,7 @@ export const Head: HeadFC = ({ location }) => (
 );
 export const pageQuery = graphql`
   {
-    data: allService(filter: { categories: { in: INDIVIDUAL_CLIENT } }) {
+    allService(filter: { categories: { in: INDIVIDUAL_CLIENT } }) {
       nodes {
         title
         iconMapKey
