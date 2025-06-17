@@ -1,5 +1,5 @@
 import { lang } from "@i18n";
-import useSiteMetadata from "@src/hooks/useSiteMetadata";
+import { useSiteMetadata } from "@src/hooks";
 import React, { useMemo } from "react";
 
 type SEOProps = {
