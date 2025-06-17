@@ -5,10 +5,9 @@ import { HeadFC } from "gatsby";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 import { ServiceCards } from "@src/components/service-card";
-import { GraphQLMdxNodes } from "@src/types/graphql";
-import { Service } from "@src/types/services";
+import { GraphQL, ServiceNode } from "@src/types/graphql";
 
-const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLMdxNodes<Service>>> = ({
+const IndexPage: GatsbyPageWithLayout<PageProps<GraphQL<ServiceNode>>> = ({
   data: { data },
 }) => (
   <div
@@ -20,7 +19,7 @@ const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLMdxNodes<Service>>> = ({
       flexDirection: "column",
     }}
   >
-    <ServiceCards services={data.nodes.map((node) => node.frontmatter)} />
+    <ServiceCards services={data.nodes} />
   </div>
 );
 
@@ -31,14 +30,16 @@ export const Head: HeadFC = ({ location }) => (
 );
 export const pageQuery = graphql`
   {
-    data: allMdx(
-      filter: {
-        internal: { contentFilePath: { regex: "/services/" } }
-        frontmatter: { categories: { in: ["DLA_FIRM"] } }
-      }
-    ) {
+    data: allService(filter: { categories: { in: BUSINESS_CLIENT } }) {
       nodes {
-        ...ServiceFields
+        title
+        iconMapKey
+        imageJson {
+          altKey
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
       }
     }
   }
