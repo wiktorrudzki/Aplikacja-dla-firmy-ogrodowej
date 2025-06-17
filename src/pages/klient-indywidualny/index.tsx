@@ -1,3 +1,6 @@
+import { SEO } from "@src/components/seo";
+import { t } from "@i18n";
+import { HeadFC } from "gatsby";
 import { ServiceCards } from "@src/components/service-card";
 import { GraphQL } from "@src/types/graphql";
 import { GatsbyPageWithLayout } from "@src/types/page";
@@ -24,6 +27,9 @@ const IndexPage: GatsbyPageWithLayout<PageProps<GraphQL<ServiceNode>>> = ({
 
 export default IndexPage;
 
+export const Head: HeadFC = ({ location }) => (
+  <SEO title={t("individual-client")} path={location.pathname} />
+);
 export const pageQuery = graphql`
   {
     data: allService(filter: { categories: { in: INDIVIDUAL_CLIENT } }) {
