@@ -6,6 +6,8 @@ import React from "react";
 import { ContactCards, GoogleMap } from "@src/components/contact";
 import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
 import constants from "@src/constants";
+import { SEO } from "@src/components/seo";
+import { HeadFC } from "gatsby";
 
 const Contact: GatsbyPageWithLayout = () => (
   <NavigationMarginContainer paddingTop={8} paddingBottom={8}>
@@ -34,3 +36,7 @@ const Contact: GatsbyPageWithLayout = () => (
 );
 
 export default Contact;
+
+export const Head: HeadFC = ({ location }) => (
+  <SEO title={t("contact")} path={location.pathname} />
+);
