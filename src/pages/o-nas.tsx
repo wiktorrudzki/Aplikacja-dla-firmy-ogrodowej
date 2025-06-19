@@ -1,5 +1,9 @@
 import { Box } from "@chakra-ui/react";
-import { HeroSlider, OurCompanyInNumbers } from "@src/components/aboutUs";
+import {
+  HeroSlider,
+  OurCompanyInNumbers,
+  WorkEffects,
+} from "@src/components/aboutUs";
 import { SEO } from "@src/components/seo";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { t } from "@i18n";
@@ -11,6 +15,7 @@ const About: GatsbyPageWithLayout = () => {
     <Box>
       <HeroSlider />
       <OurCompanyInNumbers />
+      <WorkEffects />
     </Box>
   );
 };
