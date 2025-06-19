@@ -16,8 +16,6 @@ type GalleryJsonType = Required<
   Pick<GalleryJsonNode<ImageJsonType>, "order" | "category" | "imageJsons">
 >;
 
-const allCategoryKey = "ALL";
-
 const useImageGallery = (allGalleryJsonNodes: GalleryJsonType[]) => {
   const allImages = React.useMemo(
     () =>
@@ -28,9 +26,10 @@ const useImageGallery = (allGalleryJsonNodes: GalleryJsonType[]) => {
   );
 
   const categoryKeys = React.useMemo(() => {
-    const categories: Array<GalleryCategory | typeof allCategoryKey> =
-      allGalleryJsonNodes.map((galleryJson) => galleryJson.category);
-    categories.unshift(allCategoryKey);
+    const categories: GalleryCategory[] = allGalleryJsonNodes.map(
+      (galleryJson) => galleryJson.category,
+    );
+    categories.unshift(GalleryCategory.ALL);
     return categories;
   }, [allGalleryJsonNodes]);
 
@@ -42,11 +41,11 @@ const useImageGallery = (allGalleryJsonNodes: GalleryJsonType[]) => {
           categoryKey,
           translatedCategory,
           path:
-            categoryKey === allCategoryKey
+            categoryKey === GalleryCategory.ALL
               ? ""
               : `#${slugify(translatedCategory.toLowerCase())}`,
           imageJsons:
-            categoryKey === allCategoryKey
+            categoryKey === GalleryCategory.ALL
               ? allImages
               : (allGalleryJsonNodes.find(
                   (galleryJson) => galleryJson.category === categoryKey,

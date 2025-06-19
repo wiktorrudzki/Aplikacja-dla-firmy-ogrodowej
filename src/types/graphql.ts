@@ -27,6 +27,7 @@ export type GalleryJsonNode<T = ImageJsonNode> = Node & {
 };
 
 export enum GalleryCategory {
+  ALL = "ALL",
   OUR_WORK = "OUR_WORK",
   LAWNS = "LAWNS",
   TERRACES = "TERRACES",
