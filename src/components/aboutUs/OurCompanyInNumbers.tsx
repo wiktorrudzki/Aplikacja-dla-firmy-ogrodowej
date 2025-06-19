@@ -3,7 +3,7 @@ import React from "react";
 import { Heading1 } from "../typography";
 import { NumberCard } from "../number-card";
 import { t } from "@i18n";
-import { ourNumbers } from "@data/ourNumbers";
+import { ourNumbers } from "@data/OurNumbers";
 
 function OurCompanyInNumbers() {
   const green = useToken("colors", ["green.100"]);

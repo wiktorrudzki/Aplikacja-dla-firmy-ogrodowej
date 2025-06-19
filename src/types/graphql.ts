@@ -1,19 +1,13 @@
 import { Node } from "gatsby";
 import { ImageDataLike } from "gatsby-plugin-image";
 
-export type GraphQLMdxNodes<T extends {}> = {
-  data: {
-    nodes: { frontmatter: T }[];
-  };
-};
-
-export type GraphQL<T extends {}> = {
-  data: {
+export type GraphQLNodes<P extends string, T extends {}> = {
+  [K in P]: {
     nodes: T[];
   };
 };
 
-export type MdxNode<T extends {}> = Node & {
+export type MdxNode<T> = Node & {
   frontmatter: T;
   body: string;
 };
@@ -26,6 +20,7 @@ export type ImageJsonNode = Node & {
 };
 
 export type GalleryJsonNode = Node & {
+  order?: number;
   category?: GalleryCategory;
   imageTitles?: string[];
   imageJsons?: ImageJsonNode[];

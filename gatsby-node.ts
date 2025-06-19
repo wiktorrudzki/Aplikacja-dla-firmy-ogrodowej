@@ -102,6 +102,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         directives: [{ name: "@dontInfer" }],
         interfaces: ["Node"],
         fields: {
+          order: "Int!",
           category: "GalleryCategory!",
           imageTitles: "[String!]!",
           imageJsons: {
