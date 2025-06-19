@@ -1,9 +1,8 @@
 import React from "react";
-import ServiceCard from "./ServiceCard";
-import { ServiceNode } from "@src/types/graphql";
+import ServiceCard, { ServiceType } from "./ServiceCard";
 
 type Props = {
-  services: ServiceNode[];
+  services: ServiceType[];
 };
 
 const ServiceCards = ({ services }: Props) =>

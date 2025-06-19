@@ -12,18 +12,18 @@ export type MdxNode<T> = Node & {
   body: string;
 };
 
-export type ImageJsonNode = Node & {
+export type ImageJsonNode = Partial<Node> & {
   title?: string;
   altKey?: string;
   relativePath?: string;
   childImageSharp?: { gatsbyImageData: ImageDataLike };
 };
 
-export type GalleryJsonNode = Node & {
+export type GalleryJsonNode<T = ImageJsonNode> = Node & {
   order?: number;
   category?: GalleryCategory;
   imageTitles?: string[];
-  imageJsons?: ImageJsonNode[];
+  imageJsons?: T[];
 };
 
 export enum GalleryCategory {
@@ -40,12 +40,12 @@ export type ServiceFrontmatter = Node & {
   categories?: string[];
 };
 
-export type ServiceNode = Node & {
+export type ServiceNode<T = ImageJsonNode> = Node & {
   id?: string;
   title?: string;
   slug?: string;
   imageTitle?: string;
-  imageJson?: ImageJsonNode;
+  imageJson?: T;
   iconMapKey?: string;
   categories?: ServiceCategory[];
   body?: string;

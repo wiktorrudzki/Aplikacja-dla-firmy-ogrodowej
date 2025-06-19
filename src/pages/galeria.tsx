@@ -1,11 +1,15 @@
 import React from "react";
 import { graphql, HeadFC, PageProps } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { SEO } from "@src/components/seo";
 import { t } from "@i18n";
-import { GalleryJsonNode, GraphQLNodes } from "@src/types/graphql";
-import { distinctById } from "@src/helpers";
+import {
+  GalleryJsonNode,
+  GraphQLNodes,
+  ImageJsonNode,
+} from "@src/types/graphql";
+import { distinctById, getImageJsonImage } from "@src/helpers";
 import { Heading1 } from "@src/components/typography";
 
 export const pageQuery = graphql`
@@ -24,8 +28,12 @@ export const pageQuery = graphql`
   }
 `;
 
+type ImageJsonType = Required<
+  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
+>;
+
 type GalleryJsonType = Required<
-  Pick<GalleryJsonNode, "order" | "category" | "imageJsons">
+  Pick<GalleryJsonNode<ImageJsonType>, "order" | "category" | "imageJsons">
 >;
 
 const Gallery: GatsbyPageWithLayout<
@@ -41,19 +49,13 @@ const Gallery: GatsbyPageWithLayout<
   return (
     <div>
       <Heading1>{[t("ALL"), ...categories].join(", ")}</Heading1>
-      {images.map((image) => {
-        const imageData = getImage(
-          image?.childImageSharp?.gatsbyImageData ?? null,
-        );
-        if (!imageData) return;
-        return (
-          <GatsbyImage
-            key={image.id}
-            image={imageData}
-            alt={image.altKey ?? ""}
-          />
-        );
-      })}
+      {images.map((imageJson) => (
+        <GatsbyImage
+          key={imageJson.id}
+          image={getImageJsonImage(imageJson)}
+          alt={imageJson.altKey}
+        />
+      ))}
     </div>
   );
 };

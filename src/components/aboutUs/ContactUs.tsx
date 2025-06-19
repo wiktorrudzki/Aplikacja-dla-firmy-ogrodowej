@@ -4,30 +4,33 @@ import { t } from "@src/utils/i18n";
 import React from "react";
 import { ContentCardsWithImage, ContentCardButton } from "../content-card";
 import { graphql, useStaticQuery } from "gatsby";
-import { getImage } from "gatsby-plugin-image";
 import { Heading1, Paragraph } from "@src/components/typography";
-import { ImageNode } from "@src/types/images";
+import { ImageJsonNode } from "@src/types/graphql";
+import { getImageJsonImage } from "@src/helpers";
+
+type ImageJsonType = Required<
+  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
+>;
 
 function ContactUs({ ...props }: ContainerProps) {
-  const { file: image } = useStaticQuery<{ file: ImageNode }>(graphql`
-    query {
-      file(
-        sourceInstanceName: { eq: "images" }
-        relativePath: { eq: "house.jpg" }
-      ) {
-        relativePath
-        ...GatsbyImageFragment
+  const { imageJson } = useStaticQuery<{ imageJson: ImageJsonType }>(graphql`
+    {
+      imageJson(title: { eq: "House" }) {
+        id
+        altKey
+        childImageSharp {
+          gatsbyImageData
+        }
       }
     }
   `);
-  const imageData = getImage(image.childImageSharp);
 
-  if (!imageData) throw new Error(`Image not found: ${image.relativePath}`);
+  const imageData = getImageJsonImage(imageJson);
 
   return (
     <Container my={[12, 24, 32]} {...props}>
       <ContentCardsWithImage
-        backgroundImageDetails={{ data: imageData, alt: "house" }}
+        backgroundImageDetails={{ data: imageData, alt: t(imageJson.altKey) }}
       >
         <Heading1 overflowWrap="anywhere">{t("still-wondering")}</Heading1>
         <Paragraph>{t("still-wondering-description")}</Paragraph>

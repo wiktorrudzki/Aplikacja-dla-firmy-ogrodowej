@@ -5,10 +5,21 @@ import { HeadFC } from "gatsby";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 import { ServiceCards } from "@src/components/service-card";
-import { GraphQLNodes, ServiceNode } from "@src/types/graphql";
+import { GraphQLNodes, ImageJsonNode, ServiceNode } from "@src/types/graphql";
+
+type ImageJsonType = Required<
+  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
+>;
 
 const IndexPage: GatsbyPageWithLayout<
-  PageProps<GraphQLNodes<"allService", ServiceNode>>
+  PageProps<
+    GraphQLNodes<
+      "allService",
+      Required<
+        Pick<ServiceNode<ImageJsonType>, "title" | "iconMapKey" | "imageJson">
+      >
+    >
+  >
 > = ({ data: { allService } }) => (
   <div
     style={{
@@ -35,6 +46,7 @@ export const pageQuery = graphql`
         title
         iconMapKey
         imageJson {
+          id
           altKey
           childImageSharp {
             gatsbyImageData

@@ -2,14 +2,25 @@ import { SEO } from "@src/components/seo";
 import { t } from "@i18n";
 import { HeadFC } from "gatsby";
 import { ServiceCards } from "@src/components/service-card";
-import { GraphQLNodes } from "@src/types/graphql";
+import { GraphQLNodes, ImageJsonNode } from "@src/types/graphql";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { ServiceNode } from "@src/types/graphql";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
+type ImageJsonType = Required<
+  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
+>;
+
 const IndexPage: GatsbyPageWithLayout<
-  PageProps<GraphQLNodes<"allService", ServiceNode>>
+  PageProps<
+    GraphQLNodes<
+      "allService",
+      Required<
+        Pick<ServiceNode<ImageJsonType>, "title" | "iconMapKey" | "imageJson">
+      >
+    >
+  >
 > = ({ data: { allService } }) => {
   return (
     <div
@@ -37,6 +48,7 @@ export const pageQuery = graphql`
         title
         iconMapKey
         imageJson {
+          id
           altKey
           childImageSharp {
             gatsbyImageData
