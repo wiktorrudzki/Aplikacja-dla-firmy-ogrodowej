@@ -20,6 +20,7 @@ export type ImageJsonNode = Node & {
 };
 
 export type GalleryJsonNode = Node & {
+  order?: number;
   category?: GalleryCategory;
   imageTitles?: string[];
   imageJsons?: ImageJsonNode[];
