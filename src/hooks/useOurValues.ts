@@ -1,11 +1,11 @@
-import { GraphQLMdxNodes } from "@src/types/graphql";
+import { GraphQLNodes, MdxNode } from "@src/types/graphql";
 import { Slide } from "@src/types/slide";
 import { graphql, useStaticQuery } from "gatsby";
 
 const useOurValues = () => {
-  const data: GraphQLMdxNodes<Slide> = useStaticQuery(graphql`
+  const data: GraphQLNodes<"allMdx", MdxNode<Slide>> = useStaticQuery(graphql`
     {
-      data: allMdx(
+      allMdx(
         filter: { internal: { contentFilePath: { regex: "/our-values/" } } }
         sort: { frontmatter: { id: ASC } }
       ) {
@@ -16,7 +16,7 @@ const useOurValues = () => {
     }
   `);
 
-  return data.data.nodes.map((s) => s.frontmatter);
+  return data.allMdx.nodes.map((s) => s.frontmatter);
 };
 
 export default useOurValues;
