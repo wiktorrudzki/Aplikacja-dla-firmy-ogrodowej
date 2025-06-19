@@ -1,18 +1,14 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import { getImageJsonImage } from "@src/helpers";
-import { ImageJsonNode } from "@src/types/graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 
-type ImageJsons = Required<
-  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
->;
-
 type Props = {
-  imageJsons: ImageJsons[];
+  imageJsons: Array<Parameters<typeof getImageJsonImage>[0]> | null;
 };
 
 function GalleryImages({ imageJsons }: Props) {
+  if (!imageJsons) return null;
   return (
     <Grid
       justifySelf="center"
@@ -25,6 +21,7 @@ function GalleryImages({ imageJsons }: Props) {
       my="4"
     >
       {imageJsons.map((imageJson) => {
+        if (!imageJson) return;
         const image = getImageJsonImage(imageJson);
         return (
           <GridItem
