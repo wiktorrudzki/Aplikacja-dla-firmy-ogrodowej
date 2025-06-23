@@ -1,23 +1,39 @@
-import * as MdIcons from "react-icons/md";
-import * as FaIcons from "react-icons/fa";
-import * as BsIcons from "react-icons/bs";
-import * as GiIcons from "react-icons/gi";
 import { IconType } from "react-icons";
+import { BsTreeFill } from "react-icons/bs";
+import {
+  MdBuild,
+  MdHotTub,
+  MdDisabledByDefault,
+  MdOpacity,
+  MdAcUnit,
+  MdGrass,
+  MdDesignServices,
+  MdLocalFlorist,
+  MdWeekend,
+  MdLayers,
+  MdLandscape,
+  MdCleaningServices,
+  MdNature,
+  MdBusinessCenter,
+} from "react-icons/md";
 
-const iconPacks: Record<string, Record<string, IconType>> = {
-  Md: MdIcons,
-  Fa: FaIcons,
-  Bs: BsIcons,
-  Gi: GiIcons,
+const iconPacks: Record<string, IconType> = {
+  MdBuild,
+  MdHotTub,
+  MdOpacity,
+  MdAcUnit,
+  MdGrass,
+  MdDesignServices,
+  MdLocalFlorist,
+  MdWeekend,
+  MdLayers,
+  MdLandscape,
+  BsTreeFill,
+  MdCleaningServices,
+  MdNature,
+  MdBusinessCenter,
 };
 
-export default (iconName: string): IconType => {
-  const prefix = iconName.slice(0, 2);
-  const iconPack = iconPacks[prefix];
-
-  if (iconPack && iconName in iconPack) {
-    return iconPack[iconName];
-  }
-
-  return MdIcons.MdDisabledByDefault;
+export default (iconName?: string): IconType => {
+  return iconPacks[iconName ?? ""] ?? MdDisabledByDefault;
 };

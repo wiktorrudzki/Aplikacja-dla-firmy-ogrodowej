@@ -6,3 +6,5 @@ export default {
   contactCardIconBaseSizeRem: 3,
   contactCardIconMdSizeRem: 4,
 };
+
+export { default as ROUTES } from "./routes";

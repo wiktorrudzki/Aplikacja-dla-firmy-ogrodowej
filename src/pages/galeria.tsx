@@ -1,53 +1,65 @@
 import React from "react";
-import { graphql, PageProps } from "gatsby";
-import { GatsbyImage, getImage, ImageDataLike } from "gatsby-plugin-image";
-import galleryImages from "@data/gallery-images";
+import { graphql, HeadFC, PageProps } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { GatsbyPageWithLayout } from "@src/types/page";
+import { SEO } from "@src/components/seo";
+import { t } from "@i18n";
+import { GalleryJsonNode, GraphQLNodes } from "@src/types/graphql";
+import { distinctById } from "@src/helpers";
+import { Heading1 } from "@src/components/typography";
 
-type ImageNode = {
-  relativePath: string;
-  childImageSharp: {
-    gatsbyImageData: ImageDataLike;
-  };
-};
+export const pageQuery = graphql`
+  {
+    allGalleryJson(sort: { order: ASC }) {
+      nodes {
+        order
+        category
+        imageJsons {
+          id
+          altKey
+          ...GalleryImage
+        }
+      }
+    }
+  }
+`;
 
-interface DataType {
-  images: {
-    nodes: ImageNode[];
-  };
-}
+type GalleryJsonType = Required<
+  Pick<GalleryJsonNode, "order" | "category" | "imageJsons">
+>;
 
-const Gallery: GatsbyPageWithLayout<PageProps<DataType>> = ({ data }) => {
-  const imageData = galleryImages[0];
-  const node = data.images.nodes.find(
-    (image) => image.relativePath === imageData.src,
+const Gallery: GatsbyPageWithLayout<
+  PageProps<GraphQLNodes<"allGalleryJson", GalleryJsonType>>
+> = ({ data: { allGalleryJson } }) => {
+  const images = distinctById(
+    allGalleryJson.nodes.flatMap((galleryJson) => galleryJson.imageJsons),
   );
-  const image = getImage(node?.childImageSharp?.gatsbyImageData!);
+  const categories = allGalleryJson.nodes.map((galleryJson) =>
+    t(galleryJson.category),
+  );
 
   return (
     <div>
-      <h1>Gallery</h1>
-      {data.images.nodes.map((node) => (
-        <GatsbyImage
-          key={"dasdsa"}
-          image={getImage(node?.childImageSharp?.gatsbyImageData!)!}
-          alt={"dsd"}
-        />
-      ))}
-      <GatsbyImage image={image!} alt={imageData.alt} />
+      <Heading1>{[t("ALL"), ...categories].join(", ")}</Heading1>
+      {images.map((image) => {
+        const imageData = getImage(
+          image?.childImageSharp?.gatsbyImageData ?? null,
+        );
+        if (!imageData) return;
+        return (
+          <GatsbyImage
+            key={image.id}
+            image={imageData}
+            alt={image.altKey ?? ""}
+          />
+        );
+      })}
     </div>
   );
 };
 
 export default Gallery;
 
-export const pageQuery = graphql`
-  {
-    images: allFile(filter: { sourceInstanceName: { eq: "images" } }) {
-      nodes {
-        relativePath
-        ...GatsbyImageFragment
-      }
-    }
-  }
-`;
+export const Head: HeadFC = ({ location }) => (
+  <SEO title={t("gallery")} path={location.pathname} />
+);

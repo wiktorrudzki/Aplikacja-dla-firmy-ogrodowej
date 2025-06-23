@@ -1,13 +1,16 @@
+import { SEO } from "@src/components/seo";
+import { t } from "@i18n";
+import { HeadFC } from "gatsby";
 import { ServiceCards } from "@src/components/service-card";
-import { GraphQLMdxNodes } from "@src/types/graphql";
+import { GraphQLNodes } from "@src/types/graphql";
 import { GatsbyPageWithLayout } from "@src/types/page";
-import { Service } from "@src/types/services";
+import { ServiceNode } from "@src/types/graphql";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
-const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLMdxNodes<Service>>> = ({
-  data: { data },
-}) => {
+const IndexPage: GatsbyPageWithLayout<
+  PageProps<GraphQLNodes<"allService", ServiceNode>>
+> = ({ data: { allService } }) => {
   return (
     <div
       style={{
@@ -17,23 +20,28 @@ const IndexPage: GatsbyPageWithLayout<PageProps<GraphQLMdxNodes<Service>>> = ({
         alignItems: "center",
       }}
     >
-      <ServiceCards services={data.nodes.map((node) => node.frontmatter)} />
+      <ServiceCards services={allService.nodes} />
     </div>
   );
 };
 
 export default IndexPage;
 
+export const Head: HeadFC = ({ location }) => (
+  <SEO title={t("individual-client")} path={location.pathname} />
+);
 export const pageQuery = graphql`
   {
-    data: allMdx(
-      filter: {
-        internal: { contentFilePath: { regex: "/services/" } }
-        frontmatter: { categories: { in: ["KLIENT_INDYWIDUALNY"] } }
-      }
-    ) {
+    allService(filter: { categories: { in: INDIVIDUAL_CLIENT } }) {
       nodes {
-        ...ServiceFields
+        title
+        iconMapKey
+        imageJson {
+          altKey
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
       }
     }
   }

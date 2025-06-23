@@ -1,4 +1,5 @@
 import { useLocation } from "@reach/router";
+import { ROUTES } from "@src/constants";
 import { NAVIGATION_MODE, NavigationMode } from "@src/types/navigation";
 import React, {
   RefObject,
@@ -7,7 +8,6 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import routes from "@data/routes.json";
 
 const useNavigationMode = (ref: RefObject<HTMLDivElement>): NavigationMode => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,8 +31,8 @@ const useNavigationMode = (ref: RefObject<HTMLDivElement>): NavigationMode => {
 
   const navMode: NAVIGATION_MODE = useMemo(
     () =>
-      (location.pathname.includes(routes.O_NAS) ||
-        location.pathname === routes.HOME) &&
+      (location.pathname.includes(ROUTES.O_NAS) ||
+        location.pathname === ROUTES.HOME) &&
       !isScrolled
         ? NAVIGATION_MODE.LIGHT
         : NAVIGATION_MODE.DARK,

@@ -8,6 +8,8 @@ import { NavigationMarginContainer } from "@src/components/navigation-margin-con
 import constants from "@src/constants";
 import { Heading1 } from "@src/components/typography";
 import { GoogleMap } from "@src/components/google-map";
+import { SEO } from "@src/components/seo";
+import { HeadFC } from "gatsby";
 
 const Contact: GatsbyPageWithLayout = () => (
   <NavigationMarginContainer paddingTop={8} paddingBottom={8}>
@@ -35,3 +37,7 @@ const Contact: GatsbyPageWithLayout = () => (
 );
 
 export default Contact;
+
+export const Head: HeadFC = ({ location }) => (
+  <SEO title={t("contact")} path={location.pathname} />
+);
