@@ -1,4 +1,4 @@
-import { chakra, Stack, Text } from "@chakra-ui/react";
+import { chakra, Stack } from "@chakra-ui/react";
 import { t } from "@src/utils/i18n";
 import React from "react";
 import { Paragraph } from "../typography";
