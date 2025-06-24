@@ -11,7 +11,7 @@ import WorkEffectSlide from "./WorkEffectSlide";
 import WorkEffectControls from "./WorkEffectControls";
 
 const WorkEffects = () => {
-  const { effects } = useWorkEffects();
+  const effects = useWorkEffects();
 
   const outerSwiperRef = React.useRef<SwiperRef | null>(null);
 

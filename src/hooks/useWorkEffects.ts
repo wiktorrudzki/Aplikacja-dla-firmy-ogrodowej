@@ -20,11 +20,7 @@ const useWorkEffects = () => {
     `,
   );
 
-  const effects = data.allGalleryJson.nodes;
-
-  return {
-    effects,
-  };
+  return data.allGalleryJson.nodes;
 };
 
 export default useWorkEffects;
