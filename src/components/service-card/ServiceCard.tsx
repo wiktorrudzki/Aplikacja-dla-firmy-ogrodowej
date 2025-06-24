@@ -1,21 +1,21 @@
 import { Box, Stack } from "@chakra-ui/react";
 import { getIconFromName } from "@src/helpers";
-import { Service } from "@src/types/services";
+import { ServiceNode } from "@src/types/graphql";
 import { t } from "@src/utils/i18n";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import { Heading2 } from "../typography";
 
 type Props = {
-  service: Service;
+  service: ServiceNode;
 };
 
 const ServiceCard = ({ service }: Props) => {
-  const image = getImage(service.featuredImage);
+  const image = getImage(service.imageJson?.childImageSharp ?? null);
 
   if (!image) return null;
 
-  const Icon = getIconFromName(service.icon);
+  const Icon = getIconFromName(service.iconMapKey);
 
   return (
     <Stack
@@ -38,7 +38,7 @@ const ServiceCard = ({ service }: Props) => {
           borderRadius: 8,
         }}
         image={image}
-        alt={service.alt}
+        alt={t(service.imageJson?.altKey)}
       />
       <Box
         color="white"

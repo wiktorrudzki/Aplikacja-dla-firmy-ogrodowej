@@ -6,6 +6,7 @@ import { Flex } from "@chakra-ui/react";
 import { Panel, PanelStack } from "@src/components/homePage";
 import ROUTES from "@data/routes.json";
 import { GatsbyPageWithLayout } from "@src/types/page";
+import { SEO } from "@src/components/seo";
 
 const HouseStaticImageElement = (
   <StaticImage
@@ -53,4 +54,6 @@ IndexPage.hideFooter = true;
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>Home Page</title>;
+export const Head: HeadFC = ({ location }) => (
+  <SEO title={t("homepage")} path={location.pathname} />
+);
