@@ -4,7 +4,7 @@ import CategoryButton from "./CatergoryButton";
 import { MdCircle } from "react-icons/md";
 import { t } from "@src/utils/i18n";
 import { GalleryJsonNode } from "@src/types/graphql";
-import routes from "@data/routes.json";
+import { ROUTES } from "@src/constants";
 
 type Props = {
   controls: string[];
@@ -20,7 +20,7 @@ const WorkEffectControls = ({ controls, activeEffect, onChange }: Props) => {
       {controls.map((control, index) => (
         <Wrap alignItems="center" key={`${control}-${index}`} gap={8}>
           <CategoryButton
-            to={routes.GALERIA} // todo - adjust specific path when gallery page will be implemented
+            to={ROUTES.GALERIA} // todo - adjust specific path when gallery page will be implemented
             onMouseEnter={() => onChange(index)}
             active={activeEffect.category === control}
           >

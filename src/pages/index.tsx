@@ -4,8 +4,8 @@ import { t } from "@i18n";
 import { StaticImage } from "gatsby-plugin-image";
 import { Flex } from "@chakra-ui/react";
 import { Panel, PanelStack } from "@src/components/homePage";
-import ROUTES from "@data/routes.json";
 import { GatsbyPageWithLayout } from "@src/types/page";
+import { ROUTES } from "@src/constants";
 import { SEO } from "@src/components/seo";
 
 const HouseStaticImageElement = (

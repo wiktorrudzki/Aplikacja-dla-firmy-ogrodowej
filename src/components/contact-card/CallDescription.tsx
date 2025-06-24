@@ -4,7 +4,12 @@ import React from "react";
 
 const CallDescription = () => {
   return (
-    <Link href={`tel:${t("telephone-number")}`} textStyle="paragraph">
+    <Link
+      href={`tel:${t("telephone-number")}`}
+      textDecor="underline"
+      color="green.500"
+      textStyle="paragraph"
+    >
       {t("telephone-number")}
     </Link>
   );
