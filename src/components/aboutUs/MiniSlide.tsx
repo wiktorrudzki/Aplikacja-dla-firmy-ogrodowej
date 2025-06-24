@@ -32,7 +32,6 @@ const MiniSlide = ({ slide, zIndex, onClick }: Props) =>
         left={0}
         width="100%"
         height="100%"
-        bgGradient="linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.33))"
         rounded={8}
         zIndex={zIndex * 10 + 2}
       />
@@ -45,10 +44,21 @@ const MiniSlide = ({ slide, zIndex, onClick }: Props) =>
         image={getImage(slide.featuredImage)!}
         alt={slide.alt}
       />
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        width="100%"
+        height="100%"
+        zIndex={zIndex + 10 + 3}
+        background="linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.33))"
+        borderRadius={32}
+      />
       <Heading1Anton
         fontFamily="anton"
         position="absolute"
         style={{ position: "absolute", left: "6%", top: "70%" }}
+        zIndex={zIndex + 10 + 4}
       >
         {t(slide.title)}
       </Heading1Anton>
