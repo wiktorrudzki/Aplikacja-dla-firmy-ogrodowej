@@ -40,15 +40,15 @@ export type ServiceFrontmatter = Node & {
   categories?: string[];
 };
 
-export type ServiceNode = Node & {
+export type ServiceNode<T = MdxNode<{}>> = Node & {
   id?: string;
   title?: string;
   slug?: string;
   imageTitle?: string;
   imageJson?: ImageJsonNode;
+  mdx?: T;
   iconMapKey?: string;
   categories?: ServiceCategory[];
-  body?: string;
 };
 
 export enum ServiceCategory {
