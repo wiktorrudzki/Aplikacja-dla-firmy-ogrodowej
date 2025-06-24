@@ -8,7 +8,7 @@ const MailDescription = () => {
       href={`mailto:${t("email-address")}`}
       textStyle="paragraph"
       color="green.500"
-      textDecoration="underline"
+      textDecor="underline"
     >
       {t("email-address")}
     </Link>

@@ -30,6 +30,14 @@
   "for-companies": "Dla firm",
   "for-individuals": "Dla osób prywatnych",
   "our-social-media": "Nasze social media",
+  "still-wondering": "Wciąż się zastanawiasz?",
+  "still-wondering-description": "Jeżeli posiadasz jakieś pytania bądź jesteś zainteresowany współpracą, napisz do nas lub zadzwoń już teraz. Jesteśmy otwarci na nowe współprace oraz chętnie odpowiemy na wszelkie pytania jakie posiadasz!",
+  "contact-with-us": "Skontaktuj się z nami",
+  "our-company": "Nasza firma",
+  "in-numbers": "w liczbach",
+  "years-of-experience": "lat doświadczenia",
+  "happy-clients": "zadowolonych klientów",
+  "done-projects": "zrealizowanych projektów",
   "UTRZYMANIE_TERENOW_ZEWNETRZNYCH": "Utrzymanie terenów zewnętrznych",
   "ZAKLADANIE_TERENOW_ZIELONYCH_DLA_FIRM": "Zakładanie terenów zielonych dla firm",
   "MYCIE_CISNIENIOWE": "Mycie ciśnieniowe",
@@ -43,5 +51,12 @@
   "TARASY_ZADASZENIA_ARCHITEKTURA_OGRODOWA": "Tarasy, zadaszenia, architektura ogrodowa",
   "TRAWNIKI_Z_ROLKI": "Trawniki z rolki",
   "WYSOKOCISNIENIOWE_MYCIE_KOSTKI_BRUKOWEJ": "Wysokociśnieniowe mycie kostki brukowej",
-  "ZAKLADANIE_OGRODOW": "Zakładanie ogrodów"
+  "ZAKLADANIE_OGRODOW": "Zakładanie ogrodów",
+  "service-area-title": "Gdzie działamy?",
+  "service-area-description": "To dzięki szerokiej ofercie naszych usług oraz dbałości o każdy element projektu wyróżniamy się na terenie Polski południowej. Jesteśmy otwarci również na dalsze zlecenia! Niejednokrotnie zdarzyło nam się już realizować projekty poza granicami naszego państwa.",
+  "ALL": "Wszystkie",
+  "LAWNS": "Trawniki",
+  "TERRACES": "Tarasy",
+  "OUR_WORK": "Prace",
+  "VEGETATION": "Roślinność"
 }

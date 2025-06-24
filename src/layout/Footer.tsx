@@ -2,11 +2,11 @@ import React from "react";
 import { Flex, VStack, HStack, Link } from "@chakra-ui/react";
 import { MdLocationOn, MdMail, MdPhoneIphone } from "react-icons/md";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
-import routes from "@data/routes.json";
 import { t } from "@i18n";
 import { StaticImage } from "gatsby-plugin-image";
 import { FooterContactDetail, FooterLink } from "@src/components/footer";
 import { Heading2, Paragraph } from "@src/components/typography";
+import { ROUTES } from "@src/constants";
 
 const Footer = () => {
   return (
@@ -51,17 +51,17 @@ const Footer = () => {
 
         <VStack align="start">
           <Heading2>{t("useful-links")}</Heading2>
-          <FooterLink to={routes.HOME}>{t("homepage")}</FooterLink>
-          <FooterLink to={routes.O_NAS}>{t("about-us")}</FooterLink>
-          <FooterLink to={routes.GALERIA}>{t("gallery")}</FooterLink>
-          <FooterLink to={routes.KONTAKT}>{t("contact")}</FooterLink>
-          <FooterLink to={routes.REGULAMIN}>{t("regulations")}</FooterLink>
+          <FooterLink to={ROUTES.HOME}>{t("homepage")}</FooterLink>
+          <FooterLink to={ROUTES.O_NAS}>{t("about-us")}</FooterLink>
+          <FooterLink to={ROUTES.GALERIA}>{t("gallery")}</FooterLink>
+          <FooterLink to={ROUTES.KONTAKT}>{t("contact")}</FooterLink>
+          <FooterLink to={ROUTES.REGULAMIN}>{t("regulations")}</FooterLink>
         </VStack>
 
         <VStack align="start">
           <Heading2>{t("offer")}</Heading2>
-          <FooterLink to={routes.DLA_FIRM}>{t("for-companies")}</FooterLink>
-          <FooterLink to={routes.KLIENT_INDYWIDUALNY}>
+          <FooterLink to={ROUTES.DLA_FIRM}>{t("for-companies")}</FooterLink>
+          <FooterLink to={ROUTES.KLIENT_INDYWIDUALNY}>
             {t("for-individuals")}
           </FooterLink>
         </VStack>
