@@ -6,6 +6,7 @@ import "swiper/css";
 import "./HeroSlider.css";
 import SliderControls from "./SliderControls";
 import Slide from "./Slide";
+import { nextXElementsFromList } from "@src/helpers";
 import { useOurValues } from "@src/hooks";
 
 const HeroSlider = () => {
@@ -27,9 +28,12 @@ const HeroSlider = () => {
         autoplay={{ delay: 8000 }}
         style={{ height: "100svh" }}
       >
-        {slides.map((slide) => (
+        {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
-            <Slide slide={slide} />
+            <Slide
+              slide={slide}
+              nextSlides={nextXElementsFromList(slides, index, 2)}
+            />
           </SwiperSlide>
         ))}
         <SliderControls />
