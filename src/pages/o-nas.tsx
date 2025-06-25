@@ -4,6 +4,7 @@ import {
   ServiceArea,
   OurCompanyInNumbers,
   ContactUs,
+  OurServices,
 } from "@src/components/aboutUs";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { t } from "@i18n";
@@ -15,6 +16,7 @@ const About: GatsbyPageWithLayout = () => {
   return (
     <Box>
       <HeroSlider />
+      <OurServices />
       <OurCompanyInNumbers />
       <ServiceArea />
       <ContactUs as="section" />
