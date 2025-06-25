@@ -1,6 +1,6 @@
 import { Slide } from "@src/types/slide";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React from "react";
+import React, { useMemo } from "react";
 import { Heading1Anton } from "../typography";
 import { Box } from "@chakra-ui/react";
 import { t } from "@src/utils/i18n";
@@ -12,8 +12,10 @@ type Props = {
   onClick: () => void;
 };
 
-const MiniSlide = ({ slide, zIndex, onClick }: Props) =>
-  getImage(slide.featuredImage) != undefined ? (
+const MiniSlide = ({ slide, zIndex, onClick }: Props) => {
+  const image = useMemo(() => getImage(slide.featuredImage), [slide]);
+
+  return image != undefined ? (
     <Box
       w={{ base: "xs", "2xl": "sm" }}
       h={{ base: "md", "2xl": "lg" }}
@@ -41,7 +43,7 @@ const MiniSlide = ({ slide, zIndex, onClick }: Props) =>
           width: "100%",
           borderRadius: 32,
         }}
-        image={getImage(slide.featuredImage)!}
+        image={image}
         alt={slide.alt}
       />
       <Box
@@ -64,5 +66,6 @@ const MiniSlide = ({ slide, zIndex, onClick }: Props) =>
       </Heading1Anton>
     </Box>
   ) : null;
+};
 
 export default MiniSlide;

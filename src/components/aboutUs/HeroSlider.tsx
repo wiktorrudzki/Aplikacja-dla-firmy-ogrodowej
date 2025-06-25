@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Box } from "@chakra-ui/react";
-import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "./HeroSlider.css";
@@ -12,12 +12,9 @@ import { useOurValues } from "@src/hooks";
 const HeroSlider = () => {
   const slides = useOurValues();
 
-  const swiperRef = React.useRef<SwiperRef | null>(null);
-
   return (
     <Box overflowX="hidden">
       <Swiper
-        ref={swiperRef}
         modules={[Autoplay, Navigation, Pagination]}
         pagination={{
           el: ".swiper-pagination",
@@ -34,7 +31,6 @@ const HeroSlider = () => {
         {slides.map((slide, index) => (
           <SwiperSlide key={slide.id}>
             <Slide
-              swiper={swiperRef}
               slide={slide}
               nextSlides={nextXElementsFromList(slides, index, 2)}
             />
