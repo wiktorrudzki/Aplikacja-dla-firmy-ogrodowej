@@ -14,11 +14,16 @@ type Props = {
 const Slide = ({ slide, nextSlides }: Props) => {
   const swiper = useSwiper();
 
+  const image = React.useMemo(
+    () => getImage(slide.featuredImage),
+    [slide.featuredImage],
+  );
+
   return (
     <>
-      {getImage(slide.featuredImage) != undefined ? (
+      {image != undefined ? (
         <GatsbyImage
-          image={getImage(slide.featuredImage)!}
+          image={image}
           alt={slide.alt}
           style={{
             position: "fixed",

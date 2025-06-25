@@ -13,7 +13,10 @@ type Props = {
 };
 
 const MiniSlide = ({ slide, zIndex, onClick }: Props) => {
-  const image = useMemo(() => getImage(slide.featuredImage), [slide]);
+  const image = useMemo(
+    () => getImage(slide.featuredImage),
+    [slide.featuredImage],
+  );
 
   return image != undefined ? (
     <Box
