@@ -1,5 +1,5 @@
 .our-services-swiper {
-  width: 80%;
+  width: 100%;
   max-width: var(--chakra-sizes-7xl);
   height: 100%;
   display: flex;
@@ -27,8 +27,8 @@
 }
 
 .swiper-pagination-bullet {
-  width: var(--chakra-sizes-4);
-  height: var(--chakra-sizes-4);
+  width: var(--chakra-sizes-3);
+  height: var(--chakra-sizes-3);
   background-color: var(--chakra-colors-black-alpha-500);
 }
 
