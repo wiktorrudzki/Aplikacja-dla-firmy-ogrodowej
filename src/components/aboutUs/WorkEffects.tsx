@@ -1,8 +1,7 @@
 import { VStack } from "@chakra-ui/react";
 import React from "react";
-import { ExtraLargeHeading } from "../typography";
+import { ExtraExtraLargeHeading } from "../typography";
 import { t } from "@src/utils/i18n";
-import constants from "@src/constants";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { useWorkEffects } from "@src/hooks";
@@ -23,11 +22,8 @@ const WorkEffects = () => {
   };
 
   return (
-    <VStack
-      w="100%"
-      h={`calc(100svh - ${constants.navigationBaseSizeRem}rem)`}
-      position="relative"
-    >
+    // todo adjust height to 100svh - navigation height in task 106
+    <VStack w="100%" h="90svh" position="relative">
       <Swiper
         ref={outerSwiperRef}
         modules={[EffectFade]}
@@ -62,18 +58,16 @@ const WorkEffects = () => {
                 w="100%"
                 top={0}
                 left={0}
-                gap={16}
-                py={{ base: 12, lg: 16, xl: 20 }}
+                height="50%"
+                justify="space-evenly"
               >
-                <ExtraLargeHeading
-                  textTransform="uppercase"
-                  fontFamily="extra-extra-large"
+                <ExtraExtraLargeHeading
+                  maxW="90%"
                   color="white"
-                  letterSpacing={1.2}
                   textAlign="center"
                 >
                   {t("zobacz efekty naszej pracy")}
-                </ExtraLargeHeading>
+                </ExtraExtraLargeHeading>
                 <WorkEffectControls
                   controls={effects.map((e) => e.category ?? "")}
                   activeEffect={effects[activeIndex]}

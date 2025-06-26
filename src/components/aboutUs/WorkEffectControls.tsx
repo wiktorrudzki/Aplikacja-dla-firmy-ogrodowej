@@ -1,6 +1,6 @@
-import { useToken, Wrap } from "@chakra-ui/react";
+import { Box, useToken, Wrap } from "@chakra-ui/react";
 import React from "react";
-import CategoryButton from "./CatergoryButton";
+import CategoryButton from "./CategoryButton";
 import { MdCircle } from "react-icons/md";
 import { t } from "@src/utils/i18n";
 import { GalleryJsonNode } from "@src/types/graphql";
@@ -16,9 +16,22 @@ const WorkEffectControls = ({ controls, activeEffect, onChange }: Props) => {
   const [blackAlpha] = useToken("colors", ["blackAlpha.700"]);
 
   return (
-    <Wrap opacity="0.9" gap={8} bg="white" rounded="full" padding={4}>
+    <Wrap
+      opacity="0.9"
+      gap={8}
+      bg="white"
+      rounded={32}
+      padding={4}
+      justify="center"
+      maxW="90%"
+    >
       {controls.map((control, index) => (
-        <Wrap alignItems="center" key={`${control}-${index}`} gap={8}>
+        <Wrap
+          alignItems="center"
+          justify="center"
+          key={`${control}-${index}`}
+          gap={8}
+        >
           <CategoryButton
             to={ROUTES.GALERIA} // todo - adjust specific path when gallery page will be implemented
             onMouseEnter={() => onChange(index)}
@@ -27,7 +40,9 @@ const WorkEffectControls = ({ controls, activeEffect, onChange }: Props) => {
             {t(control)}
           </CategoryButton>
           {index + 1 < controls.length && (
-            <MdCircle color={blackAlpha} size={16} />
+            <Box display={{ base: "none", sm: "initial" }}>
+              <MdCircle color={blackAlpha} size={16} />
+            </Box>
           )}
         </Wrap>
       ))}
