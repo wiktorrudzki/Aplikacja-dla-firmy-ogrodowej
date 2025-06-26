@@ -3,9 +3,10 @@ import React from "react";
 import { Heading1 } from "../typography";
 import { NumberCard } from "../number-card";
 import { t } from "@i18n";
-import { ourNumbers } from "@data/OurNumbers";
+import useOurNumbers from "@src/hooks/useOurNumbers";
 
 function OurCompanyInNumbers() {
+  const { ourNumbers } = useOurNumbers();
   const green = useToken("colors", ["green.100"]);
   return (
     <Container

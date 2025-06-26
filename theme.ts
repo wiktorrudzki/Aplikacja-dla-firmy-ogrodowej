@@ -10,6 +10,9 @@ const customConfig = defineConfig({
         element: {
           value: "0px 0px 16px rgba(0, 0, 0, 0.1)",
         },
+        miniSlider: {
+          value: "0px 0px 32px 8px rgba(0,0,0,0.5)",
+        },
       },
     },
     tokens: {

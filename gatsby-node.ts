@@ -9,6 +9,7 @@ import {
   MdxNode,
   ServiceFrontmatter,
   ServiceCategory,
+  GraphQLNodes,
 } from "@src/types/graphql";
 import path from "path";
 
@@ -57,6 +58,12 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           title: "String!",
           slug: "String!",
           imageTitle: "String!",
+          mdx: {
+            type: "Mdx!",
+            resolve: (source, _args, context) => {
+              return context.nodeModel.getNodeById({ id: source.parent });
+            },
+          },
           imageJson: {
             type: "ImageJson!",
             resolve: async (source: ServiceNode, _args, context) =>
@@ -153,7 +160,6 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     imageTitle: serviceMdx.frontmatter.imageTitle,
     iconMapKey: serviceMdx.frontmatter.iconMapKey,
     categories: serviceMdx.frontmatter.categories as ServiceCategory[],
-    body: serviceMdx.body,
     parent: node.id,
     children: [],
     internal: {
@@ -170,14 +176,24 @@ export const createPages: GatsbyNode["createPages"] = async ({
   actions,
 }) => {
   const templateComponent = path.resolve(`./src/templates/Service.tsx`);
-  const result = await graphql<{ allService: { nodes: ServiceNode[] } }>(`
+  const result = await graphql<
+    GraphQLNodes<
+      "allService",
+      Required<Pick<ServiceNode, "id" | "slug" | "categories" | "mdx">>
+    >
+  >(`
     {
       allService {
         nodes {
           id
           slug
           categories
-          body
+          mdx {
+            id
+            internal {
+              contentFilePath
+            }
+          }
           iconMapKey
           imageJson {
             altKey
@@ -192,10 +208,10 @@ export const createPages: GatsbyNode["createPages"] = async ({
   if (result.errors) throw result.errors;
 
   result.data?.allService.nodes.forEach((node) => {
-    node.categories?.forEach((category) =>
+    node.categories.forEach((category) =>
       actions.createPage({
         path: `${category}${node.slug}`,
-        component: templateComponent,
+        component: `${templateComponent}?__contentFilePath=${node.mdx.internal.contentFilePath}`,
         context: node,
       }),
     );

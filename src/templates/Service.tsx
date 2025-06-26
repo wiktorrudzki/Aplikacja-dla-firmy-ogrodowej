@@ -12,11 +12,12 @@ import { getIconFromName } from "@src/helpers";
 
 type Props = {
   pageContext: Required<ServiceNode>;
+  children: React.ReactNode;
 };
 
 const shortcodes = { h1: Heading1, p: Paragraph };
 
-const ServicePageTemplate = ({ pageContext }: Props) => {
+const ServicePageTemplate = ({ pageContext, children }: Props) => {
   const image = getImage(pageContext.imageJson.childImageSharp ?? null);
 
   if (!image) return;
@@ -26,7 +27,7 @@ const ServicePageTemplate = ({ pageContext }: Props) => {
       <Icon />
       <ExtraExtraLargeHeading>{pageContext.id}</ExtraExtraLargeHeading>
       <GatsbyImage image={image} alt={t(pageContext.imageJson.altKey ?? "")} />
-      <MDXProvider components={shortcodes}>{pageContext.body}</MDXProvider>
+      <MDXProvider components={shortcodes}>{children}</MDXProvider>
     </>
   );
 };
