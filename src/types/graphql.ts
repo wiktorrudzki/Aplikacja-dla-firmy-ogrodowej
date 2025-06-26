@@ -10,7 +10,7 @@ export type GraphQLNodes<P extends string, T extends {}> = {
   };
 };
 
-export type MdxNode<T> = Node & {
+export type MdxNode<T = {}> = Node & {
   frontmatter: T;
   body: string;
 };
@@ -56,13 +56,13 @@ type BaseServiceFrontmatter = {
 export type ServiceFrontmatter<K extends keyof BaseServiceFrontmatter> =
   PickRequired<BaseServiceFrontmatter, K>;
 
-type Service<T = ImageJson> = {
+type Service<T = ImageJson, S = MdxNode> = {
   id?: string;
   title?: string;
   slug?: string;
   imageTitle?: string;
   imageJson?: T;
-  mdx?: T;
+  mdx?: S;
   iconMapKey?: string;
   categories?: ServiceCategory[];
 };
