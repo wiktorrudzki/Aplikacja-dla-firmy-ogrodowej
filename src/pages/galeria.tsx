@@ -12,6 +12,14 @@ import {
 import { distinctById, getImageJsonImage } from "@src/helpers";
 import { Heading1 } from "@src/components/typography";
 
+type QueryType = GraphQLNodes<
+  "allGalleryJson",
+  GalleryJsonNode<
+    "order" | "category" | "imageJsons",
+    ImageJsonNode<"id" | "altKey" | "childImageSharp">
+  >
+>;
+
 export const pageQuery = graphql`
   {
     allGalleryJson(sort: { order: ASC }) {
@@ -28,20 +36,17 @@ export const pageQuery = graphql`
   }
 `;
 
-type ImageJsonType = Required<
-  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
->;
+const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
+  const { allGalleryJson } = data;
 
-type GalleryJsonType = Required<
-  Pick<GalleryJsonNode<ImageJsonType>, "order" | "category" | "imageJsons">
->;
+  allGalleryJson.nodes.map((node) =>
+    node.imageJsons.map((imageJson) => imageJson.id),
+  );
 
-const Gallery: GatsbyPageWithLayout<
-  PageProps<GraphQLNodes<"allGalleryJson", GalleryJsonType>>
-> = ({ data: { allGalleryJson } }) => {
   const images = distinctById(
     allGalleryJson.nodes.flatMap((galleryJson) => galleryJson.imageJsons),
   );
+
   const categories = allGalleryJson.nodes.map((galleryJson) =>
     t(galleryJson.category),
   );

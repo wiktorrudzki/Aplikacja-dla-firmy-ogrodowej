@@ -9,6 +9,7 @@ import {
   MdxNode,
   ServiceFrontmatter,
   ServiceCategory,
+  GraphQLNodes,
 } from "@src/types/graphql";
 import path from "path";
 
@@ -59,7 +60,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           imageTitle: "String!",
           imageJson: {
             type: "ImageJson!",
-            resolve: async (source: ServiceNode, _args, context) =>
+            resolve: async (source, _args, context) =>
               await context.nodeModel.findOne({
                 type: "ImageJson",
                 query: {
@@ -81,7 +82,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           relativePath: "String!",
           childImageSharp: {
             type: "ImageSharp!",
-            resolve: async (source: ImageJsonNode, _args, context) => {
+            resolve: async (source, _args, context) => {
               const fileNode = await context.nodeModel.findOne({
                 type: "File",
                 query: {
@@ -107,7 +108,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           imageTitles: "[String!]!",
           imageJsons: {
             type: "[ImageJson!]!",
-            resolve: async (source: GalleryJsonNode, _args, context) => {
+            resolve: async (source, _args, context) => {
               const { entries } = await context.nodeModel.findAll({
                 type: "ImageJson",
                 query: {
@@ -144,15 +145,17 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
   )
     return;
 
-  const serviceMdx = node as MdxNode<ServiceFrontmatter>;
+  const serviceMdx = node as MdxNode<
+    ServiceFrontmatter<"title" | "imageTitle" | "iconMapKey" | "categories">
+  >;
 
-  const serviceNode: ServiceNode = {
+  const serviceNode = {
     id: createNodeId(`Service-${node.id}`),
     title: serviceMdx.frontmatter.title,
     slug: createFilePath({ node, getNode, basePath: "services" }),
     imageTitle: serviceMdx.frontmatter.imageTitle,
     iconMapKey: serviceMdx.frontmatter.iconMapKey,
-    categories: serviceMdx.frontmatter.categories as ServiceCategory[],
+    categories: serviceMdx.frontmatter.categories,
     body: serviceMdx.body,
     parent: node.id,
     children: [],
@@ -165,12 +168,14 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
   actions.createNode(serviceNode);
 };
 
+type ServicesQuery = GraphQLNodes<"allService", ServiceNode<"categories">>;
+
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
   actions,
 }) => {
   const templateComponent = path.resolve(`./src/templates/Service.tsx`);
-  const result = await graphql<{ allService: { nodes: ServiceNode[] } }>(`
+  const result = await graphql<ServicesQuery>(`
     {
       allService {
         nodes {
@@ -189,10 +194,11 @@ export const createPages: GatsbyNode["createPages"] = async ({
       }
     }
   `);
+
   if (result.errors) throw result.errors;
 
   result.data?.allService.nodes.forEach((node) => {
-    node.categories?.forEach((category) =>
+    node.categories.forEach((category) =>
       actions.createPage({
         path: `${category}${node.slug}`,
         component: templateComponent,

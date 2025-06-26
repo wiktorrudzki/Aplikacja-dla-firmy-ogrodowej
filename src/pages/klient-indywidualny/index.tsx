@@ -8,20 +8,34 @@ import { ServiceNode } from "@src/types/graphql";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 
-type ImageJsonType = Required<
-  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
+type QueryType = GraphQLNodes<
+  "allService",
+  ServiceNode<
+    "title" | "iconMapKey" | "imageJson",
+    ImageJsonNode<"id" | "altKey" | "childImageSharp">
+  >
 >;
 
-const IndexPage: GatsbyPageWithLayout<
-  PageProps<
-    GraphQLNodes<
-      "allService",
-      Required<
-        Pick<ServiceNode<ImageJsonType>, "title" | "iconMapKey" | "imageJson">
-      >
-    >
-  >
-> = ({ data: { allService } }) => {
+export const pageQuery = graphql`
+  {
+    allService(filter: { categories: { in: INDIVIDUAL_CLIENT } }) {
+      nodes {
+        title
+        iconMapKey
+        imageJson {
+          id
+          altKey
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+  }
+`;
+
+const IndexPage: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
+  const { allService } = data;
   return (
     <div
       style={{
@@ -41,20 +55,3 @@ export default IndexPage;
 export const Head: HeadFC = ({ location }) => (
   <SEO title={t("individual-client")} path={location.pathname} />
 );
-export const pageQuery = graphql`
-  {
-    allService(filter: { categories: { in: INDIVIDUAL_CLIENT } }) {
-      nodes {
-        title
-        iconMapKey
-        imageJson {
-          id
-          altKey
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-      }
-    }
-  }
-`;

@@ -10,13 +10,10 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { t } from "@i18n";
 import { getIconFromName, getImageJsonImage } from "@src/helpers";
 
-type ImageJsonType = Required<
-  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
->;
-
 type Props = {
-  pageContext: Required<
-    Pick<ServiceNode<ImageJsonType>, "id" | "body" | "imageJson" | "iconMapKey">
+  pageContext: ServiceNode<
+    "id" | "body" | "imageJson" | "iconMapKey",
+    ImageJsonNode<"id" | "altKey" | "childImageSharp">
   >;
 };
 

@@ -1,22 +1,18 @@
 import { Box, Stack } from "@chakra-ui/react";
 import { getIconFromName, getImageJsonImage } from "@src/helpers";
-import { ServiceNode } from "@src/types/graphql";
+import { ImageJsonNode, ServiceNode } from "@src/types/graphql";
 import { t } from "@src/utils/i18n";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import { Heading2 } from "../typography";
 
-type ServiceImageJsonType = Parameters<typeof getImageJsonImage>[0];
-
-export type ServiceType = Required<
-  Pick<
-    ServiceNode<NonNullable<ServiceImageJsonType>>,
-    "title" | "iconMapKey" | "imageJson"
-  >
+export type ServiceCardDetails = ServiceNode<
+  "title" | "iconMapKey" | "imageJson",
+  ImageJsonNode<"id" | "altKey" | "childImageSharp">
 >;
 
 type Props = {
-  service: ServiceType;
+  service: ServiceCardDetails;
 };
 
 const ServiceCard = ({ service }: Props) => {

@@ -8,12 +8,12 @@ import { Heading1, Paragraph } from "@src/components/typography";
 import { ImageJsonNode } from "@src/types/graphql";
 import { getImageJsonImage } from "@src/helpers";
 
-type ImageJsonType = Required<
-  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
->;
+type QueryType = {
+  imageJson: ImageJsonNode<"id" | "altKey" | "childImageSharp">;
+};
 
 function ContactUs({ ...props }: ContainerProps) {
-  const { imageJson } = useStaticQuery<{ imageJson: ImageJsonType }>(graphql`
+  const { imageJson } = useStaticQuery<QueryType>(graphql`
     {
       imageJson(title: { eq: "House" }) {
         id
