@@ -46,7 +46,7 @@ const useImageGallery = (allGalleryJsonNodes: GalleryJsonType[]) => {
               ? allImages
               : (allGalleryJsonNodes.find(
                   (galleryJson) => galleryJson.category === categoryKey,
-                )?.imageJsons ?? null),
+                )?.imageJsons ?? []),
         };
       }),
     [allGalleryJsonNodes, allImages, categoryKeys],

@@ -1,13 +1,17 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import { getImageJsonImage } from "@src/helpers";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { ImageJsonNode } from "@src/types/graphql";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 
 type Props = {
-  imageJsons: Array<Parameters<typeof getImageJsonImage>[0]> | null;
+  imageJsons: Array<ImageJsonNode<"id" | "altKey" | "childImageSharp">>;
 };
 
-function GalleryImages({ imageJsons }: Props) {
+const calculateImageRowSpan = (image: IGatsbyImageData) =>
+  Math.floor(image.height / (image.width / 8));
+
+const GalleryImages = ({ imageJsons }: Props) => {
   if (!imageJsons) return null;
   return (
     <Grid
@@ -27,7 +31,7 @@ function GalleryImages({ imageJsons }: Props) {
           <GridItem
             key={imageJson.id}
             style={{
-              gridRowEnd: `span ${Math.floor(image.height / (image.width / 8))}`,
+              gridRowEnd: `span ${calculateImageRowSpan(image)}`,
             }}
           >
             <GatsbyImage
@@ -40,6 +44,6 @@ function GalleryImages({ imageJsons }: Props) {
       })}
     </Grid>
   );
-}
+};
 
 export default GalleryImages;

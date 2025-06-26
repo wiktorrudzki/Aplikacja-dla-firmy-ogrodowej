@@ -55,12 +55,14 @@ const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
     setCurrentTabValue(currentItem.categoryKey);
   }, [galleryItems]);
 
-  const images = distinctById(
-    allGalleryJson.nodes.flatMap((galleryJson) => galleryJson.imageJsons),
-  );
-
-  const categories = allGalleryJson.nodes.map((galleryJson) =>
-    t(galleryJson.category),
+  const TabContents = React.useMemo(
+    () =>
+      galleryItems.map((item) => (
+        <Tabs.Content key={item.categoryKey} value={item.categoryKey}>
+          <GalleryImages imageJsons={item.imageJsons} />
+        </Tabs.Content>
+      )),
+    [galleryItems],
   );
 
   return (
@@ -73,7 +75,7 @@ const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
             setCurrentTabValue(details.value as GalleryCategory)
           }
         >
-          <Tabs.List justifyContent="center">
+          <Tabs.List width="fit" placeSelf="center">
             {galleryItems.map((item) => (
               <Tabs.Trigger
                 key={item.categoryKey}
@@ -86,11 +88,7 @@ const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
               </Tabs.Trigger>
             ))}
           </Tabs.List>
-          {galleryItems.map((item) => (
-            <Tabs.Content key={item.categoryKey} value={item.categoryKey}>
-              <GalleryImages imageJsons={item.imageJsons} />
-            </Tabs.Content>
-          ))}
+          {TabContents}
         </Tabs.Root>
       </MainCard>
     </NavigationMarginContainer>
