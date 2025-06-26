@@ -1,15 +1,10 @@
-FROM node:22-alpine AS build
+FROM node:22 AS build
 
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY . .
 
 RUN npm install
-
-ENV PATH /app/node_modules/.bin:$PATH
-
-COPY . .
 
 RUN npm run build
 

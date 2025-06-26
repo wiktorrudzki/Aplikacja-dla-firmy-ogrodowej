@@ -22,7 +22,7 @@ const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
   });
 
   return (
-    <Container width="fit-content" margin={0} padding={0}>
+    <Container width="fit-content" margin="0 auto" padding={0}>
       <Box
         as={Icon}
         width={iconSize}
@@ -45,7 +45,7 @@ const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
         justifyContent="center"
         alignItems="center"
       >
-        <Heading2>{title}</Heading2>
+        <Heading2 fontWeight="medium">{title}</Heading2>
         {description}
       </Stack>
     </Container>

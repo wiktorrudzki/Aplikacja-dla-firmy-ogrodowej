@@ -62,9 +62,9 @@ type Service<T = ImageJson> = {
   slug?: string;
   imageTitle?: string;
   imageJson?: T;
+  mdx?: T;
   iconMapKey?: string;
   categories?: ServiceCategory[];
-  body?: string;
 };
 
 export type ServiceNode<

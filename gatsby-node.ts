@@ -58,6 +58,12 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           title: "String!",
           slug: "String!",
           imageTitle: "String!",
+          mdx: {
+            type: "Mdx!",
+            resolve: (source, _args, context) => {
+              return context.nodeModel.getNodeById({ id: source.parent });
+            },
+          },
           imageJson: {
             type: "ImageJson!",
             resolve: async (source, _args, context) =>
@@ -168,7 +174,10 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
   actions.createNode(serviceNode);
 };
 
-type ServicesQuery = GraphQLNodes<"allService", ServiceNode<"categories">>;
+type ServicesQuery = GraphQLNodes<
+  "allService",
+  ServiceNode<"id" | "slug" | "categories" | "mdx">
+>;
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -182,7 +191,12 @@ export const createPages: GatsbyNode["createPages"] = async ({
           id
           slug
           categories
-          body
+          mdx {
+            id
+            internal {
+              contentFilePath
+            }
+          }
           iconMapKey
           imageJson {
             altKey
@@ -201,7 +215,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     node.categories.forEach((category) =>
       actions.createPage({
         path: `${category}${node.slug}`,
-        component: templateComponent,
+        component: `${templateComponent}?__contentFilePath=${node.mdx.internal.contentFilePath}`,
         context: node,
       }),
     );
