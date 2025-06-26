@@ -30,6 +30,7 @@
   width: var(--chakra-sizes-3);
   height: var(--chakra-sizes-3);
   background-color: var(--chakra-colors-black-alpha-500);
+  border-radius: 50%;
 }
 
 .swiper-pagination-bullet-active {

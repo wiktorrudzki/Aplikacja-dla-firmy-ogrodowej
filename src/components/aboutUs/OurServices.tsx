@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import OurServiceImage from "./OurServiceImage";
 import OurServiceContent from "./OurServiceContent";
-import "swiper/css/pagination";
 import "./OurServicesSlide.css";
 
 const isEven = (index: number) => index % 2 === 0;
