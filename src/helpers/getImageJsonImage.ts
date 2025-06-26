@@ -2,9 +2,7 @@ import { ImageJsonNode } from "@src/types/graphql";
 import { getImage } from "gatsby-plugin-image";
 
 function getImageJsonImage(
-  imageJson: Required<
-    Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
-  > | null,
+  imageJson: ImageJsonNode<"id" | "altKey" | "childImageSharp"> | null,
 ) {
   if (!imageJson) throw new Error(`Image not found!`);
 

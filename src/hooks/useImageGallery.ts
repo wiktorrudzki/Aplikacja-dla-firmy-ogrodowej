@@ -8,12 +8,9 @@ import { t } from "@src/utils/i18n";
 import React from "react";
 import slugify from "slugify";
 
-type ImageJsonType = Required<
-  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
->;
-
-type GalleryJsonType = Required<
-  Pick<GalleryJsonNode<ImageJsonType>, "order" | "category" | "imageJsons">
+type GalleryJsonType = GalleryJsonNode<
+  "order" | "category" | "imageJsons",
+  ImageJsonNode<"id" | "altKey" | "childImageSharp">
 >;
 
 const useImageGallery = (allGalleryJsonNodes: GalleryJsonType[]) => {

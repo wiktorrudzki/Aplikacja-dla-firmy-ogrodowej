@@ -10,6 +10,9 @@ const customConfig = defineConfig({
         element: {
           value: "0px 0px 16px rgba(0, 0, 0, 0.1)",
         },
+        miniSlider: {
+          value: "0px 0px 32px 8px rgba(0,0,0,0.5)",
+        },
       },
     },
     tokens: {
@@ -39,6 +42,10 @@ const customConfig = defineConfig({
           700: { value: "#426924" },
           800: { value: "#2C4618" },
           900: { value: "#16230C" },
+        },
+        mainCard: {
+          50: { value: "#EBF8FF" },
+          100: { value: "#EBF4E4" },
         },
       },
     },

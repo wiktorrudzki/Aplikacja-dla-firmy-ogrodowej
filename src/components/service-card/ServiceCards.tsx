@@ -1,8 +1,8 @@
 import React from "react";
-import ServiceCard, { ServiceType } from "./ServiceCard";
+import ServiceCard, { ServiceCardDetails } from "./ServiceCard";
 
 type Props = {
-  services: ServiceType[];
+  services: ServiceCardDetails[];
 };
 
 const ServiceCards = ({ services }: Props) =>

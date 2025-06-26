@@ -9,11 +9,20 @@ import {
   GraphQLNodes,
   ImageJsonNode,
 } from "@src/types/graphql";
-import { Tabs, useTabs } from "@chakra-ui/react";
+import { distinctById } from "@src/helpers";
+import { Tabs } from "@chakra-ui/react";
 import { MainCard } from "@src/components/main-card";
 import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
 import { GalleryImages } from "@src/components/gallery-images";
 import { useImageGallery } from "@src/hooks";
+
+type QueryType = GraphQLNodes<
+  "allGalleryJson",
+  GalleryJsonNode<
+    "order" | "category" | "imageJsons",
+    ImageJsonNode<"id" | "altKey" | "childImageSharp">
+  >
+>;
 
 export const pageQuery = graphql`
   {
@@ -31,17 +40,8 @@ export const pageQuery = graphql`
   }
 `;
 
-type ImageJsonType = Required<
-  Pick<ImageJsonNode, "id" | "altKey" | "childImageSharp">
->;
-
-type GalleryJsonType = Required<
-  Pick<GalleryJsonNode<ImageJsonType>, "order" | "category" | "imageJsons">
->;
-
-const Gallery: GatsbyPageWithLayout<
-  PageProps<GraphQLNodes<"allGalleryJson", GalleryJsonType>>
-> = ({ data: { allGalleryJson } }) => {
+const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
+  const { allGalleryJson } = data;
   const galleryItems = useImageGallery(allGalleryJson.nodes);
   const [currentTabValue, setCurrentTabValue] = React.useState<
     GalleryCategory | undefined
@@ -54,6 +54,14 @@ const Gallery: GatsbyPageWithLayout<
     if (!currentItem) return;
     setCurrentTabValue(currentItem.categoryKey);
   }, [galleryItems]);
+
+  const images = distinctById(
+    allGalleryJson.nodes.flatMap((galleryJson) => galleryJson.imageJsons),
+  );
+
+  const categories = allGalleryJson.nodes.map((galleryJson) =>
+    t(galleryJson.category),
+  );
 
   return (
     <NavigationMarginContainer>
