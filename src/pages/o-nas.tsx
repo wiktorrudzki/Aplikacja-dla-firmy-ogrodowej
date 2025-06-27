@@ -1,16 +1,18 @@
 import { Box } from "@chakra-ui/react";
 import {
   HeroSlider,
+  WorkEffects,
   ServiceArea,
   OurCompanyInNumbers,
   ContactUs,
   OurServices,
 } from "@src/components/aboutUs";
+import { SEO } from "@src/components/seo";
+
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { t } from "@i18n";
 import { HeadFC } from "gatsby";
 import React from "react";
-import { SEO } from "@src/components/seo";
 
 const About: GatsbyPageWithLayout = () => {
   return (
@@ -19,6 +21,7 @@ const About: GatsbyPageWithLayout = () => {
       <OurServices />
       <OurCompanyInNumbers />
       <ServiceArea />
+      <WorkEffects />
       <ContactUs as="section" />
     </Box>
   );
