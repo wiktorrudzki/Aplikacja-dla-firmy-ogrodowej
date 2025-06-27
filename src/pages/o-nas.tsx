@@ -5,6 +5,7 @@ import {
   ServiceArea,
   OurCompanyInNumbers,
   ContactUs,
+  OurServices,
 } from "@src/components/aboutUs";
 import { SEO } from "@src/components/seo";
 
@@ -17,6 +18,7 @@ const About: GatsbyPageWithLayout = () => {
   return (
     <Box>
       <HeroSlider />
+      <OurServices />
       <OurCompanyInNumbers />
       <ServiceArea />
       <WorkEffects />
