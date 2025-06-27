@@ -4,13 +4,15 @@ import { ExtraExtraLargeHeading } from "../typography";
 import { t } from "@src/utils/i18n";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
-import { useWorkEffects } from "@src/hooks";
+import { useResponsiveValues, useWorkEffects } from "@src/hooks";
 import "swiper/css/effect-fade"; // fade effect doesnt work without this import
 import WorkEffectSlide from "./WorkEffectSlide";
 import WorkEffectControls from "./WorkEffectControls";
+import { formatToRem } from "@src/helpers";
 
 const WorkEffects = () => {
   const effects = useWorkEffects();
+  const { navigationHeighRem } = useResponsiveValues();
 
   const outerSwiperRef = React.useRef<SwiperRef | null>(null);
 
@@ -22,8 +24,11 @@ const WorkEffects = () => {
   };
 
   return (
-    // todo adjust height to 100svh - navigation height in task 106
-    <VStack w="100%" h="90svh" position="relative">
+    <VStack
+      w="100%"
+      h={`calc(100svh - ${formatToRem(navigationHeighRem)})`}
+      position="relative"
+    >
       <Swiper
         ref={outerSwiperRef}
         modules={[EffectFade]}

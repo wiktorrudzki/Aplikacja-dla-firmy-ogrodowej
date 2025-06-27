@@ -1,5 +1,6 @@
 import { Container } from "@chakra-ui/react";
-import constants from "@src/constants";
+import { formatToRem } from "@src/helpers";
+import { useResponsiveValues } from "@src/hooks";
 import React from "react";
 
 type Props = {
@@ -9,16 +10,15 @@ type Props = {
 const NavigationMarginContainer = ({
   children,
   ...passThroughProps
-}: Props) => (
-  <Container
-    marginTop={{
-      base: `${constants.navigationBaseSizeRem}rem`, // calculation based on the navigation height in various resolution
-      md: `${constants.navigationMdSizeRem}rem`, // calculation based on the navigation height in various resolution
-    }}
-    {...passThroughProps}
-  >
-    {children}
-  </Container>
-);
-
+}: Props) => {
+  const { navigationHeighRem } = useResponsiveValues();
+  return (
+    <Container
+      marginTop={formatToRem(navigationHeighRem + 1)}
+      {...passThroughProps}
+    >
+      {children}
+    </Container>
+  );
+};
 export default NavigationMarginContainer;

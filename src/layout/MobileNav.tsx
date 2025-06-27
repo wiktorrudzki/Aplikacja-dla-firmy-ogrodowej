@@ -5,6 +5,8 @@ import { CgClose } from "react-icons/cg";
 import Link from "./Link";
 import { t } from "@src/utils/i18n";
 import { ROUTES } from "@src/constants";
+import { useResponsiveValues } from "@src/hooks";
+import { formatToRem } from "@src/helpers";
 
 type Props = {
   hidden: boolean;
@@ -13,6 +15,7 @@ type Props = {
 };
 
 const MobileNav = ({ navMode, hidden, onClose }: Props) => {
+  const { navigationHeighRem } = useResponsiveValues();
   return (
     <>
       <Box
@@ -36,9 +39,8 @@ const MobileNav = ({ navMode, hidden, onClose }: Props) => {
         width="80%"
         display={{ base: "flex", md: "none" }}
         transform={hidden ? "translateX(100%)" : "translateX(0)"}
-        py={8}
         px={8}
-        gap={10}
+        gap={8}
         transition="transform 0.3s ease"
       >
         <IconButton
@@ -48,6 +50,7 @@ const MobileNav = ({ navMode, hidden, onClose }: Props) => {
           onClick={onClose}
           width="100%"
           display="flex"
+          height={formatToRem(navigationHeighRem)}
           justifyContent="flex-end"
         >
           <CgClose size={32} color="black" />
