@@ -19,7 +19,7 @@ const Navigation = () => {
       position="fixed"
       top="0"
       left="0"
-      width="100%"
+      width="100vw"
       bg={isScrolled ? "white" : "transparent"}
       zIndex="1000"
       transition="background-color 0.3s ease"
