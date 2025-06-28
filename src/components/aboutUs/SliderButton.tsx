@@ -14,7 +14,7 @@ const SliderButton = ({ children, type, ...props }: SliderButtonProps) => (
     size={["xl", "2xl"]}
     color="white"
     _hover={{ color: "black" }}
-    className={`swiper-button about-us-swiper-button-${type}`}
+    className={`swiper-button swiper-button-${type}`}
     {...props}
   >
     {children}

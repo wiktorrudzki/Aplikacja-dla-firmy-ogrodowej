@@ -22,8 +22,8 @@ const HeroSlider = () => {
           progressbarFillClass: "about-us-progress-fill",
         }}
         navigation={{
-          nextEl: ".about-us-swiper-button-next",
-          prevEl: ".about-us-swiper-button-prev",
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
         }}
         autoplay={{ delay: 8000 }}
         style={{ height: "100svh" }}
