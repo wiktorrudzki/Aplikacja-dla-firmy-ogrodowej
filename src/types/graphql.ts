@@ -40,6 +40,7 @@ export type GalleryJsonNode<
 > = PickRequired<Node & GalleryJson<T>, K>;
 
 export enum GalleryCategory {
+  ALL = "ALL",
   OUR_WORK = "OUR_WORK",
   LAWNS = "LAWNS",
   TERRACES = "TERRACES",
