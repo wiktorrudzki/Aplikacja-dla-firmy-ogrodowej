@@ -75,7 +75,12 @@ const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
             setCurrentTabValue(details.value as GalleryCategory)
           }
         >
-          <Tabs.List width="fit" placeSelf="center">
+          <Tabs.List
+            width="fit"
+            placeSelf="center"
+            flexWrap="wrap"
+            justifyContent="center"
+          >
             {galleryItems.map((item) => (
               <Tabs.Trigger
                 key={item.categoryKey}
