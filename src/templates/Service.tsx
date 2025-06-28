@@ -5,28 +5,29 @@ import {
   Heading1,
   Paragraph,
 } from "@src/components/typography";
-import { ServiceNode } from "@src/types/graphql";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { ImageJsonNode, ServiceNode } from "@src/types/graphql";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { t } from "@i18n";
-import { getIconFromName } from "@src/helpers";
+import { getIconFromName, getImageJsonImage } from "@src/helpers";
 
 type Props = {
-  pageContext: Required<ServiceNode>;
+  pageContext: ServiceNode<
+    "id" | "body" | "imageJson" | "iconMapKey",
+    ImageJsonNode<"id" | "altKey" | "childImageSharp">
+  >;
   children: React.ReactNode;
 };
 
 const shortcodes = { h1: Heading1, p: Paragraph };
 
 const ServicePageTemplate = ({ pageContext, children }: Props) => {
-  const image = getImage(pageContext.imageJson.childImageSharp ?? null);
-
-  if (!image) return;
+  const image = getImageJsonImage(pageContext.imageJson);
   const Icon = getIconFromName(pageContext.iconMapKey);
   return (
     <>
       <Icon />
       <ExtraExtraLargeHeading>{pageContext.id}</ExtraExtraLargeHeading>
-      <GatsbyImage image={image} alt={t(pageContext.imageJson.altKey ?? "")} />
+      <GatsbyImage image={image} alt={t(pageContext.imageJson.altKey)} />
       <MDXProvider components={shortcodes}>{children}</MDXProvider>
     </>
   );
