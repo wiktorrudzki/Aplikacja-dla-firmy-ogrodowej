@@ -8,7 +8,7 @@ import { getImage } from "gatsby-plugin-image";
 import { Heading1, Paragraph } from "@src/components/typography";
 import { ImageNode } from "@src/types/images";
 
-function ContactUs({ ...props }: ContainerProps) {
+function ContactUs(props: ContainerProps) {
   const { file: image } = useStaticQuery<{ file: ImageNode }>(graphql`
     query {
       file(
