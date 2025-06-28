@@ -4,6 +4,7 @@ import { t } from "@src/utils/i18n";
 import React from "react";
 import Link from "./Link";
 import { ROUTES } from "@src/constants";
+import DesktopNavDropDown from "./DesktopNavDropDown";
 
 type Props = {
   navMode: NAVIGATION_MODE;
@@ -15,9 +16,14 @@ const DesktopNav = ({ navMode }: Props) => {
       <Link mode={navMode} to={ROUTES.O_NAS}>
         {t("O nas")}
       </Link>
-      <Link mode={navMode} to={ROUTES.DLA_FIRM}>
-        {t("Usługi")}
-      </Link>
+      <DesktopNavDropDown label={t("Usługi")} mode={navMode}>
+        <Link mode={navMode} to={ROUTES.DLA_FIRM}>
+          {t("business-client")}
+        </Link>
+        <Link mode={navMode} to={ROUTES.KLIENT_INDYWIDUALNY}>
+          {t("individual-client")}
+        </Link>
+      </DesktopNavDropDown>
       <Link mode={navMode} to={ROUTES.GALERIA}>
         {t("Galeria")}
       </Link>
