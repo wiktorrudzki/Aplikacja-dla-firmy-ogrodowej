@@ -1,17 +1,19 @@
 import { SEO } from "@src/components/seo";
 import { t } from "@i18n";
-import { HeadFC } from "gatsby";
+import { HeadFC, Link } from "gatsby";
 import { ServiceCards } from "@src/components/service-card";
 import { GraphQLNodes, ImageJsonNode } from "@src/types/graphql";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { ServiceNode } from "@src/types/graphql";
 import { graphql, PageProps } from "gatsby";
 import React from "react";
+import { ROUTES } from "@src/constants";
+import { MainContainerWithBreadcrumbs } from "@src/components/main-container";
 
 type QueryType = GraphQLNodes<
   "allService",
   ServiceNode<
-    "title" | "iconMapKey" | "imageJson",
+    "title" | "slug" | "iconMapKey" | "imageJson",
     ImageJsonNode<"id" | "altKey" | "childImageSharp">
   >
 >;
@@ -21,13 +23,12 @@ export const pageQuery = graphql`
     allService(filter: { categories: { in: INDIVIDUAL_CLIENT } }) {
       nodes {
         title
+        slug
         iconMapKey
         imageJson {
           id
           altKey
-          childImageSharp {
-            gatsbyImageData
-          }
+          ...ServiceImage
         }
       }
     }
@@ -36,17 +37,14 @@ export const pageQuery = graphql`
 
 const IndexPage: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
   const { allService } = data;
+  const breadcrumbs = [
+    <Link to={ROUTES.KLIENT_INDYWIDUALNY}>{t("individual-client")}</Link>,
+  ];
+
   return (
-    <div
-      style={{
-        height: "100svh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <MainContainerWithBreadcrumbs breadcrumbs={breadcrumbs}>
       <ServiceCards services={allService.nodes} />
-    </div>
+    </MainContainerWithBreadcrumbs>
   );
 };
 
