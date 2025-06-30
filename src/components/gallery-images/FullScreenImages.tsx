@@ -33,16 +33,19 @@ const FullScreenImages = ({
     >
       {children}
       <Portal>
-        <Dialog.Positioner background="rgba(0,0,0,0.5)">
+        <Dialog.Positioner
+          padding={{ base: 4, md: 8, xl: 12 }}
+          background="rgba(0,0,0,0.5)"
+        >
           <Dialog.Content
-            rounded={32}
-            w={{ base: "100%", md: "90%", xl: "80%" }}
-            h={{ base: "50%", sm: "60%", md: "70%", xl: "80%" }}
+            rounded={24}
+            w={{ base: "100%", lg: "90%", xl: "80%", "2xl": "75%" }}
+            h={{ base: "50%", sm: "60%", md: "70%", lg: "80%", xl: "90%" }}
           >
             <Swiper
               modules={[Navigation]}
               initialSlide={startIndex}
-              style={{ width: "100%", height: "100%" }}
+              style={{ width: "100%", height: "100%", borderRadius: 24 }}
               navigation={{
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
@@ -54,7 +57,6 @@ const FullScreenImages = ({
                   <SwiperSlide key={`${image.id}_${t(image.altKey)}`}>
                     <GatsbyImage
                       style={{
-                        borderRadius: 32,
                         width: "100%",
                         height: "100%",
                       }}

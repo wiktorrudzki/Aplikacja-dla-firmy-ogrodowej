@@ -14,7 +14,7 @@ const FullScreenImagesControls = () => (
     justify="space-between"
     h="100%"
     align="center"
-    paddingX={8}
+    paddingX={{ base: 2, lg: 4, "2xl": 8 }}
   >
     <SliderButton type="prev">
       <MdKeyboardArrowLeft />

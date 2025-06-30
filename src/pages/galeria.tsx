@@ -9,8 +9,7 @@ import {
   GraphQLNodes,
   ImageJsonNode,
 } from "@src/types/graphql";
-import { distinctById } from "@src/helpers";
-import { Button, CloseButton, Dialog, Portal, Tabs } from "@chakra-ui/react";
+import { Tabs } from "@chakra-ui/react";
 import { MainCard } from "@src/components/main-card";
 import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
 import { GalleryImages } from "@src/components/gallery-images";
