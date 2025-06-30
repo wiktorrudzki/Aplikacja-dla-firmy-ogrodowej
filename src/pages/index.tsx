@@ -1,51 +1,28 @@
 import * as React from "react";
 import { HeadFC } from "gatsby";
 import { t } from "@i18n";
-import { StaticImage } from "gatsby-plugin-image";
 import { Flex } from "@chakra-ui/react";
 import { Panel, PanelStack } from "@src/components/homePage";
 import { GatsbyPageWithLayout } from "@src/types/page";
-import { ROUTES } from "@src/constants";
 import { SEO } from "@src/components/seo";
-
-const HouseStaticImageElement = (
-  <StaticImage
-    src="../assets/images/house.jpg"
-    alt="skyscraper"
-    loading="eager"
-    className="panel__bg-image"
-  />
-);
-
-const SkyscraperStaticImageElement = (
-  <StaticImage
-    src="../assets/images/skyscraper.jpg"
-    alt="house"
-    loading="eager"
-    className="panel__bg-image"
-  />
-);
+import { useOurServices } from "@src/hooks";
 
 const IndexPage: GatsbyPageWithLayout = () => {
+  const services = useOurServices("panel__bg-image");
+
   return (
     <Flex as="main" flexDir={{ base: "column", lg: "row" }} height="100vh">
-      <Panel
-        backgroundStaticImage={HouseStaticImageElement}
-        marginTop={[20, 0]}
-      >
-        <PanelStack
-          title={t("individual-client")}
-          to={ROUTES.KLIENT_INDYWIDUALNY}
+      {services.map((service) => (
+        <Panel
+          key={service.title}
+          backgroundStaticImage={service.image}
+          marginTop={[20, 0]}
         >
-          {t("individual-client-homepage")}
-        </PanelStack>
-      </Panel>
-
-      <Panel backgroundStaticImage={SkyscraperStaticImageElement}>
-        <PanelStack title={t("business-client")} to={ROUTES.DLA_FIRM}>
-          {t("business-client-homepage")}
-        </PanelStack>
-      </Panel>
+          <PanelStack title={service.title} to={service.route}>
+            {service.homeDescription}
+          </PanelStack>
+        </Panel>
+      ))}
     </Flex>
   );
 };

@@ -7,3 +7,11 @@ export const GalleryImage = graphql`
     }
   }
 `;
+
+export const BigGalleryImage = graphql`
+  fragment BigGalleryImage on ImageJson {
+    childImageSharp {
+      gatsbyImageData(width: 3000)
+    }
+  }
+`;
