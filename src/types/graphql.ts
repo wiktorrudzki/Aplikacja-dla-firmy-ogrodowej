@@ -29,6 +29,7 @@ export type ImageJsonNode<K extends keyof (Node & ImageJson)> = PickRequired<
 
 type GalleryJson<T = ImageJson> = {
   order?: number;
+  slug?: string;
   category?: GalleryCategory;
   imageTitles?: string[];
   imageJsons?: T[];

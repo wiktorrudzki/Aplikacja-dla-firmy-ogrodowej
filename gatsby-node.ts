@@ -3,12 +3,9 @@ import MillionLint from "@million/lint";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import { createFilePath } from "gatsby-source-filesystem";
 import {
-  GalleryJsonNode,
-  ImageJsonNode,
   ServiceNode,
   MdxNode,
   ServiceFrontmatter,
-  ServiceCategory,
   GraphQLNodes,
 } from "@src/types/graphql";
 import path from "path";
@@ -28,7 +25,7 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
 };
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
-  ({ actions, schema }) => {
+  ({ actions, schema, getNode }) => {
     const typeDefs = [
       schema.buildEnumType({
         name: "ServiceCategory",
@@ -110,6 +107,18 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
         interfaces: ["Node"],
         fields: {
           order: "Int!",
+          slug: {
+            type: "String!",
+            resolve: async (source) => {
+              const slug = createFilePath({
+                node: source,
+                getNode,
+                basePath: "gallery",
+                trailingSlash: false,
+              });
+              return `/galeria${slug}`;
+            },
+          },
           category: "GalleryCategory!",
           imageTitles: "[String!]!",
           imageJsons: {
