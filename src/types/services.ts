@@ -16,3 +16,8 @@ export type OurService = {
   route: ROUTES;
   image: React.JSX.Element;
 };
+
+export type Breadcrump = {
+  label: string;
+  link: string;
+};

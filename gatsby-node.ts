@@ -7,6 +7,7 @@ import {
   MdxNode,
   ServiceFrontmatter,
   GraphQLNodes,
+  ServiceCategory,
 } from "@src/types/graphql";
 import path from "path";
 
@@ -200,6 +201,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
           id
           slug
           categories
+          title
           mdx {
             id
             internal {
@@ -220,13 +222,20 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
   if (result.errors) throw result.errors;
 
+  const categorySlugMap: Record<ServiceCategory, string> = {
+    INDIVIDUAL_CLIENT: "klient-indywidualny",
+    BUSINESS_CLIENT: "dla-firm",
+  };
+
   result.data?.allService.nodes.forEach((node) => {
-    node.categories.forEach((category) =>
+    node.categories.forEach((category) => {
+      const mappedCategory = categorySlugMap[category] ?? category;
+
       actions.createPage({
-        path: `${category}${node.slug}`,
+        path: `${mappedCategory}${node.slug}`,
         component: `${templateComponent}?__contentFilePath=${node.mdx.internal.contentFilePath}`,
         context: node,
-      }),
-    );
+      });
+    });
   });
 };
