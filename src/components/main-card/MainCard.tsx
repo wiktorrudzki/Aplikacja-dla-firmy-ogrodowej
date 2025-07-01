@@ -12,7 +12,8 @@ const MainCard = ({ children, ...passThorughProps }: Props) => {
     <Container
       bgGradient={`radial-gradient(circle at bottom right, ${mainCard[0]}, ${mainCard[1]})`}
       py={{
-        base: 4,
+        base: 8,
+        md: 8,
         lg: 12,
       }}
       px={{
