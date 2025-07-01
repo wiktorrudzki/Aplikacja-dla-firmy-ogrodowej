@@ -15,3 +15,11 @@ export const BigGalleryImage = graphql`
     }
   }
 `;
+
+export const ServiceImage = graphql`
+  fragment ServiceImage on ImageJson {
+    childImageSharp {
+      gatsbyImageData(width: 400)
+    }
+  }
+`;
