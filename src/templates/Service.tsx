@@ -1,15 +1,22 @@
 import React from "react";
 import { MDXProvider } from "@mdx-js/react";
-import { Heading1, Heading2, Paragraph } from "@src/components/typography";
+import {
+  Heading1,
+  Heading2,
+  OrderedList,
+  UnorderedList,
+  Paragraph,
+} from "@src/components/typography";
 import { ImageJsonNode, ServiceNode } from "@src/types/graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { t } from "@i18n";
-import { getIconFromName, getImageJsonImage } from "@src/helpers";
+import { getImageJsonImage } from "@src/helpers";
 import { MainContainerWithBreadcrumbs } from "@src/components/main-container";
 import { Link } from "gatsby";
 import { FiArrowLeft } from "react-icons/fi";
-import { Flex, Grid, GridItem, Wrap } from "@chakra-ui/react";
+import { BreadcrumbLink, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { ROUTES } from "@src/constants";
+import { ParagraphType } from "@src/types/typography";
 
 type Props = {
   pageContext: ServiceNode<
@@ -20,7 +27,18 @@ type Props = {
   children: React.ReactNode;
 };
 
-const shortcodes = { h1: Heading1, p: Paragraph };
+const ParagraphWithMargin = ({ children, ...rest }: ParagraphType) => (
+  <Paragraph my="4" {...rest}>
+    {children}
+  </Paragraph>
+);
+
+const shortcodes = {
+  h1: Heading1,
+  p: ParagraphWithMargin,
+  ul: UnorderedList,
+  ol: OrderedList,
+};
 
 const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
   const { title } = pageContext;
@@ -38,13 +56,15 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
         ? t("business-client")
         : t("individual-client")}
     </Link>,
-    <Link to={`${segments[0]}${segments[1]}`}>{title}</Link>,
+    <BreadcrumbLink>{title}</BreadcrumbLink>,
   ];
 
   return (
-    <MainContainerWithBreadcrumbs breadcrumbs={breadcrumbs} maxW={1920}>
+    <MainContainerWithBreadcrumbs breadcrumbs={breadcrumbs}>
       <Flex pb={{ base: 4, lg: 6 }} gap={4} align="center">
-        <FiArrowLeft size={32} />
+        <Link to={segments[0]}>
+          <FiArrowLeft size={32} />
+        </Link>
         <Heading2 fontWeight={500}>{title}</Heading2>
       </Flex>
       <Grid templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }} gap={6}>
