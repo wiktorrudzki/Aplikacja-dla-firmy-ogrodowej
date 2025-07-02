@@ -5,6 +5,7 @@ import { MdCircle } from "react-icons/md";
 import { t } from "@src/utils/i18n";
 import { GalleryJsonNode } from "@src/types/graphql";
 import { ROUTES } from "@src/constants";
+import { useGalleryCategories } from "@src/hooks";
 
 type Props = {
   controls: string[];
@@ -14,6 +15,7 @@ type Props = {
 
 const WorkEffectControls = ({ controls, activeEffect, onChange }: Props) => {
   const [blackAlpha] = useToken("colors", ["blackAlpha.700"]);
+  const galleryCategories = useGalleryCategories();
 
   return (
     <Wrap
@@ -33,7 +35,10 @@ const WorkEffectControls = ({ controls, activeEffect, onChange }: Props) => {
           gap={8}
         >
           <CategoryButton
-            to={ROUTES.GALERIA} // todo - adjust specific path when gallery page will be implemented
+            to={
+              (galleryCategories.find((category) => category.key === control)
+                ?.slug as ROUTES) ?? ROUTES.GALERIA
+            }
             onMouseEnter={() => onChange(index)}
             active={activeEffect.category === control}
           >
