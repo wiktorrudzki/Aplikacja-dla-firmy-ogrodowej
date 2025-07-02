@@ -6,6 +6,7 @@ import {
   OrderedList,
   UnorderedList,
   Paragraph,
+  Heading3,
 } from "@src/components/typography";
 import { ImageJsonNode, ServiceNode } from "@src/types/graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -35,6 +36,8 @@ const ParagraphWithMargin = ({ children, ...rest }: ParagraphType) => (
 
 const shortcodes = {
   h1: Heading1,
+  h2: Heading2,
+  h3: Heading3,
   p: ParagraphWithMargin,
   ul: UnorderedList,
   ol: OrderedList,
