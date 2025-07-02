@@ -6,7 +6,7 @@ import { t } from "@i18n";
 import { FooterContactDetail, FooterLink } from "@src/components/footer";
 import { Heading2, Paragraph } from "@src/components/typography";
 import { ROUTES } from "@src/constants";
-import grass from "../assets/images/grass2.jpg";
+import grass from "../assets/images/grass.jpg";
 
 const Footer = () => {
   return (
