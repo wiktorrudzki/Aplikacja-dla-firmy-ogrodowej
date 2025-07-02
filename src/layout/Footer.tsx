@@ -3,10 +3,10 @@ import { Flex, VStack, HStack, Link } from "@chakra-ui/react";
 import { MdLocationOn, MdMail, MdPhoneIphone } from "react-icons/md";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { t } from "@i18n";
-import { StaticImage } from "gatsby-plugin-image";
 import { FooterContactDetail, FooterLink } from "@src/components/footer";
 import { Heading2, Paragraph } from "@src/components/typography";
 import { ROUTES } from "@src/constants";
+import grass from "../assets/images/grass2.jpg";
 
 const Footer = () => {
   return (
@@ -20,10 +20,11 @@ const Footer = () => {
         color="white"
         style={{ position: "relative" }}
       >
-        <StaticImage
-          src="../assets/images/grass.jpg"
+        <img
+          src={grass}
           alt="Tło trawy"
           style={{
+            objectFit: "cover",
             width: "100%",
             height: "100%",
             position: "absolute",
