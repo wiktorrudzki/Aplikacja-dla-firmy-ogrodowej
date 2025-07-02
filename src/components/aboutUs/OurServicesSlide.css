@@ -39,4 +39,5 @@
 
 .our-services-image {
   height: 100%;
+  border-radius: var(--chakra-sizes-4);
 }

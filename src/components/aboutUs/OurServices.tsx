@@ -33,9 +33,8 @@ const OurServices = () => {
           {services.map((service, index) => (
             <SwiperSlide key={service.title} style={{ height: "100%" }}>
               <Grid
-                templateColumns={{ base: "initial", lg: "repeat(2, 1fr)" }}
-                templateRows={{ base: "repeat(2, 1fr)", lg: "initial" }}
-                maxH="75svh"
+                templateColumns={{ base: "initial", md: "repeat(2, 1fr)" }}
+                templateRows={{ base: "repeat(2, 1fr)", md: "initial" }}
               >
                 {isEven(index) ? (
                   <>

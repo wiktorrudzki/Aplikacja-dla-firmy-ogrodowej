@@ -1,6 +1,4 @@
-import { Box, VStack } from "@chakra-ui/react";
 import React from "react";
-import { MainCard } from "../main-card";
 import { Heading1, Paragraph } from "../typography";
 import { ContentCard, ContentCardButton } from "../content-card";
 import { t } from "@src/utils/i18n";
