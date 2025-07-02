@@ -1,8 +1,9 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { getImageJsonImage } from "@src/helpers";
 import { ImageJsonNode } from "@src/types/graphql";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
-import React from "react";
+import React, { useState } from "react";
+import FullScreenImages from "./FullScreenImages";
 
 type Props = {
   imageJsons: Array<ImageJsonNode<"id" | "altKey" | "childImageSharp">>;
@@ -12,37 +13,56 @@ const calculateImageRowSpan = (image: IGatsbyImageData) =>
   Math.floor(image.height / (image.width / 8));
 
 const GalleryImages = ({ imageJsons }: Props) => {
-  if (!imageJsons) return null;
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const openDialog = (index: number) => {
+    setSelectedIndex(index);
+    setIsOpen(true);
+  };
+
   return (
-    <Grid
-      justifySelf="center"
-      templateColumns={{
-        base: "auto",
-        md: "repeat(2, 1fr)",
-        lg: "repeat(3, 1fr)",
-      }}
-      gap="8"
-      my="4"
+    <FullScreenImages
+      images={imageJsons}
+      open={isOpen}
+      onOpenChange={setIsOpen}
+      startIndex={selectedIndex}
     >
-      {imageJsons.map((imageJson) => {
-        if (!imageJson) return;
-        const image = getImageJsonImage(imageJson);
-        return (
-          <GridItem
-            key={imageJson.id}
-            style={{
-              gridRowEnd: `span ${calculateImageRowSpan(image)}`,
-            }}
-          >
-            <GatsbyImage
-              image={image}
-              style={{ height: "100%", borderRadius: "0.5rem" }}
-              alt={imageJson.altKey}
-            />
-          </GridItem>
-        );
-      })}
-    </Grid>
+      <Grid
+        justifySelf="center"
+        templateColumns={{
+          base: "auto",
+          md: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+        }}
+        gap="8"
+        my="4"
+      >
+        {imageJsons.map((imageJson, index) => {
+          const image = getImageJsonImage(imageJson);
+          return (
+            <GridItem
+              key={imageJson.id}
+              style={{
+                cursor: "pointer",
+                gridRowEnd: `span ${calculateImageRowSpan(image)}`,
+              }}
+              onClick={() => openDialog(index)}
+              transition="scale 0.25s ease"
+              _hover={{
+                scale: 1.05,
+              }}
+            >
+              <GatsbyImage
+                image={image}
+                style={{ height: "100%", borderRadius: "0.5rem" }}
+                alt={imageJson.altKey}
+              />
+            </GridItem>
+          );
+        })}
+      </Grid>
+    </FullScreenImages>
   );
 };
 
