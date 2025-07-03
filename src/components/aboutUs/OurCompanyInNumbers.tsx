@@ -25,6 +25,7 @@ function OurCompanyInNumbers() {
           <NumberCard
             details={cardDetails}
             key={`${index}_${cardDetails.descriptionKey}`}
+            index={index}
           />
         ))}
       </Wrap>
