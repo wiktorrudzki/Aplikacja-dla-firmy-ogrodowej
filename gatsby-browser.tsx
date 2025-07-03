@@ -15,8 +15,14 @@ export const wrapPageElement = ({
 }: WrapPageElementBrowserArgs) => {
   const hideFooter =
     (element.type as GatsbyPageWithLayout)?.hideFooter ?? false;
+  const hideEstimateCard =
+    (element.type as GatsbyPageWithLayout)?.hideEstimateCard ?? false;
   return (
-    <Layout showFooter={!hideFooter} {...props}>
+    <Layout
+      showFooter={!hideFooter}
+      showEstimateCard={!hideEstimateCard}
+      {...props}
+    >
       {element}
     </Layout>
   );
