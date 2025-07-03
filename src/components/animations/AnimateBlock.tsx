@@ -7,7 +7,7 @@ type Props = {
 
 const AnimateSection = ({ children }: Props) => {
   const elementRef = useRef(null);
-  const isInView = useInView(elementRef, { once: true });
+  const isInView = useInView(elementRef, { once: true, amount: 0.5 });
   const shouldReduceMotion = useReducedMotion();
   const initialStyle = { opacity: 0, x: -80 };
 
