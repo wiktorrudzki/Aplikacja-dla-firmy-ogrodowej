@@ -9,7 +9,7 @@ import { useGalleryCategories } from "@src/hooks";
 
 type Props = {
   controls: string[];
-  activeEffect: GalleryJsonNode;
+  activeEffect: GalleryJsonNode<"category">;
   onChange: (index: number) => void;
 };
 
