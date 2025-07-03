@@ -12,13 +12,13 @@ type Props = PropsWithChildren & {
 const GalleryTabs = ({ currentCategory, children }: Props) => {
   const categories = useGalleryCategories();
   return (
-    <Tabs.Root colorPalette="green" value={currentCategory}>
-      <Tabs.List
-        width="fit"
-        placeSelf="center"
-        flexWrap="wrap"
-        justifyContent="center"
-      >
+    <Tabs.Root
+      colorPalette="green"
+      value={currentCategory}
+      placeItems="center"
+      display="grid"
+    >
+      <Tabs.List width="fit" flexWrap="wrap" justifyContent="center">
         {categories.map((category) => (
           <Tabs.Trigger key={category.key} value={category.key} asChild>
             <GatsbyLink to={category.slug}>{t(category.key)}</GatsbyLink>

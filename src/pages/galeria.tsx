@@ -9,11 +9,10 @@ import {
   GraphQLNodes,
   ImageJsonNode,
 } from "@src/types/graphql";
-import { MainCard } from "@src/components/main-card";
-import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
 import { GalleryImages } from "@src/components/gallery-images";
 import { GalleryTabs } from "@src/components/gallery";
 import { distinctById } from "@src/helpers";
+import { MainContainer } from "@src/components/main-container";
 
 type QueryType = GraphQLNodes<
   "allGalleryJson",
@@ -46,13 +45,11 @@ const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
   );
 
   return (
-    <NavigationMarginContainer>
-      <MainCard>
-        <GalleryTabs currentCategory={GalleryCategory.ALL}>
-          <GalleryImages imageJsons={imageJsons} />
-        </GalleryTabs>
-      </MainCard>
-    </NavigationMarginContainer>
+    <MainContainer>
+      <GalleryTabs currentCategory={GalleryCategory.ALL}>
+        <GalleryImages imageJsons={imageJsons} />
+      </GalleryTabs>
+    </MainContainer>
   );
 };
 
