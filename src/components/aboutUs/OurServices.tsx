@@ -8,6 +8,7 @@ import { Pagination } from "swiper/modules";
 import OurServiceImage from "./OurServiceImage";
 import OurServiceContent from "./OurServiceContent";
 import "./OurServicesSlide.css";
+import { ContainerSection } from "../section";
 
 const isEven = (index: number) => index % 2 === 0;
 
@@ -15,7 +16,7 @@ const OurServices = () => {
   const services = useOurServices("our-services-image");
 
   return (
-    <Container py={{ base: 8, lg: 16, "2xl": 24 }}>
+    <ContainerSection>
       <VStack gap={{ base: 8, md: 12, xl: 16 }}>
         <Heading1 textAlign="center" textTransform="uppercase">
           {t("do kogo jest skierowana nasza oferta?")}
@@ -52,7 +53,7 @@ const OurServices = () => {
           ))}
         </Swiper>
       </VStack>
-    </Container>
+    </ContainerSection>
   );
 };
 

@@ -1,4 +1,3 @@
-import { Container, ContainerProps } from "@chakra-ui/react";
 import { ROUTES } from "@src/constants";
 import { t } from "@src/utils/i18n";
 import React from "react";
@@ -7,12 +6,13 @@ import { graphql, useStaticQuery } from "gatsby";
 import { Heading1, Paragraph } from "@src/components/typography";
 import { ImageJsonNode } from "@src/types/graphql";
 import { getImageJsonImage } from "@src/helpers";
+import { ContainerSection } from "../section";
 
 type QueryType = {
   imageJson: ImageJsonNode<"id" | "altKey" | "childImageSharp">;
 };
 
-function ContactUs({ ...props }: ContainerProps) {
+function ContactUs() {
   const { imageJson } = useStaticQuery<QueryType>(graphql`
     {
       imageJson(title: { eq: "House" }) {
@@ -28,7 +28,7 @@ function ContactUs({ ...props }: ContainerProps) {
   const imageData = getImageJsonImage(imageJson);
 
   return (
-    <Container my={[12, 24, 32]} {...props}>
+    <ContainerSection>
       <ContentCardsWithImage
         backgroundImageDetails={{ data: imageData, alt: t(imageJson.altKey) }}
       >
@@ -38,7 +38,7 @@ function ContactUs({ ...props }: ContainerProps) {
           {t("contact-with-us")}
         </ContentCardButton>
       </ContentCardsWithImage>
-    </Container>
+    </ContainerSection>
   );
 }
 

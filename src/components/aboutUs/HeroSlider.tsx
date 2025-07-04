@@ -13,7 +13,7 @@ const HeroSlider = () => {
   const slides = useOurValues();
 
   return (
-    <Box overflowX="hidden">
+    <Box overflowX="hidden" as="section">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         pagination={{
