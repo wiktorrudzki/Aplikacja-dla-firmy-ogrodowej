@@ -5,7 +5,7 @@ import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { t } from "@i18n";
 import { FooterContactDetail, FooterLink } from "@src/components/footer";
 import { Heading2, Paragraph } from "@src/components/typography";
-import { ROUTES } from "@src/constants";
+import { LINKS, ROUTES } from "@src/constants";
 import grass from "../assets/images/grass.jpg";
 
 const Footer = () => {
@@ -70,10 +70,10 @@ const Footer = () => {
         <VStack align="start">
           <Heading2>{t("our-social-media")}</Heading2>
           <HStack>
-            <Link href="https://www.facebook.com/">
+            <Link href={LINKS.Facebook}>
               <BsFacebook color="white" size="2rem" />
             </Link>
-            <Link href="https://www.instagram.com/">
+            <Link href={LINKS.Instagram}>
               <BsInstagram color="white" size="2rem" />
             </Link>
           </HStack>
