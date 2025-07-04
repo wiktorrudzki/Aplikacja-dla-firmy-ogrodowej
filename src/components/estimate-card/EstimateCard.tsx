@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, useToken } from "@chakra-ui/react";
+import { Box, Flex, Link, Stack, useToken } from "@chakra-ui/react";
 import { t } from "@src/utils/i18n";
 import React from "react";
 import { MdPhone } from "react-icons/md";
@@ -13,7 +13,7 @@ const EstimateCard = ({ fixedBottomRight = true }: Props) => {
 
   return (
     <Box
-      width="fit-content"
+      width="max-content"
       bg="green.50"
       zIndex={1}
       rounded={32}
@@ -27,16 +27,14 @@ const EstimateCard = ({ fixedBottomRight = true }: Props) => {
       <Stack alignItems="center" gap={0.5}>
         <Paragraph textAlign="center">{t("Skorzystaj z darmowej")}</Paragraph>
         <Paragraph>{t("wyceny")}</Paragraph>
-        <Flex gap={2} alignItems="center">
-          <MdPhone size={16} color={green} />
-          <Heading2
-            fontSize={{ base: "lg", lg: "2xl" }}
-            textAlign="center"
-            color="green.500"
-          >
-            {t("telephone-number")}
-          </Heading2>
-        </Flex>
+        <Link href={`tel:${t("telephone-number")}`} color="green.500">
+          <Flex gap={2} alignItems="center">
+            <MdPhone size={16} color={green} />
+            <Heading2 fontSize={{ base: "lg", lg: "2xl" }} textAlign="center">
+              {t("telephone-number")}
+            </Heading2>
+          </Flex>
+        </Link>
       </Stack>
     </Box>
   );
