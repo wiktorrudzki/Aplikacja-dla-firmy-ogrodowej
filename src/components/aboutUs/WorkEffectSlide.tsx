@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 
 type Props = {
-  image: ImageJsonNode;
+  image: ImageJsonNode<"altKey" | "childImageSharp">;
 };
 
 const WorkEffectSlide = ({ image }: Props) =>

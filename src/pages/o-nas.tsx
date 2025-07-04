@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import {
   HeroSlider,
   WorkEffects,
@@ -8,22 +7,33 @@ import {
   OurServices,
 } from "@src/components/aboutUs";
 import { SEO } from "@src/components/seo";
-
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { t } from "@i18n";
 import { HeadFC } from "gatsby";
 import React from "react";
+import { AnimateBlock } from "@src/components/animations";
 
 const About: GatsbyPageWithLayout = () => {
   return (
-    <Box>
+    <>
       <HeroSlider />
-      <OurServices />
+
+      <AnimateBlock>
+        <OurServices />
+      </AnimateBlock>
+
       <OurCompanyInNumbers />
-      <ServiceArea />
+
+      <AnimateBlock>
+        <ServiceArea />
+      </AnimateBlock>
+
       <WorkEffects />
-      <ContactUs as="section" />
-    </Box>
+
+      <AnimateBlock>
+        <ContactUs />
+      </AnimateBlock>
+    </>
   );
 };
 
