@@ -4,6 +4,7 @@ import { ImageJsonNode } from "@src/types/graphql";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React, { useState } from "react";
 import FullScreenImages from "./FullScreenImages";
+import { t } from "@src/utils/i18n";
 
 type Props = {
   imageJsons: Array<ImageJsonNode<"id" | "altKey" | "childImageSharp">>;
@@ -56,7 +57,7 @@ const GalleryImages = ({ imageJsons }: Props) => {
               <GatsbyImage
                 image={image}
                 style={{ height: "100%", borderRadius: "0.5rem" }}
-                alt={imageJson.altKey}
+                alt={t(imageJson.altKey)}
               />
             </GridItem>
           );

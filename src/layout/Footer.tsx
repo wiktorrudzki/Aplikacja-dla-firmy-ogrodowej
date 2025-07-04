@@ -22,7 +22,7 @@ const Footer = () => {
       >
         <img
           src={grass}
-          alt="Tło trawy"
+          alt="Wiosenna, zielona trawa"
           style={{
             objectFit: "cover",
             width: "100%",
