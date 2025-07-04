@@ -34,6 +34,8 @@ const Contact: GatsbyPageWithLayout = () => {
   );
 };
 
+Contact.hideEstimateCard = true;
+
 export default Contact;
 
 export const Head: HeadFC = ({ location }) => (

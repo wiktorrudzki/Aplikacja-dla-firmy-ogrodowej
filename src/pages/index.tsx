@@ -28,6 +28,7 @@ const IndexPage: GatsbyPageWithLayout = () => {
 };
 
 IndexPage.hideFooter = true;
+IndexPage.hideEstimateCard = true;
 
 export default IndexPage;
 
