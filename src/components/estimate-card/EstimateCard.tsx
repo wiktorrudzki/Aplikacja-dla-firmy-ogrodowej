@@ -13,7 +13,7 @@ const EstimateCard = ({ fixedBottomRight = true }: Props) => {
 
   return (
     <Box
-      width="fit-content"
+      width="max-content"
       bg="green.50"
       zIndex={1}
       rounded={32}
