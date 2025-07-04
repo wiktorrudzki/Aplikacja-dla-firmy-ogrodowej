@@ -28,7 +28,10 @@ const ContactCards = () => (
       Icon={FiMap}
       iconMode="color"
     />
-    <Link style={{ margin: "0 auto" }} to={`tel:${t("telephone-number")}`}>
+    <Link
+      style={{ margin: "0 auto", maxWidth: "100%" }}
+      to={`tel:${t("telephone-number")}`}
+    >
       <ContactCard
         title={t("Zadzwoń do nas!")}
         description={<CallDescription />}
@@ -36,7 +39,10 @@ const ContactCards = () => (
         iconMode="fill"
       />
     </Link>
-    <Link style={{ margin: "0 auto" }} to={`mailto:${t("email-address")}`}>
+    <Link
+      style={{ margin: "0 auto", maxWidth: "100%" }}
+      to={`mailto:${t("email-address")}`}
+    >
       <ContactCard
         title={t("Napisz do nas!")}
         description={<MailDescription />}
