@@ -39,12 +39,20 @@ const Footer = () => {
             {t("adress-details")}
           </FooterContactDetail>
           <FooterContactDetail icon={MdMail}>
-            <Link href={`mailto:${t("email-address")}`} color="white">
+            <Link
+              aria-label={t("Napisz maila")}
+              href={`mailto:${t("email-address")}`}
+              color="white"
+            >
               {t("email-address")}
             </Link>
           </FooterContactDetail>
           <FooterContactDetail icon={MdPhoneIphone}>
-            <Link href={`tel:${t("telephone-number")}`} color="white">
+            <Link
+              aria-label={t("Zadzwoń")}
+              href={`tel:${t("telephone-number")}`}
+              color="white"
+            >
               {t("telephone-number")}
             </Link>
           </FooterContactDetail>
@@ -70,10 +78,16 @@ const Footer = () => {
         <VStack align="start">
           <Heading2>{t("our-social-media")}</Heading2>
           <HStack>
-            <Link href="https://www.facebook.com/">
+            <Link
+              aria-label={t("Kliknij, aby przejść do Facebooka")}
+              href="https://www.facebook.com/"
+            >
               <BsFacebook color="white" size="2rem" />
             </Link>
-            <Link href="https://www.instagram.com/">
+            <Link
+              aria-label={t("Kliknij, aby przejść do Instagrama")}
+              href="https://www.instagram.com/"
+            >
               <BsInstagram color="white" size="2rem" />
             </Link>
           </HStack>

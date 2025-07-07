@@ -5,12 +5,21 @@ import React from "react";
 
 type Props = {
   to: ROUTES;
+  ariaLabel?: string;
   children: React.ReactNode;
 };
 
-const ContentCardButton = ({ to, children }: Props) => (
-  <Button colorPalette="green" rounded="full" paddingX={[4, 12, 16]} asChild>
-    <Link to={to}>{children}</Link>
+const ContentCardButton = ({ to, ariaLabel, children }: Props) => (
+  <Button
+    colorPalette="green"
+    rounded="full"
+    aria-label={ariaLabel}
+    paddingX={[4, 12, 16]}
+    asChild
+  >
+    <Link to={to} aria-label={ariaLabel}>
+      {children}
+    </Link>
   </Button>
 );
 

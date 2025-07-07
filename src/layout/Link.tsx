@@ -9,6 +9,7 @@ type Props = {
   children: React.ReactNode;
   noUnderline?: boolean;
   mode?: NAVIGATION_MODE;
+  ariaLabel?: string;
   onClick?: () => void;
 };
 
@@ -16,13 +17,19 @@ const CustomLink = ({
   to,
   children,
   noUnderline,
+  ariaLabel,
   mode = NAVIGATION_MODE.DARK,
   onClick,
 }: Props) => {
   const location = useLocation();
 
   return (
-    <Link onClick={onClick} style={{ textDecoration: "none" }} to={to}>
+    <Link
+      aria-label={ariaLabel}
+      onClick={onClick}
+      style={{ textDecoration: "none" }}
+      to={to}
+    >
       <Heading3
         color={mode === NAVIGATION_MODE.DARK ? "black" : "white"}
         position="relative"

@@ -3,6 +3,7 @@ import { NAVIGATION_MODE } from "@src/types/navigation";
 import React from "react";
 import { BiChevronDown } from "react-icons/bi";
 import CustomLink from "./Link";
+import { t } from "@src/utils/i18n";
 
 type Props = {
   label: string;
@@ -28,7 +29,7 @@ const DesktopNavDropDown = ({ label, mode, children }: Props) => {
 
   return (
     <Box position="relative">
-      <CustomLink mode={mode} to="#">
+      <CustomLink ariaLabel={t("Najedź, aby wysunąć menu")} mode={mode} to="#">
         <HStack onMouseEnter={open} onMouseLeave={deferClose}>
           {label}
           <BiChevronDown />
