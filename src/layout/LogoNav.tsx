@@ -22,7 +22,7 @@ const LogoNav = ({ navMode }: Props) => {
     <Link to={ROUTES.HOME} noUnderline>
       <Image
         src={logoSrc}
-        alt="logo"
+        alt="Logo"
         maxHeight={{ base: "10", md: "16", lg: "20" }}
       />
     </Link>
