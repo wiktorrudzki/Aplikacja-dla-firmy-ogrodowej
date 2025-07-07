@@ -2,6 +2,7 @@ import { Collapsible, HStack, Stack } from "@chakra-ui/react";
 import React, { useImperativeHandle } from "react";
 import { BiChevronRight } from "react-icons/bi";
 import CustomLink from "./Link";
+import { t } from "@src/utils/i18n";
 
 type Props = {
   label: string;
@@ -31,7 +32,9 @@ const MobileCollapsibleLink = React.forwardRef<MobileCollapsibleActions, Props>(
           onClick={() => setIsOpen((prevValue) => !prevValue)}
         >
           <HStack>
-            <CustomLink to="#">{label}</CustomLink>
+            <CustomLink ariaLabel={t("Kliknij, aby schować menu")} to="#">
+              {label}
+            </CustomLink>
             <BiChevronRight
               style={{
                 transform: `rotate(${isOpen ? "90deg" : "0"})`,

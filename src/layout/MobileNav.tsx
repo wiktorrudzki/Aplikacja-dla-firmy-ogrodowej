@@ -1,6 +1,5 @@
 import { Box, IconButton, Stack } from "@chakra-ui/react";
-import { NAVIGATION_MODE } from "@src/types/navigation";
-import React, { useCallback, useRef } from "react";
+import React, { useCallback } from "react";
 import { CgClose } from "react-icons/cg";
 import Link from "./Link";
 import { t } from "@src/utils/i18n";
@@ -13,11 +12,10 @@ import { formatToRem } from "@src/helpers";
 
 type Props = {
   hidden: boolean;
-  navMode: NAVIGATION_MODE;
   onClose: () => void;
 };
 
-const MobileNav = ({ navMode, hidden, onClose }: Props) => {
+const MobileNav = ({ hidden, onClose }: Props) => {
   const { navigationHeighRem } = useResponsiveValues();
   const servicesCollapsibleRef = React.useRef<MobileCollapsibleActions>(null);
 
@@ -62,6 +60,7 @@ const MobileNav = ({ navMode, hidden, onClose }: Props) => {
           display="flex"
           height={formatToRem(navigationHeighRem)}
           justifyContent="flex-end"
+          aria-label={t("Kliknij, aby schować nawigację")}
         >
           <CgClose size={32} color="black" />
         </IconButton>

@@ -3,6 +3,7 @@ import * as React from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import SliderCounter from "./SliderCounter";
 import SliderButton from "./SliderButton";
+import { t } from "@src/utils/i18n";
 
 const SliderControls = () => (
   <Box
@@ -15,10 +16,10 @@ const SliderControls = () => (
   >
     <Flex alignItems="center" justifyContent="flex-end" gap={[3, 5]} p={5}>
       <SliderButton type="prev">
-        <MdKeyboardArrowLeft />
+        <MdKeyboardArrowLeft aria-label={t("Poprzedni")} />
       </SliderButton>
       <SliderButton type="next">
-        <MdKeyboardArrowRight />
+        <MdKeyboardArrowRight aria-label={t("Następny")} />
       </SliderButton>
       <Flex
         className="swiper-pagination"

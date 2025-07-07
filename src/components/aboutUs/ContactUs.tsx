@@ -34,7 +34,10 @@ function ContactUs() {
       >
         <Heading1 overflowWrap="anywhere">{t("still-wondering")}</Heading1>
         <Paragraph>{t("still-wondering-description")}</Paragraph>
-        <ContentCardButton to={ROUTES.KONTAKT}>
+        <ContentCardButton
+          to={ROUTES.KONTAKT}
+          ariaLabel={t("Kliknij, aby przejść do strony kontaktowej")}
+        >
           {t("contact-with-us")}
         </ContentCardButton>
       </ContentCardsWithImage>

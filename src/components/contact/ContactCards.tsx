@@ -31,6 +31,7 @@ const ContactCards = () => (
     <Link
       style={{ margin: "0 auto", maxWidth: "100%" }}
       to={`tel:${t("telephone-number")}`}
+      aria-label={t("Kliknij, aby zadzwonić")}
     >
       <ContactCard
         title={t("Zadzwoń do nas!")}
@@ -42,6 +43,7 @@ const ContactCards = () => (
     <Link
       style={{ margin: "0 auto", maxWidth: "100%" }}
       to={`mailto:${t("email-address")}`}
+      aria-label={t("Kliknij, aby napisać maila")}
     >
       <ContactCard
         title={t("Napisz do nas!")}

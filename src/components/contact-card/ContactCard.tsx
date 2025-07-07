@@ -1,4 +1,4 @@
-import { Box, Container, Stack, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Container, Stack } from "@chakra-ui/react";
 import React from "react";
 import { IconType } from "react-icons";
 import { Heading2 } from "../typography";
@@ -8,10 +8,17 @@ type Props = {
   title: string;
   description: React.ReactNode;
   iconMode: "color" | "fill";
+  iconAriaLabel?: string;
   Icon: IconType;
 };
 
-const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
+const ContactCard = ({
+  title,
+  description,
+  iconMode,
+  iconAriaLabel,
+  Icon,
+}: Props) => {
   const { contactCardIconSizeRem, contactCardIconOffsetRem } =
     useResponsiveValues();
 
@@ -20,6 +27,7 @@ const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
       <Box
         maxW="100%"
         as={Icon}
+        aria-label={iconAriaLabel}
         width={contactCardIconSizeRem * 4}
         height={contactCardIconSizeRem * 4}
         fill={iconMode === "fill" ? "green.500" : "transparent"}

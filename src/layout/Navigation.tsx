@@ -33,9 +33,7 @@ const Navigation = () => {
         <DesktopNav navMode={navMode} />
         <ShowMobileNav navMode={navMode} showNav={showNav} />
       </Flex>
-      {isMobile && (
-        <MobileNav hidden={hidden} navMode={navMode} onClose={hideNav} />
-      )}
+      {isMobile && <MobileNav hidden={hidden} onClose={hideNav} />}
     </Box>
   );
 };
