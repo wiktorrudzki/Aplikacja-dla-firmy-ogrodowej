@@ -1,32 +1,49 @@
-import { Box, Flex, Link, Stack, useToken } from "@chakra-ui/react";
-import { t } from "@src/utils/i18n";
 import React from "react";
+import {
+  Box,
+  Flex,
+  Link,
+  Stack,
+  useBreakpointValue,
+  useToken,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { MdPhone } from "react-icons/md";
 import { Heading2, Paragraph } from "../typography";
+import { t } from "@src/utils/i18n";
 
-type Props = {
-  fixedBottomRight?: boolean;
-};
+const MotionBox = motion(Box);
 
-const EstimateCard = ({ fixedBottomRight = true }: Props) => {
+const EstimateCard = () => {
   const [green] = useToken("colors", ["green.500"]);
 
+  const panelWidth = useBreakpointValue({ base: 225, lg: 250 });
+  const closedOffset = useBreakpointValue({ base: 215, lg: 255 });
+
   return (
-    <Box
-      width="max-content"
-      bg="green.50"
-      zIndex={1}
-      rounded={32}
-      py={4}
-      px={{ base: 4, lg: 8 }}
-      boxShadow="based"
-      position={fixedBottomRight ? "fixed" : "initial"}
+    <MotionBox
+      position="fixed"
       bottom={{ base: 2, md: 4, "2xl": 8 }}
       right={{ base: 2, md: 4, "2xl": 8 }}
+      zIndex={10}
+      drag="x"
+      dragConstraints={{ left: 0, right: closedOffset }}
+      animate={{ x: 0 }}
+      width={panelWidth}
+      cursor="grab"
     >
-      <Stack alignItems="center" gap={0.5}>
+      <Stack
+        position="relative"
+        bg="green.50"
+        rounded="2xl"
+        py={4}
+        px={{ base: 4, lg: 6 }}
+        boxShadow="xl"
+        alignItems="center"
+      >
         <Paragraph textAlign="center">{t("Skorzystaj z darmowej")}</Paragraph>
         <Paragraph>{t("wyceny")}</Paragraph>
+
         <Link href={`tel:${t("telephone-number")}`} color="green.500">
           <Flex gap={2} alignItems="center">
             <MdPhone size={16} color={green} />
@@ -36,7 +53,7 @@ const EstimateCard = ({ fixedBottomRight = true }: Props) => {
           </Flex>
         </Link>
       </Stack>
-    </Box>
+    </MotionBox>
   );
 };
 
