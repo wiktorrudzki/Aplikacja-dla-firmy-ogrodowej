@@ -25,7 +25,7 @@ const EstimateCard = () => {
       position="fixed"
       bottom={{ base: 2, md: 4, "2xl": 8 }}
       right={{ base: 2, md: 4, "2xl": 8 }}
-      zIndex={10}
+      zIndex={1}
       drag="x"
       dragConstraints={{ left: 0, right: closedOffset }}
       animate={{ x: 0 }}
@@ -38,7 +38,7 @@ const EstimateCard = () => {
         rounded="2xl"
         py={4}
         px={{ base: 4, lg: 6 }}
-        boxShadow="xl"
+        boxShadow="based"
         alignItems="center"
       >
         <Paragraph textAlign="center">{t("Skorzystaj z darmowej")}</Paragraph>
