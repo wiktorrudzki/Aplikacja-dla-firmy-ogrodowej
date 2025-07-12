@@ -56,7 +56,9 @@ const Footer = () => {
           <FooterLink to={ROUTES.O_NAS}>{t("about-us")}</FooterLink>
           <FooterLink to={ROUTES.GALERIA}>{t("gallery")}</FooterLink>
           <FooterLink to={ROUTES.KONTAKT}>{t("contact")}</FooterLink>
-          <FooterLink to={ROUTES.REGULAMIN}>{t("regulations")}</FooterLink>
+          <FooterLink to={ROUTES.POLITYKA_PRYWATNOSCI}>
+            {t("policy-privacy")}
+          </FooterLink>
         </VStack>
 
         <VStack align="start">

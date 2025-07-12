@@ -238,4 +238,32 @@ export const createPages: GatsbyNode["createPages"] = async ({
       });
     });
   });
+
+  const basicPageTemplate = path.resolve(`./src/templates/BasicPage.tsx`);
+  const regulations = await graphql<
+    GraphQLNodes<"allMdx", MdxNode<{ slug: string }>>
+  >(`
+    {
+      allMdx(
+        filter: { internal: { contentFilePath: { regex: "/regulations/" } } }
+      ) {
+        nodes {
+          id
+          frontmatter {
+            slug
+          }
+          internal {
+            contentFilePath
+          }
+        }
+      }
+    }
+  `);
+
+  regulations.data?.allMdx.nodes.forEach((node) => {
+    actions.createPage({
+      path: node.frontmatter.slug,
+      component: `${basicPageTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
+    });
+  });
 };
