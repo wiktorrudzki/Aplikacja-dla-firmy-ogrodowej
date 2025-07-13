@@ -19,7 +19,7 @@ const LogoNav = ({ navMode }: Props) => {
   });
 
   return (
-    <Link to={ROUTES.HOME} noUnderline>
+    <Link to={ROUTES.HOME} noBackground>
       <Image
         src={logoSrc}
         alt="Logo"

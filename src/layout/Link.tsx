@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useLocation } from "@reach/router";
 import { Link as GatsbyLink } from "gatsby";
 import { NAVIGATION_MODE } from "@src/types/navigation";
@@ -9,7 +9,7 @@ import { useResponsiveValues } from "@src/hooks";
 type Props = {
   to: string;
   children: React.ReactNode;
-  noUnderline?: boolean;
+  noBackground?: boolean;
   mode?: NAVIGATION_MODE;
   ariaLabel?: string;
   tabIndex?: number;
@@ -19,7 +19,7 @@ type Props = {
 const CustomLink = ({
   to,
   children,
-  noUnderline,
+  noBackground,
   ariaLabel,
   tabIndex,
   mode = NAVIGATION_MODE.DARK,
@@ -29,22 +29,45 @@ const CustomLink = ({
   const { isMobile } = useResponsiveValues();
   const isActive = location.pathname.includes(to);
 
+  const bgColor = useMemo(
+    () => (mode === NAVIGATION_MODE.DARK ? "green.400" : "white"),
+    [mode],
+  );
+
+  const hoverTextColor = mode === NAVIGATION_MODE.DARK ? "white" : "black";
+
   return (
     <Link
       py="2"
       px="4"
       rounded="full"
       width="fit-content"
-      bgColor={
-        isActive && !noUnderline
-          ? mode === NAVIGATION_MODE.DARK
-            ? "green.400"
-            : "white"
-          : "transparent"
+      transition="all 0.2s ease-in-out"
+      bgColor={isActive && !noBackground ? bgColor : "transparent"}
+      _hover={{
+        bg: !noBackground ? bgColor : undefined,
+        color: hoverTextColor,
+      }}
+      _focus={{
+        boxShadow: "none",
+        border: noBackground ? "none" : "1px solid",
+        borderColor: noBackground ? "transparent" : bgColor,
+      }}
+      color={
+        isMobile
+          ? "black"
+          : mode === NAVIGATION_MODE.DARK
+            ? isActive
+              ? "white"
+              : "black"
+            : isActive
+              ? "black"
+              : "white"
       }
-      border={!noUnderline ? "1px solid " : "none"}
-      borderColor={mode === NAVIGATION_MODE.DARK ? "green.400" : "White"}
-      shadow={noUnderline ? "initial" : "sm"}
+      outline="none"
+      border={!noBackground ? "1px solid" : "none"}
+      borderColor={!noBackground ? bgColor : undefined}
+      shadow={noBackground ? "initial" : "sm"}
       asChild
     >
       <GatsbyLink
@@ -54,20 +77,7 @@ const CustomLink = ({
         to={to}
         tabIndex={tabIndex}
       >
-        <Heading3
-          fontSize="lg"
-          color={
-            isMobile
-              ? "black"
-              : mode === NAVIGATION_MODE.DARK
-                ? isActive
-                  ? "white"
-                  : "black"
-                : isActive
-                  ? "black"
-                  : "white"
-          }
-        >
+        <Heading3 fontSize="lg" transition="color 0.2s ease-in-out">
           {children}
         </Heading3>
       </GatsbyLink>
