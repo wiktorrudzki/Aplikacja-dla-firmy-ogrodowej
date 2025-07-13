@@ -25,7 +25,7 @@
   "INDIVIDUAL_APPROACH_DESC": "Proponujemy rozwiązania dopasowane do konkretnych oczekiwań, miejsca i budżetu, tworząc ogrody niepowtarzalne i w pełni funkcjonalne. Elastyczność i empatia pozwalają nam tworzyć przestrzenie, które naprawdę odpowiadają marzeniom ich właścicieli.",
   "gallery": "Galeria",
   "contact": "Kontakt",
-  "regulations": "Regulamin",
+  "policy-privacy": "Polityka prywatności",
   "offer": "Oferta",
   "for-companies": "Dla firm",
   "for-individuals": "Dla osób prywatnych",
@@ -77,5 +77,7 @@
   "alt.taras": "Taras z widokiem na ogród",
   "alt.treeCutting": "Obinanie gałęzi z drzewa iglastego",
   "alt.trimmingThujaTrees": "Docinanie tuji",
-  "alt.van": "Bus na asfalcie z przyczepką oraz domami w tle"
+  "alt.van": "Bus na asfalcie z przyczepką oraz domami w tle",
+  "page-not-found": "Nie znaleziono strony",
+  "page-not-found-description": "Strona, której szukasz, nie istnieje lub została przeniesiona. Sprawdź adres URL lub wróć na stronę główną."
 }

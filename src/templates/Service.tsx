@@ -1,13 +1,5 @@
 import React from "react";
-import { MDXProvider } from "@mdx-js/react";
-import {
-  Heading1,
-  Heading2,
-  OrderedList,
-  UnorderedList,
-  Paragraph,
-  Heading3,
-} from "@src/components/typography";
+import { Heading2 } from "@src/components/typography";
 import { ImageJsonNode, ServiceNode } from "@src/types/graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { t } from "@i18n";
@@ -17,7 +9,7 @@ import { Link } from "gatsby";
 import { FiArrowLeft } from "react-icons/fi";
 import { BreadcrumbLink, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { ROUTES } from "@src/constants";
-import { ParagraphType } from "@src/types/typography";
+import { MdxCustomProvider } from "@src/components/mdx";
 
 type Props = {
   pageContext: ServiceNode<
@@ -26,21 +18,6 @@ type Props = {
   >;
   uri: string;
   children: React.ReactNode;
-};
-
-const ParagraphWithMargin = ({ children, ...rest }: ParagraphType) => (
-  <Paragraph my="4" {...rest}>
-    {children}
-  </Paragraph>
-);
-
-const shortcodes = {
-  h1: Heading1,
-  h2: Heading2,
-  h3: Heading3,
-  p: ParagraphWithMargin,
-  ul: UnorderedList,
-  ol: OrderedList,
 };
 
 const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
@@ -72,7 +49,7 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
       </Flex>
       <Grid templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }} gap={6}>
         <GridItem>
-          <MDXProvider components={shortcodes}>{children}</MDXProvider>
+          <MdxCustomProvider>{children}</MdxCustomProvider>
         </GridItem>
         <GridItem>
           <GatsbyImage
