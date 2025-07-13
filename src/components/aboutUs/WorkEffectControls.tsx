@@ -41,6 +41,7 @@ const WorkEffectControls = ({ controls, activeEffect, onChange }: Props) => {
             }
             onMouseEnter={() => onChange(index)}
             active={activeEffect.category === control}
+            ariaLabel={`${t("Kliknij, aby przejdż do galerii o kategorii")} ${t(control)}`}
           >
             {t(control)}
           </CategoryButton>

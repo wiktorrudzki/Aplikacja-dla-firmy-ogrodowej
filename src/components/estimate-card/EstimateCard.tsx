@@ -43,8 +43,11 @@ const EstimateCard = () => {
       >
         <Paragraph textAlign="center">{t("Skorzystaj z darmowej")}</Paragraph>
         <Paragraph>{t("wyceny")}</Paragraph>
-
-        <Link href={`tel:${t("telephone-number")}`} color="green.500">
+        <Link
+          href={`tel:${t("telephone-number")}`}
+          color="green.500"
+          aria-label={t("Kliknij, aby zadzwonić")}
+        >
           <Flex gap={2} alignItems="center">
             <MdPhone size={16} color={green} />
             <Heading2 fontSize={{ base: "lg", lg: "2xl" }} textAlign="center">
