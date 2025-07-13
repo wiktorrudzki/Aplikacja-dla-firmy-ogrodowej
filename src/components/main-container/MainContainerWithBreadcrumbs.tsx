@@ -13,7 +13,7 @@ const MainContainerWithBreadcrumbs = ({
   ...rest
 }: Props) => (
   <MainContainer {...rest}>
-    <Breadcrumb.Root pb={{ base: 4, lg: 6 }}>
+    <Breadcrumb.Root size="lg" pb={{ base: 4, lg: 6 }}>
       <Breadcrumb.List>
         {breadcrumbs.map((el, i) => (
           <React.Fragment

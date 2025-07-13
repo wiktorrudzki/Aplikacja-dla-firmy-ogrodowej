@@ -23,7 +23,7 @@ const useOurServices = (className?: string) => {
       },
       {
         title: t("business-client"),
-        aboutDescription: t("individual-client-about"),
+        aboutDescription: t("business-client-about"),
         homeDescription: t("business-client-homepage"),
         route: ROUTES.DLA_FIRM,
         image: (

@@ -34,7 +34,7 @@ const Footer = () => {
           }}
         />
         <VStack align="start">
-          <Heading2>{t("contact-details")}</Heading2>
+          <Heading2 fontWeight={600}>{t("contact-details")}</Heading2>
           <FooterContactDetail icon={MdLocationOn}>
             {t("adress-details")}
           </FooterContactDetail>
@@ -59,7 +59,7 @@ const Footer = () => {
         </VStack>
 
         <VStack align="start">
-          <Heading2>{t("useful-links")}</Heading2>
+          <Heading2 fontWeight={600}>{t("useful-links")}</Heading2>
           <FooterLink to={ROUTES.HOME}>{t("homepage")}</FooterLink>
           <FooterLink to={ROUTES.O_NAS}>{t("about-us")}</FooterLink>
           <FooterLink to={ROUTES.GALERIA}>{t("gallery")}</FooterLink>
@@ -70,7 +70,7 @@ const Footer = () => {
         </VStack>
 
         <VStack align="start">
-          <Heading2>{t("offer")}</Heading2>
+          <Heading2 fontWeight={600}>{t("offer")}</Heading2>
           <FooterLink to={ROUTES.DLA_FIRM}>{t("for-companies")}</FooterLink>
           <FooterLink to={ROUTES.KLIENT_INDYWIDUALNY}>
             {t("for-individuals")}
@@ -78,7 +78,7 @@ const Footer = () => {
         </VStack>
 
         <VStack align="start">
-          <Heading2>{t("our-social-media")}</Heading2>
+          <Heading2 fontWeight={600}>{t("our-social-media")}</Heading2>
           <HStack>
             <Link
               aria-label={t("Kliknij, aby przejść do Facebooka")}
