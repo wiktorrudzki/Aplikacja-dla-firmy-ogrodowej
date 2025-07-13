@@ -10,6 +10,7 @@ type Props = {
   noUnderline?: boolean;
   mode?: NAVIGATION_MODE;
   ariaLabel?: string;
+  tabIndex?: number;
   onClick?: () => void;
 };
 
@@ -18,6 +19,7 @@ const CustomLink = ({
   children,
   noUnderline,
   ariaLabel,
+  tabIndex,
   mode = NAVIGATION_MODE.DARK,
   onClick,
 }: Props) => {
@@ -29,6 +31,7 @@ const CustomLink = ({
       onClick={onClick}
       style={{ textDecoration: "none" }}
       to={to}
+      tabIndex={tabIndex}
     >
       <Heading3
         color={mode === NAVIGATION_MODE.DARK ? "black" : "white"}
