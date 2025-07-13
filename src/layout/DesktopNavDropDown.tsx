@@ -65,7 +65,7 @@ const DesktopNavDropDown = ({ label, mode, children }: Props) => {
           transform="translateX(-50%)"
           textAlign="center"
           shadow="element"
-          borderRadius="sm"
+          borderRadius="lg"
           onMouseEnter={open}
           onMouseLeave={deferClose}
           onFocus={open}

@@ -31,20 +31,20 @@ const MobileCollapsibleLink = React.forwardRef<MobileCollapsibleActions, Props>(
         <Collapsible.Trigger
           onClick={() => setIsOpen((prevValue) => !prevValue)}
         >
-          <HStack>
-            <CustomLink ariaLabel={t("Kliknij, aby schować menu")} to="#">
+          <CustomLink ariaLabel={t("Kliknij, aby schować menu")} to="#">
+            <HStack>
               {label}
-            </CustomLink>
-            <BiChevronRight
-              style={{
-                transform: `rotate(${isOpen ? "90deg" : "0"})`,
-                transition: "transform 100ms ease-in-out",
-              }}
-            />
-          </HStack>
+              <BiChevronRight
+                style={{
+                  transform: `rotate(${isOpen ? "90deg" : "0"})`,
+                  transition: "transform 100ms ease-in-out",
+                }}
+              />
+            </HStack>
+          </CustomLink>
         </Collapsible.Trigger>
         <Collapsible.Content>
-          <Stack gap={10} pt={8} pl={4}>
+          <Stack gap={5} pt={8} pl={4}>
             {children}
           </Stack>
         </Collapsible.Content>

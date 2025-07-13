@@ -64,25 +64,21 @@ const MobileNav = ({ hidden, onClose }: Props) => {
         >
           <CgClose size={32} color="black" />
         </IconButton>
-        <Link onClick={handleClose} noUnderline to={ROUTES.O_NAS}>
+        <Link onClick={handleClose} to={ROUTES.O_NAS}>
           {t("O nas")}
         </Link>
         <MobileCollapsibleLink label={t("Usługi")} ref={servicesCollapsibleRef}>
-          <Link onClick={handleClose} noUnderline to={ROUTES.DLA_FIRM}>
+          <Link onClick={handleClose} to={ROUTES.DLA_FIRM}>
             {t("business-client")}
           </Link>
-          <Link
-            onClick={handleClose}
-            noUnderline
-            to={ROUTES.KLIENT_INDYWIDUALNY}
-          >
+          <Link onClick={handleClose} to={ROUTES.KLIENT_INDYWIDUALNY}>
             {t("individual-client")}
           </Link>
         </MobileCollapsibleLink>
-        <Link onClick={handleClose} noUnderline to={ROUTES.GALERIA}>
+        <Link onClick={handleClose} to={ROUTES.GALERIA}>
           {t("Galeria")}
         </Link>
-        <Link onClick={handleClose} noUnderline to={ROUTES.KONTAKT}>
+        <Link onClick={handleClose} to={ROUTES.KONTAKT}>
           {t("Kontakt")}
         </Link>
       </Stack>
