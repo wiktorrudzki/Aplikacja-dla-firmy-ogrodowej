@@ -11,10 +11,10 @@ const NavigationMarginContainer = ({
   children,
   ...passThroughProps
 }: Props) => {
-  const { navigationHeighRem } = useResponsiveValues();
+  const { navigationHeightRem } = useResponsiveValues();
   return (
     <Container
-      marginTop={formatToRem(navigationHeighRem + 1)}
+      marginTop={formatToRem(navigationHeightRem + 1)}
       {...passThroughProps}
     >
       {children}

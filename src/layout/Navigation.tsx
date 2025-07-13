@@ -9,7 +9,7 @@ import ShowMobileNav from "./ShowMobileNav";
 
 const Navigation = () => {
   const navRef = useRef<HTMLDivElement>(null);
-  const { isMobile, navigationHeighRem } = useResponsiveValues();
+  const { isMobile, navigationHeightRem } = useResponsiveValues();
 
   const { isScrolled, hidden, navMode, showNav, hideNav } =
     useNavigationMode(navRef);
@@ -25,7 +25,7 @@ const Navigation = () => {
       bg={isScrolled ? "white" : "transparent"}
       zIndex="1000"
       transition="background-color 0.3s ease"
-      height={formatToRem(navigationHeighRem)}
+      height={formatToRem(navigationHeightRem)}
       px={{ base: 4, lg: 12 }}
     >
       <Flex justify="space-between" align="center" wrap="wrap" h="full">

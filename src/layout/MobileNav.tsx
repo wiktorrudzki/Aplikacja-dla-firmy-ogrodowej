@@ -16,7 +16,7 @@ type Props = {
 };
 
 const MobileNav = ({ hidden, onClose }: Props) => {
-  const { navigationHeighRem } = useResponsiveValues();
+  const { navigationHeightRem } = useResponsiveValues();
   const servicesCollapsibleRef = React.useRef<MobileCollapsibleActions>(null);
 
   const handleClose = useCallback(() => {
@@ -58,7 +58,7 @@ const MobileNav = ({ hidden, onClose }: Props) => {
           onClick={handleClose}
           width="100%"
           display="flex"
-          height={formatToRem(navigationHeighRem)}
+          height={formatToRem(navigationHeightRem)}
           justifyContent="flex-end"
           aria-label={t("Kliknij, aby schować nawigację")}
         >
