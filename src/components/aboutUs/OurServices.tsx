@@ -1,4 +1,4 @@
-import { Container, Grid, VStack } from "@chakra-ui/react";
+import { Grid, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Heading1 } from "../typography";
 import { t } from "@src/utils/i18n";
@@ -32,7 +32,10 @@ const OurServices = () => {
           spaceBetween={64}
         >
           {services.map((service, index) => (
-            <SwiperSlide key={service.title} style={{ height: "100%" }}>
+            <SwiperSlide
+              key={service.title}
+              style={{ display: "flex", height: "auto" }}
+            >
               <Grid
                 templateColumns={{ base: "initial", md: "repeat(2, 1fr)" }}
                 templateRows={{ base: "repeat(2, 1fr)", md: "initial" }}
