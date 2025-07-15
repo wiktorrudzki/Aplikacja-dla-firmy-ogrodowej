@@ -7,7 +7,7 @@ type Props = {
 };
 
 const ServiceCards = ({ services }: Props) => (
-  <Wrap gap="6" justifyContent="center">
+  <Wrap gap={{ base: "4", md: "6" }} justifyContent="center">
     {services.map((service, index) => (
       <ServiceCard key={`${service?.title}_${index}`} service={service} />
     ))}
