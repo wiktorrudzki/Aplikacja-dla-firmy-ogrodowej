@@ -26,7 +26,7 @@ const EstimateCard = () => {
       position="fixed"
       bottom={{ base: 2, md: 4 }}
       right={{ base: 2, md: 4 }}
-      zIndex={10}
+      zIndex={1}
       drag="x"
       dragConstraints={{ left: 0, right: closedOffset }}
       animate={{ x: 0 }}
