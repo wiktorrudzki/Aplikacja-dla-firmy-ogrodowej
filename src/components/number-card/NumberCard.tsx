@@ -11,7 +11,14 @@ type Props = {
 };
 
 const NumberCard = ({ details, index = 0 }: Props) => (
-  <AnimateCursorSpotlightOnHover spotlightColor="green.200" borderRadius="2xl">
+  <AnimateCursorSpotlightOnHover
+    _hover={{
+      scale: 1.05,
+    }}
+    transition="scale 0.25s ease"
+    spotlightColor="green.200"
+    borderRadius="2xl"
+  >
     <VStack
       textAlign="center"
       bgColor="green.50"
