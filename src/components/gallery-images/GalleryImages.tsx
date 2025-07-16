@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import { getImageJsonImage } from "@src/helpers";
 import { ImageJsonNode } from "@src/types/graphql";
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
@@ -32,12 +32,12 @@ const GalleryImages = ({ imageJsons }: Props) => {
       <Grid
         justifySelf="center"
         templateColumns={{
-          base: "auto",
-          md: "repeat(2, 1fr)",
+          base: "repeat(2, 1fr)",
           lg: "repeat(3, 1fr)",
         }}
-        gap="8"
+        gap={{ base: "4", md: "8" }}
         my="4"
+        gridAutoRows="10px"
       >
         {imageJsons.map((imageJson, index) => {
           const image = getImageJsonImage(imageJson);
