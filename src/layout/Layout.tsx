@@ -3,6 +3,7 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { Stack } from "@chakra-ui/react";
 import { EstimateCard } from "@src/components/estimate-card";
+import { CookiesModal } from "@src/components/cookies";
 
 type Props = {
   children: React.ReactNode;
@@ -16,7 +17,8 @@ const Layout = ({ showFooter, showEstimateCard, children }: Props) => {
       <Navigation />
       {children}
       {showFooter && <Footer />}
-      {showEstimateCard && <EstimateCard fixedBottomRight />}
+      {showEstimateCard && <EstimateCard />}
+      <CookiesModal />
     </Stack>
   );
 };
