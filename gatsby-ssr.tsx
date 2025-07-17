@@ -30,14 +30,6 @@ export const onRenderBody = ({ setHeadComponents }) => {
     />,
     <link
       rel="preload"
-      href="/fonts/Inter_18pt-Regular.ttf"
-      as="font"
-      type="font/ttf"
-      crossOrigin="anonymous"
-      key="antonFont"
-    />,
-    <link
-      rel="preload"
       href="/fonts/Poppins-Medium.ttf"
       as="font"
       type="font/ttf"

@@ -38,11 +38,3 @@
   font-named-instance: "Regular";
   src: url("/fonts/Nunito-Regular.ttf") format("truetype");
 }
-@font-face {
-  font-family: "Inter";
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-  font-named-instance: "Regular";
-  src: url("/fonts/Inter_18pt-Regular.ttf") format("truetype");
-}
