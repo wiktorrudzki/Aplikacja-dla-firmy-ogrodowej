@@ -12,7 +12,7 @@ type Props = {
 
 const DesktopNav = ({ navMode }: Props) => {
   return (
-    <Box display={{ base: "none", md: "flex" }} gap={{ base: 6, lg: 16 }}>
+    <Box display={{ base: "none", md: "flex" }} gap={{ base: 2, lg: 4 }}>
       <Link mode={navMode} to={ROUTES.O_NAS}>
         {t("O nas")}
       </Link>

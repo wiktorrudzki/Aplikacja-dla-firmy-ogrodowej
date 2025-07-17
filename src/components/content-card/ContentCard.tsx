@@ -1,5 +1,6 @@
 import { Box, Stack, StackProps, useToken } from "@chakra-ui/react";
 import { ImageDetails } from "@src/types/images";
+import { t } from "@src/utils/i18n";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 
@@ -19,7 +20,7 @@ function ContentCard({ children, backgroundImageDetails, ...props }: Props) {
   const bgImageEl = backgroundImageDetails ? (
     <GatsbyImage
       image={backgroundImageDetails.data}
-      alt={backgroundImageDetails.alt}
+      alt={t(backgroundImageDetails.alt)}
       style={{
         position: "absolute",
         top: 0,

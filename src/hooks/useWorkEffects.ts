@@ -23,7 +23,7 @@ const useWorkEffects = () => {
           imageJsons {
             id
             altKey
-            ...BigGalleryImage
+            ...GalleryImage
           }
         }
       }

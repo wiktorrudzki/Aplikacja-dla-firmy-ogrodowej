@@ -15,7 +15,7 @@ const useOurServices = (className?: string) => {
         image: (
           <StaticImage
             src="../assets/images/house.jpg"
-            alt="skyscraper"
+            alt="Nowoczesny wieżowiec"
             loading="eager"
             className={className}
           />
@@ -23,13 +23,13 @@ const useOurServices = (className?: string) => {
       },
       {
         title: t("business-client"),
-        aboutDescription: t("individual-client-about"),
+        aboutDescription: t("business-client-about"),
         homeDescription: t("business-client-homepage"),
         route: ROUTES.DLA_FIRM,
         image: (
           <StaticImage
             src="../assets/images/skyscraper.jpg"
-            alt="house"
+            alt="Dom z tarasem oraz częścią ogrodu"
             loading="eager"
             className={className}
           />

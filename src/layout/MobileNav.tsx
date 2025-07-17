@@ -1,6 +1,5 @@
 import { Box, IconButton, Stack } from "@chakra-ui/react";
-import { NAVIGATION_MODE } from "@src/types/navigation";
-import React, { useCallback, useRef } from "react";
+import React, { useCallback } from "react";
 import { CgClose } from "react-icons/cg";
 import Link from "./Link";
 import { t } from "@src/utils/i18n";
@@ -13,12 +12,11 @@ import { formatToRem } from "@src/helpers";
 
 type Props = {
   hidden: boolean;
-  navMode: NAVIGATION_MODE;
   onClose: () => void;
 };
 
-const MobileNav = ({ navMode, hidden, onClose }: Props) => {
-  const { navigationHeighRem } = useResponsiveValues();
+const MobileNav = ({ hidden, onClose }: Props) => {
+  const { navigationHeightRem } = useResponsiveValues();
   const servicesCollapsibleRef = React.useRef<MobileCollapsibleActions>(null);
 
   const handleClose = useCallback(() => {
@@ -60,30 +58,27 @@ const MobileNav = ({ navMode, hidden, onClose }: Props) => {
           onClick={handleClose}
           width="100%"
           display="flex"
-          height={formatToRem(navigationHeighRem)}
+          height={formatToRem(navigationHeightRem)}
           justifyContent="flex-end"
+          aria-label={t("Kliknij, aby schować nawigację")}
         >
           <CgClose size={32} color="black" />
         </IconButton>
-        <Link onClick={handleClose} noUnderline to={ROUTES.O_NAS}>
+        <Link onClick={handleClose} to={ROUTES.O_NAS}>
           {t("O nas")}
         </Link>
         <MobileCollapsibleLink label={t("Usługi")} ref={servicesCollapsibleRef}>
-          <Link onClick={handleClose} noUnderline to={ROUTES.DLA_FIRM}>
+          <Link onClick={handleClose} to={ROUTES.DLA_FIRM}>
             {t("business-client")}
           </Link>
-          <Link
-            onClick={handleClose}
-            noUnderline
-            to={ROUTES.KLIENT_INDYWIDUALNY}
-          >
+          <Link onClick={handleClose} to={ROUTES.KLIENT_INDYWIDUALNY}>
             {t("individual-client")}
           </Link>
         </MobileCollapsibleLink>
-        <Link onClick={handleClose} noUnderline to={ROUTES.GALERIA}>
+        <Link onClick={handleClose} to={ROUTES.GALERIA}>
           {t("Galeria")}
         </Link>
-        <Link onClick={handleClose} noUnderline to={ROUTES.KONTAKT}>
+        <Link onClick={handleClose} to={ROUTES.KONTAKT}>
           {t("Kontakt")}
         </Link>
       </Stack>

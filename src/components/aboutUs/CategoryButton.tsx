@@ -7,12 +7,18 @@ type Props = React.PropsWithChildren &
   ButtonProps & {
     to: ROUTES;
     active: boolean;
+    ariaLabel: string;
   };
 
-const CategoryButton = ({ children, active, to, ...props }: Props) => (
-  <Link to={to}>
+const CategoryButton = ({
+  children,
+  active,
+  to,
+  ariaLabel,
+  ...props
+}: Props) => (
+  <Link to={to} aria-label={ariaLabel}>
     <Button
-      aria-label={`category-${children?.toString()}-button`}
       rounded={16}
       size="xl"
       color={active ? "white" : "black"}

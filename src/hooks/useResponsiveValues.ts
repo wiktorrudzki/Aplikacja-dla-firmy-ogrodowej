@@ -4,7 +4,7 @@ import { useMemo } from "react";
 const useResponsiveValues = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
 
-  const navigationHeighRem = useMemo(() => (isMobile ? 5 : 7), [isMobile]);
+  const navigationHeightRem = useMemo(() => (isMobile ? 5 : 7), [isMobile]);
   const contactCardIconOffsetRem = useMemo(
     () => (isMobile ? 2 : 2.5),
     [isMobile],
@@ -13,7 +13,7 @@ const useResponsiveValues = () => {
 
   return {
     isMobile,
-    navigationHeighRem,
+    navigationHeightRem,
     contactCardIconOffsetRem,
     contactCardIconSizeRem,
   };

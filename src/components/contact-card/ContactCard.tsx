@@ -1,4 +1,4 @@
-import { Box, Container, Stack, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Container, Stack } from "@chakra-ui/react";
 import React from "react";
 import { IconType } from "react-icons";
 import { Heading2 } from "../typography";
@@ -8,17 +8,26 @@ type Props = {
   title: string;
   description: React.ReactNode;
   iconMode: "color" | "fill";
+  iconAriaLabel?: string;
   Icon: IconType;
 };
 
-const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
+const ContactCard = ({
+  title,
+  description,
+  iconMode,
+  iconAriaLabel,
+  Icon,
+}: Props) => {
   const { contactCardIconSizeRem, contactCardIconOffsetRem } =
     useResponsiveValues();
 
   return (
-    <Container width="fit-content" margin="0 auto" padding={0}>
+    <Container width="fit-content" maxW="100%" margin="0 auto" padding={0}>
       <Box
+        maxW="100%"
         as={Icon}
+        aria-label={iconAriaLabel}
         width={contactCardIconSizeRem * 4}
         height={contactCardIconSizeRem * 4}
         fill={iconMode === "fill" ? "green.500" : "transparent"}
@@ -27,14 +36,15 @@ const ContactCard = ({ title, description, iconMode, Icon }: Props) => {
         top={-contactCardIconOffsetRem * 4}
         position="absolute"
       />
-
       <Stack
+        maxW="100%"
         bg="white"
         width={335}
         height={185}
         rounded={8}
         justifyContent="center"
         alignItems="center"
+        textAlign="center"
       >
         <Heading2 fontWeight="medium">{title}</Heading2>
         {description}

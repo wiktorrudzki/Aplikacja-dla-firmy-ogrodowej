@@ -1,50 +1,86 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useLocation } from "@reach/router";
-import { Link } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import { NAVIGATION_MODE } from "@src/types/navigation";
 import { Heading3 } from "@src/components/typography";
+import { Link } from "@chakra-ui/react";
+import { useResponsiveValues } from "@src/hooks";
 
 type Props = {
   to: string;
   children: React.ReactNode;
-  noUnderline?: boolean;
+  noBackground?: boolean;
   mode?: NAVIGATION_MODE;
+  ariaLabel?: string;
+  tabIndex?: number;
   onClick?: () => void;
 };
 
 const CustomLink = ({
   to,
   children,
-  noUnderline,
+  noBackground,
+  ariaLabel,
+  tabIndex,
   mode = NAVIGATION_MODE.DARK,
   onClick,
 }: Props) => {
   const location = useLocation();
+  const { isMobile } = useResponsiveValues();
+  const isActive = location.pathname.includes(to);
+
+  const bgColor = useMemo(
+    () => (mode === NAVIGATION_MODE.DARK ? "green.400" : "white"),
+    [mode],
+  );
+
+  const hoverTextColor = mode === NAVIGATION_MODE.DARK ? "white" : "black";
 
   return (
-    <Link onClick={onClick} style={{ textDecoration: "none" }} to={to}>
-      <Heading3
-        color={mode === NAVIGATION_MODE.DARK ? "black" : "white"}
-        position="relative"
-        textDecoration="none"
-        margin={0}
-        _after={
-          location.pathname.includes(to) && !noUnderline
-            ? {
-                content: '""',
-                position: "absolute",
-                left: "10%",
-                bottom: "-5px",
-                width: "80%",
-                height: "2px",
-                bg: mode === NAVIGATION_MODE.DARK ? "black" : "white",
-                borderRadius: "2px",
-              }
-            : {}
-        }
+    <Link
+      py="2"
+      px="4"
+      rounded="full"
+      width="fit-content"
+      transition="all 0.2s ease-in-out"
+      bgColor={isActive && !noBackground ? bgColor : "transparent"}
+      _hover={{
+        bg: !noBackground ? bgColor : undefined,
+        color: hoverTextColor,
+      }}
+      _focus={{
+        boxShadow: "none",
+        border: noBackground ? "none" : "1px solid",
+        borderColor: noBackground ? "transparent" : bgColor,
+      }}
+      color={
+        isMobile
+          ? "black"
+          : mode === NAVIGATION_MODE.DARK
+            ? isActive
+              ? "white"
+              : "black"
+            : isActive
+              ? "black"
+              : "white"
+      }
+      outline="none"
+      border={!noBackground ? "1px solid" : "none"}
+      borderColor={!noBackground ? bgColor : undefined}
+      shadow={noBackground ? "initial" : "sm"}
+      asChild
+    >
+      <GatsbyLink
+        aria-label={ariaLabel}
+        onClick={onClick}
+        style={{ textDecoration: "none" }}
+        to={to}
+        tabIndex={tabIndex}
       >
-        {children}
-      </Heading3>
+        <Heading3 fontSize="lg" transition="color 0.2s ease-in-out">
+          {children}
+        </Heading3>
+      </GatsbyLink>
     </Link>
   );
 };

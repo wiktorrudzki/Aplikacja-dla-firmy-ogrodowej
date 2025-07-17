@@ -22,7 +22,7 @@ const Footer = () => {
       >
         <img
           src={grass}
-          alt="Tło trawy"
+          alt="Wiosenna, zielona trawa"
           style={{
             objectFit: "cover",
             width: "100%",
@@ -34,33 +34,43 @@ const Footer = () => {
           }}
         />
         <VStack align="start">
-          <Heading2>{t("contact-details")}</Heading2>
+          <Heading2 fontWeight={600}>{t("contact-details")}</Heading2>
           <FooterContactDetail icon={MdLocationOn}>
             {t("adress-details")}
           </FooterContactDetail>
           <FooterContactDetail icon={MdMail}>
-            <Link href={`mailto:${t("email-address")}`} color="white">
+            <Link
+              aria-label={t("Napisz maila")}
+              href={`mailto:${t("email-address")}`}
+              color="white"
+            >
               {t("email-address")}
             </Link>
           </FooterContactDetail>
           <FooterContactDetail icon={MdPhoneIphone}>
-            <Link href={`tel:${t("telephone-number")}`} color="white">
+            <Link
+              aria-label={t("Zadzwoń")}
+              href={`tel:${t("telephone-number")}`}
+              color="white"
+            >
               {t("telephone-number")}
             </Link>
           </FooterContactDetail>
         </VStack>
 
         <VStack align="start">
-          <Heading2>{t("useful-links")}</Heading2>
+          <Heading2 fontWeight={600}>{t("useful-links")}</Heading2>
           <FooterLink to={ROUTES.HOME}>{t("homepage")}</FooterLink>
           <FooterLink to={ROUTES.O_NAS}>{t("about-us")}</FooterLink>
           <FooterLink to={ROUTES.GALERIA}>{t("gallery")}</FooterLink>
           <FooterLink to={ROUTES.KONTAKT}>{t("contact")}</FooterLink>
-          <FooterLink to={ROUTES.REGULAMIN}>{t("regulations")}</FooterLink>
+          <FooterLink to={ROUTES.POLITYKA_PRYWATNOSCI}>
+            {t("policy-privacy")}
+          </FooterLink>
         </VStack>
 
         <VStack align="start">
-          <Heading2>{t("offer")}</Heading2>
+          <Heading2 fontWeight={600}>{t("offer")}</Heading2>
           <FooterLink to={ROUTES.DLA_FIRM}>{t("for-companies")}</FooterLink>
           <FooterLink to={ROUTES.KLIENT_INDYWIDUALNY}>
             {t("for-individuals")}
@@ -68,12 +78,18 @@ const Footer = () => {
         </VStack>
 
         <VStack align="start">
-          <Heading2>{t("our-social-media")}</Heading2>
+          <Heading2 fontWeight={600}>{t("our-social-media")}</Heading2>
           <HStack>
-            <Link href="https://www.facebook.com/">
+            <Link
+              aria-label={t("Kliknij, aby przejść do Facebooka")}
+              href="https://www.facebook.com/"
+            >
               <BsFacebook color="white" size="2rem" />
             </Link>
-            <Link href="https://www.instagram.com/">
+            <Link
+              aria-label={t("Kliknij, aby przejść do Instagrama")}
+              href="https://www.instagram.com/"
+            >
               <BsInstagram color="white" size="2rem" />
             </Link>
           </HStack>

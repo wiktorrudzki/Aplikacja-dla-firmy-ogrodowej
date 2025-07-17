@@ -5,7 +5,7 @@ enum ROUTES {
   GALERIA = "/galeria",
   DLA_FIRM = "/dla-firm",
   KLIENT_INDYWIDUALNY = "/klient-indywidualny",
-  REGULAMIN = "/regulamin",
+  POLITYKA_PRYWATNOSCI = "/polityka-prywatnosci",
 }
 
 export default ROUTES;
