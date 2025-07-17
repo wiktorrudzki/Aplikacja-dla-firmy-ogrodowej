@@ -14,41 +14,41 @@ export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
     <link
       rel="preload"
-      href="/fonts/Anton-Regular.ttf"
+      href="/fonts/Anton-Regular.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossOrigin="anonymous"
       key="antonFont"
     />,
     <link
       rel="preload"
-      href="/fonts/Amiko-Regular.ttf"
+      href="/fonts/Amiko-Regular.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossOrigin="anonymous"
       key="antonFont"
     />,
     <link
       rel="preload"
-      href="/fonts/Poppins-Medium.ttf"
+      href="/fonts/Poppins-Medium.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossOrigin="anonymous"
       key="antonFont"
     />,
     <link
       rel="preload"
-      href="/fonts/Poppins-Regular.ttf"
+      href="/fonts/Poppins-Regular.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossOrigin="anonymous"
       key="antonFont"
     />,
     <link
       rel="preload"
-      href="/fonts/Nunito-Regular.ttf"
+      href="/fonts/Nunito-Regular.woff2"
       as="font"
-      type="font/ttf"
+      type="font/woff2"
       crossOrigin="anonymous"
       key="antonFont"
     />,

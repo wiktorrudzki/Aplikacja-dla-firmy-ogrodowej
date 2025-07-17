@@ -4,7 +4,7 @@
   font-display: swap;
   font-style: normal;
   font-named-instance: "Regular";
-  src: url("/fonts/Anton-Regular.ttf") format("truetype");
+  src: url("/fonts/Anton-Regular.woff2") format("woff2");
 }
 @font-face {
   font-family: "Amiko";
@@ -12,7 +12,7 @@
   font-display: swap;
   font-style: normal;
   font-named-instance: "Regular";
-  src: url("/fonts/Amiko-Regular.ttf") format("truetype");
+  src: url("/fonts/Amiko-Regular.woff2") format("woff2");
 }
 @font-face {
   font-family: "Poppins";
@@ -20,7 +20,7 @@
   font-display: swap;
   font-style: normal;
   font-named-instance: "Regular";
-  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+  src: url("/fonts/Poppins-Regular.woff2") format("woff2");
 }
 @font-face {
   font-family: "Poppins";
@@ -28,7 +28,7 @@
   font-display: swap;
   font-style: normal;
   font-named-instance: "Medium";
-  src: url("/fonts/Poppins-Medium.ttf") format("truetype");
+  src: url("/fonts/Poppins-Medium.woff2") format("woff2");
 }
 @font-face {
   font-family: "Nunito";
@@ -36,5 +36,5 @@
   font-display: swap;
   font-style: normal;
   font-named-instance: "Regular";
-  src: url("/fonts/Nunito-Regular.ttf") format("truetype");
+  src: url("/fonts/Nunito-Regular.woff2") format("woff2");
 }
