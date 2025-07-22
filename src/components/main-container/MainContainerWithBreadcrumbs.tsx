@@ -44,6 +44,7 @@ const MainContainerWithBreadcrumbs = ({
               >
                 <Breadcrumb.Item>
                   <Breadcrumb.CurrentLink
+                    textAlign="center"
                     style={isNotLast ? undefined : activeStyles}
                     asChild
                   >
