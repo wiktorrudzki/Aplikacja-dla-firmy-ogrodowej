@@ -13,7 +13,7 @@ type Props = {
 
 const Layout = ({ showFooter, showEstimateCard, children }: Props) => {
   return (
-    <Stack minHeight="100vh" justifyContent="space-between" gap={0}>
+    <Stack minHeight="100svh" justifyContent="space-between" gap={0}>
       <Navigation />
       {children}
       {showFooter && <Footer />}
