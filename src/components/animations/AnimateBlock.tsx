@@ -1,3 +1,4 @@
+import { useResponsiveValues } from "@src/hooks";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import React, { useRef } from "react";
 
@@ -7,7 +8,11 @@ type Props = {
 
 const AnimateSection = ({ children }: Props) => {
   const elementRef = useRef(null);
-  const isInView = useInView(elementRef, { once: true, amount: 0.5 });
+  const { isMobile } = useResponsiveValues();
+  const isInView = useInView(elementRef, {
+    once: true,
+    amount: isMobile ? 0.2 : 0.5,
+  });
   const shouldReduceMotion = useReducedMotion();
   const initialStyle = { opacity: 0, x: -80 };
 
