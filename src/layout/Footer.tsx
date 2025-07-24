@@ -70,10 +70,10 @@ const Footer = () => {
         <VStack align="start">
           <Heading2>{t("our-social-media")}</Heading2>
           <HStack>
-            <Link href={LINKS.Facebook}>
+            <Link href={LINKS.Facebook} target="_blank">
               <BsFacebook color="white" size="2rem" />
             </Link>
-            <Link href={LINKS.Instagram}>
+            <Link href={LINKS.Instagram} target="_blank">
               <BsInstagram color="white" size="2rem" />
             </Link>
           </HStack>
