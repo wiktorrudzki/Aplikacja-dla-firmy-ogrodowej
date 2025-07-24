@@ -12,7 +12,7 @@ import { formatToRem } from "@src/helpers";
 
 const WorkEffects = () => {
   const effects = useWorkEffects();
-  const { navigationHeighRem } = useResponsiveValues();
+  const { navigationHeightRem } = useResponsiveValues();
 
   const outerSwiperRef = React.useRef<SwiperRef | null>(null);
 
@@ -26,7 +26,7 @@ const WorkEffects = () => {
   return (
     <VStack
       w="100%"
-      h={`calc(100svh - ${formatToRem(navigationHeighRem)})`}
+      h={`calc(100svh - ${formatToRem(navigationHeightRem)})`}
       position="relative"
     >
       <Swiper

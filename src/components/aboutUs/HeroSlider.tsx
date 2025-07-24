@@ -9,11 +9,11 @@ import Slide from "./Slide";
 import { nextXElementsFromList } from "@src/helpers";
 import { useOurValues } from "@src/hooks";
 
-const HeroSlider = () => {
+const HeroSlider = React.forwardRef(({}, ref) => {
   const slides = useOurValues();
 
   return (
-    <Box as="section" position="relative" zIndex={2} overflowX="hidden">
+    <Box as="section" overflowX="hidden" ref={ref}>
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         pagination={{
@@ -40,6 +40,6 @@ const HeroSlider = () => {
       </Swiper>
     </Box>
   );
-};
+});
 
 export default HeroSlider;

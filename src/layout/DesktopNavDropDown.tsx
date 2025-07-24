@@ -3,6 +3,7 @@ import { NAVIGATION_MODE } from "@src/types/navigation";
 import React from "react";
 import { BiChevronDown } from "react-icons/bi";
 import CustomLink from "./Link";
+import { t } from "@src/utils/i18n";
 
 type Props = {
   label: string;
@@ -16,28 +17,47 @@ const DesktopNavDropDown = ({ label, mode, children }: Props) => {
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const open = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    preventFromSideEffects();
     setIsOpen(true);
   };
 
-  const close = () => setIsOpen(false);
+  const close = () => {
+    preventFromSideEffects();
+    setIsOpen(false);
+  };
 
   const deferClose = () => {
-    timeoutRef.current = setTimeout(close, 200);
+    preventFromSideEffects();
+    timeoutRef.current = setTimeout(() => setIsOpen(false), 200);
   };
+
+  const preventFromSideEffects = () =>
+    timeoutRef.current && clearTimeout(timeoutRef.current);
 
   return (
     <Box position="relative">
-      <CustomLink mode={mode} to="#">
-        <HStack onMouseEnter={open} onMouseLeave={deferClose}>
-          {label}
-          <BiChevronDown />
-        </HStack>
-      </CustomLink>
+      <Box
+        onMouseEnter={open}
+        onMouseLeave={deferClose}
+        onFocus={open}
+        onBlur={deferClose}
+      >
+        <CustomLink
+          ariaLabel={t("Najedź lub użyj Tab, aby wysunąć menu")}
+          mode={mode}
+          to="#"
+        >
+          <HStack tabIndex={0}>
+            {label}
+            <BiChevronDown />
+          </HStack>
+        </CustomLink>
+      </Box>
+
       {isOpen && (
         <Box
           position="absolute"
-          left="calc(50%)"
+          left="50%"
           marginTop="4"
           padding="6"
           bgColor={mode === NAVIGATION_MODE.DARK ? "white" : transparentBlack}
@@ -45,9 +65,11 @@ const DesktopNavDropDown = ({ label, mode, children }: Props) => {
           transform="translateX(-50%)"
           textAlign="center"
           shadow="element"
-          borderRadius="sm"
+          borderRadius="lg"
           onMouseEnter={open}
           onMouseLeave={deferClose}
+          onFocus={open}
+          onBlur={deferClose}
         >
           <VStack gap="6" onClick={close}>
             {children}

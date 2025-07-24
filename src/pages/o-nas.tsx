@@ -12,11 +12,20 @@ import { t } from "@i18n";
 import { HeadFC } from "gatsby";
 import React from "react";
 import { AnimateBlock } from "@src/components/animations";
+import { useInView } from "framer-motion";
+import { AnimatedEstimateCard } from "@src/components/estimate-card";
 
 const About: GatsbyPageWithLayout = () => {
+  const HeroSliderRef = React.useRef<HTMLElement>(null);
+  const isHeroSliderVisible = useInView(HeroSliderRef, {
+    initial: true,
+    amount: 0.7,
+  });
+
   return (
     <>
-      <HeroSlider />
+      <HeroSlider ref={HeroSliderRef} />
+      <AnimatedEstimateCard isVisible={!isHeroSliderVisible} />
 
       <AnimateBlock>
         <OurServices />
@@ -36,6 +45,8 @@ const About: GatsbyPageWithLayout = () => {
     </>
   );
 };
+
+About.hideEstimateCard = true;
 
 export default About;
 

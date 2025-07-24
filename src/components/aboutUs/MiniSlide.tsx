@@ -47,7 +47,7 @@ const MiniSlide = ({ slide, zIndex, onClick }: Props) => {
           borderRadius: 32,
         }}
         image={image}
-        alt={slide.alt}
+        alt={t(slide.alt)}
       />
       <Box
         position="absolute"

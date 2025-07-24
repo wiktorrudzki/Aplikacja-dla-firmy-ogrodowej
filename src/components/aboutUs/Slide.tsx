@@ -5,6 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import MiniSlide from "./MiniSlide";
 import SlideDetails from "./SlideDetails";
 import { useSwiper } from "swiper/react";
+import { t } from "@src/utils/i18n";
 
 type Props = {
   slide: SlideType;
@@ -24,7 +25,7 @@ const Slide = ({ slide, nextSlides }: Props) => {
       {image != undefined ? (
         <GatsbyImage
           image={image}
-          alt={slide.alt}
+          alt={t(slide.alt)}
           style={{
             position: "fixed",
             height: "100%",
