@@ -1,4 +1,4 @@
-import { Dialog, Portal } from "@chakra-ui/react";
+import { Container, Dialog, Portal } from "@chakra-ui/react";
 import { ImageJsonNode } from "@src/types/graphql";
 import { t } from "@src/utils/i18n";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -25,7 +25,7 @@ const FullScreenImages = ({
   return (
     <Dialog.Root
       lazyMount
-      size="cover"
+      size="full"
       placement="center"
       motionPreset="slide-in-bottom"
       open={open}
@@ -33,43 +33,44 @@ const FullScreenImages = ({
     >
       {children}
       <Portal>
-        <Dialog.Positioner
-          padding={{ base: 4, md: 8, xl: 12 }}
-          background="rgba(0,0,0,0.5)"
-        >
-          <Dialog.Content
-            rounded={24}
-            w={{ base: "100%", lg: "90%", xl: "80%", "2xl": "75%" }}
-            h={{ base: "50%", sm: "60%", md: "70%", lg: "80%", xl: "90%" }}
-          >
-            <Swiper
-              modules={[Navigation]}
-              initialSlide={startIndex}
-              style={{ width: "100%", height: "100%", borderRadius: 24 }}
-              navigation={{
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              }}
+        <Dialog.Positioner background="rgba(0,0,0,0.5)">
+          <Container>
+            <Dialog.Content
+              backgroundColor="transparent"
+              style={{ boxShadow: "none" }}
+              placeContent="center"
             >
-              {images.map((image) => {
-                const img = getImage(image.childImageSharp);
-                return img ? (
-                  <SwiperSlide key={`${image.id}_${t(image.altKey)}`}>
-                    <GatsbyImage
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                      }}
-                      image={img}
-                      objectFit="cover"
-                      alt={t(image.altKey)}
-                    />
-                  </SwiperSlide>
-                ) : null;
-              })}
-              <FullScreenImagesControls />
-            </Swiper>
-          </Dialog.Content>
+              <Swiper
+                modules={[Navigation]}
+                initialSlide={startIndex}
+                autoHeight={true}
+                slidesPerView="auto"
+                centeredSlides={true}
+                navigation={{
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                }}
+              >
+                {images.map((image) => {
+                  const img = getImage(image.childImageSharp);
+                  return img ? (
+                    <SwiperSlide
+                      key={`${image.id}_${t(image.altKey)}`}
+                      style={{ height: "90svh" }}
+                    >
+                      <GatsbyImage
+                        image={img}
+                        alt={t(image.altKey)}
+                        style={{ position: "static" }}
+                        objectFit="scale-down"
+                      />
+                    </SwiperSlide>
+                  ) : null;
+                })}
+                <FullScreenImagesControls />
+              </Swiper>
+            </Dialog.Content>
+          </Container>
         </Dialog.Positioner>
       </Portal>
     </Dialog.Root>
