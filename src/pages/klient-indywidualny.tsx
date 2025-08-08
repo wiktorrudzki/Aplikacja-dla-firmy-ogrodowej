@@ -20,7 +20,10 @@ type QueryType = GraphQLNodes<
 
 export const pageQuery = graphql`
   {
-    allService(filter: { categories: { in: INDIVIDUAL_CLIENT } }) {
+    allService(
+      filter: { categories: { in: INDIVIDUAL_CLIENT } }
+      sort: { orderIndividual: ASC }
+    ) {
       nodes {
         title
         slug

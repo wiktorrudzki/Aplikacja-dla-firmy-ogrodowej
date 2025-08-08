@@ -3,17 +3,18 @@ import { Heading2 } from "@src/components/typography";
 import { ImageJsonNode, ServiceNode } from "@src/types/graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { t } from "@i18n";
-import { getImageJsonImage } from "@src/helpers";
 import { MainContainerWithBreadcrumbs } from "@src/components/main-container";
 import { Link } from "gatsby";
 import { FiArrowLeft } from "react-icons/fi";
 import { BreadcrumbLink, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { ROUTES } from "@src/constants";
 import { MdxCustomProvider } from "@src/components/mdx";
+import "swiper/css";
+import { getImageJsonImage } from "@src/helpers";
 
 type Props = {
   pageContext: ServiceNode<
-    "id" | "imageJson" | "iconMapKey" | "title",
+    "id" | "imageJson" | "imageJsons" | "iconMapKey" | "title",
     ImageJsonNode<"id" | "altKey" | "childImageSharp">
   >;
   uri: string;
@@ -21,9 +22,7 @@ type Props = {
 };
 
 const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
-  const { title } = pageContext;
-
-  const image = getImageJsonImage(pageContext.imageJson);
+  const { title, imageJsons } = pageContext;
 
   const segments = uri
     .split("/")
@@ -31,12 +30,12 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
     .map((s) => `/${s}`);
 
   const breadcrumbs = [
-    <Link to={segments[0]}>
+    <Link to={segments[0]} key="link">
       {segments[0] === ROUTES.DLA_FIRM
         ? t("business-client")
         : t("individual-client")}
     </Link>,
-    <BreadcrumbLink>{title}</BreadcrumbLink>,
+    <BreadcrumbLink key="breadcrumb">{title}</BreadcrumbLink>,
   ];
 
   return (
@@ -51,15 +50,19 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
         <GridItem>
           <MdxCustomProvider>{children}</MdxCustomProvider>
         </GridItem>
-        <GridItem>
-          <GatsbyImage
-            style={{ borderRadius: 16 }}
-            image={image}
-            alt={t(pageContext.imageJson.altKey)}
-          />
+        <GridItem display="flex" flexDir="column" gap={8}>
+          {imageJsons.map((image) => (
+            <GatsbyImage
+              key={image.altKey}
+              style={{ borderRadius: 16 }}
+              image={getImageJsonImage(image)}
+              alt={t(image.altKey)}
+            />
+          ))}
         </GridItem>
       </Grid>
     </MainContainerWithBreadcrumbs>
   );
 };
+
 export default ServicePageTemplate;

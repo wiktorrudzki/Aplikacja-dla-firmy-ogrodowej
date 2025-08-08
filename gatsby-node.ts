@@ -42,8 +42,12 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           title: "String!",
           slug: "String!",
           imageTitle: "String!",
+          imageTitles: "[String!]!",
           imageJson: "ImageJson",
+          imageJsons: "[ImageJson!]!",
           iconMapKey: "String!",
+          orderBusiness: "Int",
+          orderIndividual: "Int",
           categories: "[ServiceCategory!]!",
         },
       }),
@@ -56,6 +60,9 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           title: "String!",
           slug: "String!",
           imageTitle: "String!",
+          imageTitles: "[String!]!",
+          orderBusiness: "Int",
+          orderIndividual: "Int",
           mdx: {
             type: "Mdx!",
             resolve: (source, _args, context) => {
@@ -71,6 +78,19 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
                   filter: { title: { eq: source.imageTitle } },
                 },
               }),
+          },
+          imageJsons: {
+            type: "[ImageJson!]!",
+            resolve: async (source, _args, context) => {
+              const { entries } = await context.nodeModel.findAll({
+                type: "ImageJson",
+                query: {
+                  filter: { title: { in: source.imageTitles } },
+                },
+              });
+
+              return entries;
+            },
           },
           iconMapKey: "String!",
           categories: "[ServiceCategory!]!",
@@ -162,7 +182,14 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     return;
 
   const serviceMdx = node as MdxNode<
-    ServiceFrontmatter<"title" | "imageTitle" | "iconMapKey" | "categories">
+    ServiceFrontmatter<
+      | "title"
+      | "imageTitle"
+      | "iconMapKey"
+      | "categories"
+      | "orderBusiness"
+      | "orderIndividual"
+    >
   >;
 
   const serviceNode = {
@@ -170,8 +197,11 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     title: serviceMdx.frontmatter.title,
     slug: createFilePath({ node, getNode, basePath: "services" }),
     imageTitle: serviceMdx.frontmatter.imageTitle,
+    imageTitles: serviceMdx.frontmatter.imageTitles ?? [],
     iconMapKey: serviceMdx.frontmatter.iconMapKey,
     categories: serviceMdx.frontmatter.categories,
+    orderBusiness: serviceMdx.frontmatter.orderBusiness,
+    orderIndividual: serviceMdx.frontmatter.orderIndividual,
     body: serviceMdx.body,
     parent: node.id,
     children: [],
@@ -210,6 +240,12 @@ export const createPages: GatsbyNode["createPages"] = async ({
           }
           iconMapKey
           imageJson {
+            altKey
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          imageJsons {
             altKey
             childImageSharp {
               gatsbyImageData

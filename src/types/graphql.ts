@@ -51,7 +51,10 @@ export enum GalleryCategory {
 type BaseServiceFrontmatter = {
   title?: string;
   imageTitle?: string;
+  imageTitles?: string[];
   iconMapKey?: string;
+  orderBusiness?: number;
+  orderIndividual?: number;
   categories?: string[];
 };
 
@@ -63,9 +66,13 @@ type Service<T = ImageJson, S = MdxNode> = {
   title?: string;
   slug?: string;
   imageTitle?: string;
+  imageTitles?: string[];
   imageJson?: T;
+  imageJsons?: T[];
   mdx?: S;
   iconMapKey?: string;
+  orderBusiness?: number;
+  orderIndividual?: number;
   categories?: ServiceCategory[];
 };
 
