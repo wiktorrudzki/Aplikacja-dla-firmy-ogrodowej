@@ -30,6 +30,8 @@ const ServiceCard = ({ service }: Props) => {
       display="flex"
       aspectRatio={{ base: 2.5, md: 1 }}
       w={{ base: "100%", md: "fit-content" }}
+      transition="transform 0.2s ease-in-out"
+      _hover={{ transform: "scale(1.05)" }}
     >
       <GatsbyImage
         objectFit="cover"

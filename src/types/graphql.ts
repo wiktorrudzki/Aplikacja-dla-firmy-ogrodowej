@@ -53,6 +53,8 @@ type BaseServiceFrontmatter = {
   imageTitle?: string;
   imageTitles?: string[];
   iconMapKey?: string;
+  orderBusiness?: number;
+  orderIndividual?: number;
   categories?: string[];
 };
 
@@ -69,6 +71,8 @@ type Service<T = ImageJson, S = MdxNode> = {
   imageJsons?: T[];
   mdx?: S;
   iconMapKey?: string;
+  orderBusiness?: number;
+  orderIndividual?: number;
   categories?: ServiceCategory[];
 };
 

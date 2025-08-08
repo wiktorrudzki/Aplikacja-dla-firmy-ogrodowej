@@ -50,7 +50,7 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
         <GridItem>
           <MdxCustomProvider>{children}</MdxCustomProvider>
         </GridItem>
-        <GridItem>
+        <GridItem display="flex" flexDir="column" gap={8}>
           {imageJsons.map((image) => (
             <GatsbyImage
               key={image.altKey}

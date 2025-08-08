@@ -46,6 +46,8 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           imageJson: "ImageJson",
           imageJsons: "[ImageJson!]!",
           iconMapKey: "String!",
+          orderBusiness: "Int",
+          orderIndividual: "Int",
           categories: "[ServiceCategory!]!",
         },
       }),
@@ -59,6 +61,8 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           slug: "String!",
           imageTitle: "String!",
           imageTitles: "[String!]!",
+          orderBusiness: "Int",
+          orderIndividual: "Int",
           mdx: {
             type: "Mdx!",
             resolve: (source, _args, context) => {
@@ -178,7 +182,14 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     return;
 
   const serviceMdx = node as MdxNode<
-    ServiceFrontmatter<"title" | "imageTitle" | "iconMapKey" | "categories">
+    ServiceFrontmatter<
+      | "title"
+      | "imageTitle"
+      | "iconMapKey"
+      | "categories"
+      | "orderBusiness"
+      | "orderIndividual"
+    >
   >;
 
   const serviceNode = {
@@ -189,6 +200,8 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     imageTitles: serviceMdx.frontmatter.imageTitles ?? [],
     iconMapKey: serviceMdx.frontmatter.iconMapKey,
     categories: serviceMdx.frontmatter.categories,
+    orderBusiness: serviceMdx.frontmatter.orderBusiness,
+    orderIndividual: serviceMdx.frontmatter.orderIndividual,
     body: serviceMdx.body,
     parent: node.id,
     children: [],
