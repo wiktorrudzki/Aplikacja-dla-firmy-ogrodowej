@@ -57,6 +57,7 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
             <Swiper
               modules={[Pagination, Autoplay]}
               slidesPerView={1}
+              spaceBetween={16}
               autoplay={{ delay: 6000 }}
               pagination={{
                 type: "bullets",
