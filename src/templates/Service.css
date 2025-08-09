@@ -1,0 +1,8 @@
+.service-images-swiper {
+  width: 100%;
+  height: auto;
+  gap: var(--chakra-sizes-8);
+  border-radius: var(--chakra-sizes-4);
+  display: flex;
+  flex-direction: column;
+}

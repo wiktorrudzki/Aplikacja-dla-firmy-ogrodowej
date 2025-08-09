@@ -6,11 +6,13 @@ import { t } from "@i18n";
 import { MainContainerWithBreadcrumbs } from "@src/components/main-container";
 import { Link } from "gatsby";
 import { FiArrowLeft } from "react-icons/fi";
-import { BreadcrumbLink, Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Box, BreadcrumbLink, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { ROUTES } from "@src/constants";
 import { MdxCustomProvider } from "@src/components/mdx";
-import "swiper/css";
 import { getImageJsonImage } from "@src/helpers";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "./Service.css";
 
 type Props = {
   pageContext: ServiceNode<
@@ -46,19 +48,37 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
         </Link>
         <Heading2 fontWeight={500}>{title}</Heading2>
       </Flex>
-      <Grid templateColumns={{ base: "1fr", lg: "repeat(2, 1fr)" }} gap={6}>
+      <Grid templateColumns={{ base: "1fr", lg: "1fr 1fr" }} gap={6}>
         <GridItem>
           <MdxCustomProvider>{children}</MdxCustomProvider>
         </GridItem>
-        <GridItem display="flex" flexDir="column" gap={8}>
-          {imageJsons.map((image) => (
-            <GatsbyImage
-              key={image.altKey}
-              style={{ borderRadius: 16 }}
-              image={getImageJsonImage(image)}
-              alt={t(image.altKey)}
-            />
-          ))}
+        <GridItem w="100%" minW="0">
+          <Box w="full">
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              slidesPerView={1}
+              spaceBetween={16}
+              autoplay={{ delay: 6000 }}
+              pagination={{
+                type: "bullets",
+                clickable: true,
+              }}
+              className="service-images-swiper"
+            >
+              {imageJsons.map((image) => (
+                <SwiperSlide key={image.altKey} style={{ height: "auto" }}>
+                  <GatsbyImage
+                    style={{
+                      borderRadius: 16,
+                      height: "100%",
+                    }}
+                    image={getImageJsonImage(image)}
+                    alt={t(image.altKey)}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Box>
         </GridItem>
       </Grid>
     </MainContainerWithBreadcrumbs>
