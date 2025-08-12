@@ -1,8 +1,16 @@
-FROM node:22-slim AS build
+FROM node:22-bookworm-slim AS build
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates python3 make g++ pkg-config libvips \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 COPY package*.json ./
+
+ENV npm_config_fetch_timeout=120000 \
+    npm_config_fetch_retries=5 \
+    npm_config_fetch_retry_maxtimeout=600000
 
 RUN npm ci
 
