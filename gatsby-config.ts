@@ -8,12 +8,15 @@ const config: GatsbyConfig = {
     keywords:
       "usługi ogrodnicze,ogrodnik,zakładanie ogrodów,pielęgnacja ogrodów,ogrody,tarasy,trawniki,Mateusz Bernacki,Rybnik,ogrody Rybnik",
     image: `/siteimage.jpg`,
-    siteUrl: `https://www.ogrody.rybnik.pl/`,
+    siteUrl: `https://ogrody.rybnik.pl/`,
   },
   graphqlTypegen: true,
   plugins: [
     `gatsby-plugin-mdx`,
-    { resolve: "gatsby-plugin-google-gtag", options: { trackingIds: [] } },
+    {
+      resolve: "gatsby-plugin-google-gtag",
+      options: { trackingIds: ["G-CZQLVKH3QS"] },
+    },
     "gatsby-plugin-image",
     "gatsby-plugin-robots-txt",
     "gatsby-plugin-sitemap",
