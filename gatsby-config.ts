@@ -15,7 +15,7 @@ const config: GatsbyConfig = {
     `gatsby-plugin-mdx`,
     {
       resolve: "gatsby-plugin-google-gtag",
-      options: { trackingIds: ["G-CZQLVKH3QS"] },
+      options: { trackingIds: ["G-9L6NM1N9QR"] },
     },
     "gatsby-plugin-image",
     "gatsby-plugin-robots-txt",
