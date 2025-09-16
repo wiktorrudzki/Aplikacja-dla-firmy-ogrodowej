@@ -66,11 +66,11 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
               className="service-images-swiper"
             >
               {imageJsons.map((image) => (
-                <SwiperSlide key={image.altKey} style={{ height: "auto" }}>
+                <SwiperSlide key={image.altKey}>
                   <GatsbyImage
                     style={{
                       borderRadius: 16,
-                      height: "100%",
+                      maxHeight: "30rem",
                     }}
                     image={getImageJsonImage(image)}
                     alt={t(image.altKey)}
