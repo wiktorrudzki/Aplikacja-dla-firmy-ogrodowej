@@ -1,5 +1,13 @@
 {
   "order": 4,
   "category": "VEGETATION",
-  "imageTitles": ["Plants", "Garden showcase"]
+  "imageTitles": [
+    "Garden care 1",
+    "Garden care 4",
+    "Garden care 5",
+    "Garden care 6",
+    "Garden care 7",
+    "Garden showcase",
+    "Garden automation 5"
+  ]
 }

@@ -1,5 +1,21 @@
 {
   "order": 1,
   "category": "LAWNS",
-  "imageTitles": ["Garden maintenance 2", "Garden maintenance"]
+  "imageTitles": [
+    "Garden maintenance 2",
+    "Garden maintenance",
+    "Garden automation 4",
+    "Garden automation 5",
+    "Garden automation 6",
+    "Garden automation 7",
+    "Garden care 1",
+    "Garden care 2",
+    "Garden care 8",
+    "Garden creation 2",
+    "Garden creation 3",
+    "Rolled lawns 1",
+    "Rolled lawns 2",
+    "Rolled lawns 3",
+    "Rolled lawns 7"
+  ]
 }
