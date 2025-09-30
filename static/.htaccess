@@ -1,1 +1,43 @@
 ErrorDocument 404 /404
+
+# Make sure mod_headers is enabled (a2enmod headers)
+<IfModule mod_headers.c>
+
+  ######################################################################
+  # 1) Never cache HTML (force revalidation on every request)
+  #    Guide: "cache-control: public, max-age=0, must-revalidate"
+  ######################################################################
+  <FilesMatch "\.html?$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  ######################################################################
+  # 2) Never cache Gatsby page-data and app-data JSON
+  #    Guide: "cache-control: public, max-age=0, must-revalidate"
+  ######################################################################
+  # Flag page-data JSON requests
+  SetEnvIf Request_URI "^/page-data/.*\.json$" IS_PAGEDATA=1
+  # Apply header only to those flagged requests
+  Header set Cache-Control "public, max-age=0, must-revalidate" env=IS_PAGEDATA
+
+  ######################################################################
+  # 3) Service worker must be revalidated on each load
+  #    Guide: "cache-control: public, max-age=0, must-revalidate"
+  ######################################################################
+  <Files "sw.js">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </Files>
+
+  ######################################################################
+  # 4) Cache-busted static assets (JS, CSS, images, fonts, etc.)
+  #    Safe to cache "forever" because filenames are content-hashed.
+  #    Guide: "cache-control: public, max-age=31536000, immutable"
+  ######################################################################
+  # Set long caching for typical static asset extensions
+  # (This will include Gatsby’s hashed JS/CSS like component---*.js, styles-*.css,
+  #  and files under /static/. We exclude page-data JSON with env condition.)
+  <FilesMatch "\.(?:js|css|mjs|png|jpe?g|gif|svg|webp|ico|avif|woff2?|ttf|otf|eot|mp4|webm|ogg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable" env=!IS_PAGEDATA
+  </FilesMatch>
+
+</IfModule>

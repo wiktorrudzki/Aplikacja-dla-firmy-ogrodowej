@@ -4,7 +4,7 @@ import { ImageJsonNode, ServiceNode } from "@src/types/graphql";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { t } from "@i18n";
 import { MainContainerWithBreadcrumbs } from "@src/components/main-container";
-import { Link } from "gatsby";
+import { HeadFC, Link } from "gatsby";
 import { FiArrowLeft } from "react-icons/fi";
 import { Box, BreadcrumbLink, Flex, Grid, GridItem } from "@chakra-ui/react";
 import { ROUTES } from "@src/constants";
@@ -13,12 +13,15 @@ import { getImageJsonImage } from "@src/helpers";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "./Service.css";
+import { SEO } from "@src/components/seo";
+
+type PageContext = ServiceNode<
+  "id" | "imageJson" | "imageJsons" | "iconMapKey" | "title",
+  ImageJsonNode<"id" | "altKey" | "childImageSharp">
+>;
 
 type Props = {
-  pageContext: ServiceNode<
-    "id" | "imageJson" | "imageJsons" | "iconMapKey" | "title",
-    ImageJsonNode<"id" | "altKey" | "childImageSharp">
-  >;
+  pageContext: PageContext;
   uri: string;
   children: React.ReactNode;
 };
@@ -86,3 +89,8 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
 };
 
 export default ServicePageTemplate;
+
+export const Head: HeadFC<string, PageContext> = ({
+  location,
+  pageContext,
+}) => <SEO title={t(pageContext.title)} path={location.pathname} />;

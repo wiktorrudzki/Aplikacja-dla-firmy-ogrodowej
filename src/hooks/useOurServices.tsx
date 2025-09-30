@@ -17,6 +17,7 @@ const useOurServices = (className?: string) => {
             src="../assets/images/house.jpg"
             alt="Nowoczesny wieżowiec"
             loading="eager"
+            fetchPriority="high"
             className={className}
           />
         ),
@@ -31,6 +32,7 @@ const useOurServices = (className?: string) => {
             src="../assets/images/skyscraper.jpg"
             alt="Dom z tarasem oraz częścią ogrodu"
             loading="eager"
+            fetchPriority="high"
             className={className}
           />
         ),
