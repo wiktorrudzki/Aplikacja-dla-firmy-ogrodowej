@@ -30,7 +30,11 @@ const useWorkEffects = () => {
     }
   `);
 
-  return data.allGalleryJson.nodes;
+  return data.allGalleryJson.nodes.map((node) => ({
+    order: node.order,
+    category: node.category,
+    image: node.imageJsons.length > 0 ? node.imageJsons[0] : undefined,
+  }));
 };
 
 export default useWorkEffects;
