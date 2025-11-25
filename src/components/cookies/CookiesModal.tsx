@@ -8,7 +8,7 @@ import { Paragraph } from "../typography";
 
 const CookiesModal = () => {
   const [spacing2, spacing4] = useToken("spacing", ["2", "4"]);
-  const [green, white] = useToken("colors", ["green.500", "white"]);
+  const [green, white] = useToken("colors", ["midnightGreen.500", "white"]);
 
   return (
     <CookieConsent

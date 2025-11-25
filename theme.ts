@@ -14,6 +14,17 @@ const customConfig = defineConfig({
           value: "0px 0px 32px 8px rgba(0,0,0,0.5)",
         },
       },
+      colors: {
+        midnightGreen: {
+          solid: { value: "{colors.midnightGreen.500}" },
+          contrast: { value: "{colors.white}" },
+          fg: { value: "{colors.midnightGreen.700}" },
+          muted: { value: "{colors.midnightGreen.100}" },
+          subtle: { value: "{colors.midnightGreen.200}" },
+          emphasized: { value: "{colors.midnightGreen.300}" },
+          focusRing: { value: "{colors.midnightGreen.500}" },
+        },
+      },
     },
     tokens: {
       fonts: {
@@ -31,17 +42,29 @@ const customConfig = defineConfig({
         },
       },
       colors: {
-        green: {
-          50: { value: "#EBF4E4" },
-          100: { value: "#D4E7C5" },
-          200: { value: "#C5DFB1" },
-          300: { value: "#A8CF8A" },
-          400: { value: "#8BBF63" },
-          500: { description: "Primary color", value: "#6EAF3C" },
-          600: { value: "#588C30" },
-          700: { value: "#426924" },
-          800: { value: "#2C4618" },
-          900: { value: "#16230C" },
+        midnightGreen: {
+          50: { value: "#e6edee" },
+          100: { value: "#cddbdc" },
+          200: { value: "#9cb7b9" },
+          300: { value: "#6a9497" },
+          400: { value: "#397074" },
+          500: { description: "Primary color", value: "#074C51" },
+          600: { value: "#063d41" },
+          700: { value: "#042e31" },
+          800: { value: "#031e20" },
+          900: { value: "#010f10" },
+        },
+        oceanGreen: {
+          50: { value: "#eef8f3" },
+          100: { value: "#def1e7" },
+          200: { value: "#bce2cf" },
+          300: { value: "#9bd4b8" },
+          400: { value: "#79c5a0" },
+          500: { description: "Secondary color", value: "#58B788" },
+          600: { value: "#46926d" },
+          700: { value: "#356e52" },
+          800: { value: "#234936" },
+          900: { value: "#12251b" },
         },
         mainCard: {
           50: { value: "#EBF8FF" },

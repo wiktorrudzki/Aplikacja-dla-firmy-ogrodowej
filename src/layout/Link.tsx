@@ -30,7 +30,7 @@ const CustomLink = ({
   const isActive = location.pathname.includes(to);
 
   const bgColor = useMemo(
-    () => (mode === NAVIGATION_MODE.DARK ? "green.400" : "white"),
+    () => (mode === NAVIGATION_MODE.DARK ? "midnightGreen.400" : "white"),
     [mode],
   );
 

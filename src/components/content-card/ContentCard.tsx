@@ -12,8 +12,8 @@ type Props = StackProps & {
 function ContentCard({ children, backgroundImageDetails, ...props }: Props) {
   const [borderRadius] = useToken("spacing", "4");
   const [cyan, green, white] = useToken("colors", [
-    "cyan.700",
-    "green.500",
+    "midnightGreen.500",
+    "oceanGreen.500",
     "white",
   ]);
 

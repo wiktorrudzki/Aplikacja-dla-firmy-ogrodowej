@@ -12,7 +12,7 @@ const MainContainerWithBreadcrumbs = ({
   children,
   ...rest
 }: Props) => {
-  const [green, white] = useToken("colors", ["green.400", "white"]);
+  const [green, white] = useToken("colors", ["midnightGreen.400", "white"]);
   const [paddingBlock, paddingInline, borderRadius] = useToken("spacing", [
     "2",
     "4",

@@ -7,7 +7,7 @@ import useOurNumbers from "@src/hooks/useOurNumbers";
 
 function OurCompanyInNumbers() {
   const { ourNumbers } = useOurNumbers();
-  const green = useToken("colors", ["green.100"]);
+  const green = useToken("colors", ["oceanGreen.100"]);
   return (
     <Container
       py={[12, 20]}
@@ -17,7 +17,7 @@ function OurCompanyInNumbers() {
       }}
     >
       <Heading1 textTransform="uppercase" textAlign="center">
-        <Span color="green.500">{t("our-company")}</Span>
+        <Span color="midnightGreen.500">{t("our-company")}</Span>
         {" " + t("in-numbers")}
       </Heading1>
       <Wrap gap={[6, 10]} justify="center" p={[6, 10]}>

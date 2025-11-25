@@ -25,10 +25,10 @@ const NotFoundPage: GatsbyPageWithLayout<PageProps> = () => {
         maxW="lg"
         my="24"
       >
-        <Icon size="2xl" mb="4" color="green.500">
+        <Icon size="2xl" mb="4" color="midnightGreen.500">
           <HiOutlineSearch />
         </Icon>
-        <Heading1 color="green.500">{t("page-not-found")}</Heading1>
+        <Heading1 color="midnightGreen.500">{t("page-not-found")}</Heading1>
         <Paragraph>{t("page-not-found-description")}</Paragraph>
         <Link to={ROUTES.HOME} aria-label={t("homepage")}>
           <HStack>
