@@ -1,5 +1,6 @@
-import { Box, Flex } from "@chakra-ui/react";
 import React, { useRef } from "react";
+import { Box, Flex } from "@chakra-ui/react";
+
 import { useNavigationMode, useResponsiveValues } from "@src/hooks";
 import { formatToRem } from "@src/helpers";
 import DesktopNav from "./DesktopNav";
