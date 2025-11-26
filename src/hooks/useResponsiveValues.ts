@@ -1,10 +1,11 @@
-import { useBreakpointValue } from "@chakra-ui/react";
 import { useMemo } from "react";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 const useResponsiveValues = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
 
-  const navigationHeightRem = useMemo(() => (isMobile ? 5 : 7), [isMobile]);
+  const navigationHeightRem = useMemo(() => (isMobile ? 5 : 10), [isMobile]);
+
   const contactCardIconOffsetRem = useMemo(
     () => (isMobile ? 2 : 2.5),
     [isMobile],

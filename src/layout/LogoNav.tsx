@@ -1,11 +1,12 @@
 import React from "react";
-import Link from "./Link";
+import { Link } from "gatsby";
 import { Image, useBreakpointValue } from "@chakra-ui/react";
+
 import { NAVIGATION_MODE } from "@src/types/navigation";
+import logoColor from "../assets/icons/logo-color.svg";
 import logoWhite from "../assets/icons/logo-white.svg";
-import logoBlack from "../assets/icons/logo-black.svg";
+import logoColorMobile from "../assets/icons/logo-color-mobile.svg";
 import logoWhiteMobile from "../assets/icons/logo-white-mobile.svg";
-import logoBlackMobile from "../assets/icons/logo-black-mobile.svg";
 import { ROUTES } from "@src/constants";
 
 type Props = {
@@ -14,17 +15,13 @@ type Props = {
 
 const LogoNav = ({ navMode }: Props) => {
   const logoSrc = useBreakpointValue({
-    base: navMode === "light" ? logoWhiteMobile : logoBlackMobile,
-    md: navMode === "light" ? logoWhite : logoBlack,
+    base: navMode === "light" ? logoWhiteMobile : logoColorMobile,
+    md: navMode === "light" ? logoWhite : logoColor,
   });
 
   return (
-    <Link to={ROUTES.HOME} noBackground>
-      <Image
-        src={logoSrc}
-        alt="Logo"
-        maxHeight={{ base: "10", md: "16", lg: "20" }}
-      />
+    <Link to={ROUTES.HOME} style={{ height: "100%", paddingBlock: "0.25rem" }}>
+      <Image src={logoSrc} alt="Logo" height="100%" width="auto" />
     </Link>
   );
 };

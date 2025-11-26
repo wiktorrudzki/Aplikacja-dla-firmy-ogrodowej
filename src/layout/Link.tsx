@@ -5,11 +5,11 @@ import { NAVIGATION_MODE } from "@src/types/navigation";
 import { Heading3 } from "@src/components/typography";
 import { Link } from "@chakra-ui/react";
 import { useResponsiveValues } from "@src/hooks";
+import "./Link.css";
 
 type Props = {
   to: string;
   children: React.ReactNode;
-  noBackground?: boolean;
   mode?: NAVIGATION_MODE;
   ariaLabel?: string;
   tabIndex?: number;
@@ -19,7 +19,6 @@ type Props = {
 const CustomLink = ({
   to,
   children,
-  noBackground,
   ariaLabel,
   tabIndex,
   mode = NAVIGATION_MODE.DARK,
@@ -29,12 +28,15 @@ const CustomLink = ({
   const { isMobile } = useResponsiveValues();
   const isActive = location.pathname.includes(to);
 
-  const bgColor = useMemo(
-    () => (mode === NAVIGATION_MODE.DARK ? "midnightGreen.400" : "white"),
-    [mode],
-  );
+  const isDark = mode === NAVIGATION_MODE.DARK;
 
-  const hoverTextColor = mode === NAVIGATION_MODE.DARK ? "white" : "black";
+  const getColor = () => {
+    if (isMobile) {
+      return "black";
+    }
+
+    return isDark ? "black" : "white";
+  };
 
   return (
     <Link
@@ -43,31 +45,9 @@ const CustomLink = ({
       rounded="full"
       width="fit-content"
       transition="all 0.2s ease-in-out"
-      bgColor={isActive && !noBackground ? bgColor : "transparent"}
-      _hover={{
-        bg: !noBackground ? bgColor : undefined,
-        color: hoverTextColor,
-      }}
-      _focus={{
-        boxShadow: "none",
-        border: noBackground ? "none" : "1px solid",
-        borderColor: noBackground ? "transparent" : bgColor,
-      }}
-      color={
-        isMobile
-          ? "black"
-          : mode === NAVIGATION_MODE.DARK
-            ? isActive
-              ? "white"
-              : "black"
-            : isActive
-              ? "black"
-              : "white"
-      }
+      bgColor="transparent"
+      color={getColor()}
       outline="none"
-      border={!noBackground ? "1px solid" : "none"}
-      borderColor={!noBackground ? bgColor : undefined}
-      shadow={noBackground ? "initial" : "sm"}
       asChild
     >
       <GatsbyLink
@@ -77,7 +57,11 @@ const CustomLink = ({
         to={to}
         tabIndex={tabIndex}
       >
-        <Heading3 fontSize="lg" transition="color 0.2s ease-in-out">
+        <Heading3
+          className={isActive ? "active navLink" : "navLink"}
+          fontSize="lg"
+          transition="color 0.2s ease-in-out"
+        >
           {children}
         </Heading3>
       </GatsbyLink>
