@@ -1,0 +1,26 @@
+.navLink {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--chakra-colors-green-500);
+  transition: all 0.25s ease;
+  transform: translateX(-50%);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.navLink.active::after {
+  width: 100%;
+}
