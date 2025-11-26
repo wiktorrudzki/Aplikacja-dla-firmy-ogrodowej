@@ -20,7 +20,6 @@ const ContactCards = () => (
       base: 16,
       xl: 8,
     }}
-    alignItems="center"
   >
     <ContactCard
       title={t("Odwiedź nas!")}
