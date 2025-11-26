@@ -8,13 +8,13 @@ import { Paragraph } from "../typography";
 
 const CookiesModal = () => {
   const [spacing2, spacing4] = useToken("spacing", ["2", "4"]);
-  const [green, white] = useToken("colors", ["primary.500", "white"]);
+  const [primary, white] = useToken("colors", ["primary.500", "white"]);
 
   return (
     <CookieConsent
       buttonStyle={{
         color: white,
-        backgroundColor: green,
+        backgroundColor: primary,
         paddingBlock: spacing2,
         paddingInline: spacing4,
         border: "none",

@@ -16,7 +16,7 @@ import { LuGripVertical } from "react-icons/lu";
 const MotionBox = motion(Box);
 
 const EstimateCard = () => {
-  const [green] = useToken("colors", ["primary.500"]);
+  const [primary] = useToken("colors", ["primary.500"]);
 
   const panelWidth = useBreakpointValue({ base: 250, lg: 300 });
   const closedOffset = useBreakpointValue({ base: 236, lg: 288 });
@@ -36,7 +36,7 @@ const EstimateCard = () => {
       alignItems="center"
     >
       <Box
-        bg={green}
+        bg={primary}
         height="64px"
         width="16px"
         borderTopLeftRadius="xl"
@@ -68,11 +68,11 @@ const EstimateCard = () => {
         <Paragraph>{t("wyceny")}</Paragraph>
         <Link
           href={`tel:${t("telephone-number")}`}
-          color={green}
+          color={primary}
           aria-label={t("Kliknij, aby zadzwonić")}
         >
           <Flex gap={2} alignItems="center">
-            <MdPhone size={16} color={green} />
+            <MdPhone size={16} color={primary} />
             <Heading2 fontSize={{ base: "lg", lg: "2xl" }} textAlign="center">
               {t("telephone-number")}
             </Heading2>

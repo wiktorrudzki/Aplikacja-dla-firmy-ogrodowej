@@ -12,7 +12,7 @@ const MainContainerWithBreadcrumbs = ({
   children,
   ...rest
 }: Props) => {
-  const [green, white] = useToken("colors", ["primary.400", "white"]);
+  const [primary, white] = useToken("colors", ["primary.400", "white"]);
   const [paddingBlock, paddingInline, borderRadius] = useToken("spacing", [
     "2",
     "4",
@@ -21,7 +21,7 @@ const MainContainerWithBreadcrumbs = ({
 
   const activeStyles: CSSProperties = useMemo(
     () => ({
-      backgroundColor: green,
+      backgroundColor: primary,
       borderRadius,
       paddingBlock,
       paddingInline,
@@ -29,7 +29,7 @@ const MainContainerWithBreadcrumbs = ({
       letterSpacing: 1.1,
       color: white,
     }),
-    [borderRadius, green, paddingBlock, paddingInline, white],
+    [borderRadius, primary, paddingBlock, paddingInline, white],
   );
 
   return (

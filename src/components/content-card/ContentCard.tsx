@@ -11,7 +11,7 @@ type Props = StackProps & {
 
 function ContentCard({ children, backgroundImageDetails, ...props }: Props) {
   const [borderRadius] = useToken("spacing", "4");
-  const [cyan, green, white] = useToken("colors", [
+  const [cyan, secondary, white] = useToken("colors", [
     "primary.500",
     "secondary.500",
     "white",
@@ -39,7 +39,7 @@ function ContentCard({ children, backgroundImageDetails, ...props }: Props) {
         bgImageEl
           ? undefined
           : `radial-gradient(circle farthest-side at left bottom, ${cyan}3F, ${white}3F),
-      radial-gradient(circle farthest-side at right top, ${green}3F, ${white}3F);`
+      radial-gradient(circle farthest-side at right top, ${secondary}3F, ${white}3F);`
       }
       py={[4, 8, 16]}
       px={[4, 8, 16]}

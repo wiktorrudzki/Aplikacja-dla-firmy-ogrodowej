@@ -7,13 +7,13 @@ import useOurNumbers from "@src/hooks/useOurNumbers";
 
 function OurCompanyInNumbers() {
   const { ourNumbers } = useOurNumbers();
-  const green = useToken("colors", ["secondary.100"]);
+  const secondary = useToken("colors", ["secondary.100"]);
   return (
     <Container
       py={[12, 20]}
       bgGradient={{
-        base: `radial-gradient(circle, ${green} 50%, white)`,
-        lg: `radial-gradient(circle farthest-side, ${green} 50%, white)`,
+        base: `radial-gradient(circle, ${secondary} 50%, white)`,
+        lg: `radial-gradient(circle farthest-side, ${secondary} 50%, white)`,
       }}
     >
       <Heading1 textTransform="uppercase" textAlign="center">
