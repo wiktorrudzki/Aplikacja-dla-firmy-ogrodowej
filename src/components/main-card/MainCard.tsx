@@ -5,7 +5,7 @@ type Props = ContainerProps & {
   children: React.ReactNode;
 };
 
-const MainCard = ({ children, ...passThorughProps }: Props) => {
+const MainCard = ({ children, ...passProps }: Props) => {
   const mainCard = useToken("colors", ["mainCard.50", "mainCard.100"]);
 
   return (
@@ -22,7 +22,7 @@ const MainCard = ({ children, ...passThorughProps }: Props) => {
       }}
       borderRadius={16}
       boxShadow="element"
-      {...passThorughProps}
+      {...passProps}
     >
       {children}
     </Container>

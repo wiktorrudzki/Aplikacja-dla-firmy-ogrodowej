@@ -15,7 +15,7 @@ const ServiceArea = () => {
             margin="0 auto"
             w="20%"
             size="lg"
-            borderColor="midnightGreen.500"
+            borderColor="primary.500"
             rounded={32}
           />
           <Heading1 textAlign="center">{t("service-area-title")}</Heading1>

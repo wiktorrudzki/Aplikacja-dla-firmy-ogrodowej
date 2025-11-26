@@ -15,14 +15,14 @@ const customConfig = defineConfig({
         },
       },
       colors: {
-        midnightGreen: {
-          solid: { value: "{colors.midnightGreen.500}" },
+        primary: {
+          solid: { value: "{colors.primary.500}" },
           contrast: { value: "{colors.white}" },
-          fg: { value: "{colors.midnightGreen.700}" },
-          muted: { value: "{colors.midnightGreen.100}" },
-          subtle: { value: "{colors.midnightGreen.200}" },
-          emphasized: { value: "{colors.midnightGreen.300}" },
-          focusRing: { value: "{colors.midnightGreen.500}" },
+          fg: { value: "{colors.primary.700}" },
+          muted: { value: "{colors.primary.100}" },
+          subtle: { value: "{colors.primary.200}" },
+          emphasized: { value: "{colors.primary.300}" },
+          focusRing: { value: "{colors.primary.500}" },
         },
       },
     },
@@ -42,7 +42,7 @@ const customConfig = defineConfig({
         },
       },
       colors: {
-        midnightGreen: {
+        primary: {
           50: { value: "#e6edee" },
           100: { value: "#cddbdc" },
           200: { value: "#9cb7b9" },
@@ -54,7 +54,7 @@ const customConfig = defineConfig({
           800: { value: "#031e20" },
           900: { value: "#010f10" },
         },
-        oceanGreen: {
+        secondary: {
           50: { value: "#eef8f3" },
           100: { value: "#def1e7" },
           200: { value: "#bce2cf" },

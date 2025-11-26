@@ -7,7 +7,7 @@ const CallDescription = () => {
     <Link
       href={`tel:${t("telephone-number")}`}
       textDecor="underline"
-      color="midnightGreen.500"
+      color="primary.500"
       textStyle="paragraph"
     >
       {t("telephone-number")}

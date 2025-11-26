@@ -16,18 +16,18 @@ const NumberCard = ({ details, index = 0 }: Props) => (
       scale: 1.05,
     }}
     transition="scale 0.25s ease"
-    spotlightColor="oceanGreen.200"
+    spotlightColor="secondary.200"
     borderRadius="2xl"
   >
     <VStack
       textAlign="center"
-      bgColor="oceanGreen.50"
+      bgColor="secondary.50"
       p="10"
       borderRadius="2xl"
       shadow="element"
     >
       <Box zIndex={0}>
-        <ExtraLargeHeading fontWeight="extrabold" color="midnightGreen.500">
+        <ExtraLargeHeading fontWeight="extrabold" color="primary.500">
           <AnimateCounter
             from={0}
             to={details.value}

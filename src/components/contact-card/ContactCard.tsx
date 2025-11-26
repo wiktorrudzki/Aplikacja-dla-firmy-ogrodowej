@@ -30,8 +30,8 @@ const ContactCard = ({
         aria-label={iconAriaLabel}
         width={contactCardIconSizeRem * 4}
         height={contactCardIconSizeRem * 4}
-        fill={iconMode === "fill" ? "midnightGreen.500" : "transparent"}
-        color={iconMode === "color" ? "midnightGreen.500" : "transparent"}
+        fill={iconMode === "fill" ? "primary.500" : "transparent"}
+        color={iconMode === "color" ? "primary.500" : "transparent"}
         left={`calc(50% - ${contactCardIconOffsetRem}rem)`}
         top={-contactCardIconOffsetRem * 4}
         position="absolute"

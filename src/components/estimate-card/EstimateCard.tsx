@@ -16,7 +16,7 @@ import { LuGripVertical } from "react-icons/lu";
 const MotionBox = motion(Box);
 
 const EstimateCard = () => {
-  const [green] = useToken("colors", ["midnightGreen.500"]);
+  const [green] = useToken("colors", ["primary.500"]);
 
   const panelWidth = useBreakpointValue({ base: 250, lg: 300 });
   const closedOffset = useBreakpointValue({ base: 236, lg: 288 });

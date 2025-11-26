@@ -4,6 +4,6 @@
 
 .about-us-progress-fill {
   width: 100%;
-  background-color: var(--chakra-colors-midnight-green-500);
+  background-color: var(--chakra-colors-primary-500);
   transform-origin: left top;
 }
