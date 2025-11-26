@@ -31,7 +31,7 @@ const validateEmail = (email) => {
     );
 };
 
-app.post("/send", async (req, res) => {
+app.post("/mail/send", async (req, res) => {
   const { name, email, message } = req.body;
 
   if (!validateEmail(email)) {
