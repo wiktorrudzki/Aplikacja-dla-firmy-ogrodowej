@@ -1,14 +1,17 @@
 import React, { CSSProperties, PropsWithChildren, useMemo } from "react";
-import MainContainer from "./MainContainer";
 import { Breadcrumb, ContainerProps, useToken } from "@chakra-ui/react";
+import { NavigationMarginContainer } from "../navigation-margin-container";
+import MainContainer from "./MainContainer";
 
 type Props = PropsWithChildren &
   ContainerProps & {
     breadcrumbs: Array<React.JSX.Element | string>;
+    withBackground?: boolean;
   };
 
 const MainContainerWithBreadcrumbs = ({
   breadcrumbs,
+  withBackground,
   children,
   ...rest
 }: Props) => {
@@ -32,8 +35,17 @@ const MainContainerWithBreadcrumbs = ({
     [borderRadius, green, paddingBlock, paddingInline, white],
   );
 
+  const Wrapper = withBackground ? MainContainer : NavigationMarginContainer;
+
   return (
-    <MainContainer {...rest}>
+    <Wrapper
+      py={{
+        base: 8,
+        md: 8,
+        lg: 12,
+      }}
+      {...rest}
+    >
       <Breadcrumb.Root size="lg" pb={{ base: 4, lg: 6 }}>
         <Breadcrumb.List>
           {breadcrumbs.map((el, i) => {
@@ -58,7 +70,7 @@ const MainContainerWithBreadcrumbs = ({
         </Breadcrumb.List>
       </Breadcrumb.Root>
       {children}
-    </MainContainer>
+    </Wrapper>
   );
 };
 
