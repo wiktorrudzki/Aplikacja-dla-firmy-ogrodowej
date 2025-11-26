@@ -12,8 +12,8 @@ const CategoryButton = ({ children, active, ariaLabel, ...props }: Props) => (
     rounded={16}
     size="xl"
     color={active ? "white" : "black"}
-    bg={active ? "green.500" : "transparent"}
-    _hover={{ color: "white", bg: "green.500" }}
+    bg={active ? "primary.500" : "transparent"}
+    _hover={{ color: "white", bg: "primary.500" }}
     h="fit-content"
     border="none"
     paddingY={1.5}

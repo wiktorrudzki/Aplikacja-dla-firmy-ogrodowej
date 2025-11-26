@@ -21,11 +21,11 @@ const shortcodes = {
   ul: (props: ListRootProps) => <UnorderedList my="4" {...props} />,
   ol: (props: ListRootProps) => <OrderedList my="4" {...props} />,
   GatsbyLink: ({ ref, children, ...rest }: GatsbyLinkProps<any>) => (
-    <Link color="green.500" asChild>
+    <Link color="primary.500" asChild>
       <GatsbyLink {...rest}>{children}</GatsbyLink>
     </Link>
   ),
-  Link: (props: LinkProps) => <Link color="green.500" {...props} />,
+  Link: (props: LinkProps) => <Link color="primary.500" {...props} />,
 };
 
 const MdxCustomProvider = ({

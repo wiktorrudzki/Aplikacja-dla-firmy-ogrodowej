@@ -13,7 +13,7 @@ const GalleryTabs = ({ currentCategory, children }: Props) => {
   const categories = useGalleryCategories();
   return (
     <Tabs.Root
-      colorPalette="green"
+      colorPalette="primary"
       value={currentCategory}
       placeItems="center"
       display="grid"

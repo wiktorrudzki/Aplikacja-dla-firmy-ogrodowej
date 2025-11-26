@@ -11,9 +11,9 @@ type Props = {
 };
 
 const ContentCardButton = ({ to, ariaLabel, children }: Props) => (
-  <AnimateCursorSpotlightOnHover rounded="full" spotlightColor="green.400">
+  <AnimateCursorSpotlightOnHover rounded="full" spotlightColor="primary.400">
     <Button
-      colorPalette="green"
+      colorPalette="primary"
       rounded="full"
       aria-label={ariaLabel}
       paddingX={[4, 12, 16]}

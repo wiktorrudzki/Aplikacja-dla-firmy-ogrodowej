@@ -98,7 +98,7 @@ const Footer = () => {
         </VStack>
       </Flex>
 
-      <Paragraph color="white" bgColor="green.500" textAlign="center" p={2}>
+      <Paragraph color="white" bgColor="primary.500" textAlign="center" p={2}>
         {t("footer-copyright")}
       </Paragraph>
     </footer>
