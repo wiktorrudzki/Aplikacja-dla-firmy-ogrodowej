@@ -6,7 +6,7 @@ type Props = ContainerProps & {
 };
 
 const MainCard = ({ children, ...passProps }: Props) => {
-  const mainCard = useToken("colors", ["mainCard.50", "mainCard.100"]);
+  const mainCard = useToken("colors", ["primary.50", "secondary.50"]);
 
   return (
     <Container

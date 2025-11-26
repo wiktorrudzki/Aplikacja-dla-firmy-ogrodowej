@@ -66,10 +66,6 @@ const customConfig = defineConfig({
           800: { value: "#234936" },
           900: { value: "#12251b" },
         },
-        mainCard: {
-          50: { value: "#EBF8FF" },
-          100: { value: "#EBF4E4" },
-        },
       },
     },
   },
