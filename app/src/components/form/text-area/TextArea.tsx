@@ -5,14 +5,20 @@ import { InputRootProps } from "@src/types/form";
 
 type Props = InputRootProps & {
   name: string;
+  placeholder?: string;
 };
 
-const CustomTextArea = ({ required, label, name }: Props) => {
-  return (
-    <InputRoot label={label} required={required}>
-      <Textarea borderWidth={2} borderColor="secondary.500" name={name} />
-    </InputRoot>
-  );
-};
+const CustomTextArea = ({ required, label, placeholder, name }: Props) => (
+  <InputRoot label={label} required={required}>
+    <Textarea
+      borderRadius={8}
+      size="xl"
+      borderWidth={2}
+      borderColor="primary.400"
+      name={name}
+      placeholder={placeholder}
+    />
+  </InputRoot>
+);
 
 export default CustomTextArea;
