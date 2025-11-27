@@ -1,51 +1,55 @@
 import React from "react";
-import { Form } from "../form";
+import { UncontrolledForm } from "../form";
 import { SpotlightButton } from "../button";
 import { t } from "@src/utils/i18n";
 import { Box } from "@chakra-ui/react";
+import { ContactFormInputs } from "@src/types/form";
 
 const ContactForm = () => {
+  const onFinish = (values: ContactFormInputs) => {};
+
   return (
-    <Form
+    <UncontrolledForm
       style={{
         width: "100%",
         display: "flex",
         flexDirection: "column",
         gap: "16px",
       }}
-      onFinish={() => {}}
+      onFinish={onFinish}
     >
       <Box display="flex" gap={8}>
-        <Form.TextInput
+        <UncontrolledForm.TextInput
           label={t("Imię")}
           name="firstName"
           placeholder={t("Twoje imię")}
         />
-        <Form.TextInput
+        <UncontrolledForm.TextInput
           label={t("Nazwisko")}
           name="secondName"
           placeholder={t("Twoje nazwisko")}
         />
       </Box>
-      <Form.TextInput
+      <UncontrolledForm.TextInput
         label={t("Numer telefonu")}
         required
         name="phoneNumber"
+        type="tel"
         placeholder={t("Twój numer telefonu")}
       />
-      <Form.TextInput
+      <UncontrolledForm.TextInput
         label={t("Email")}
         required
         name="email"
         type="email"
         placeholder={t("Twój adres e-mail")}
       />
-      <Form.TextInput
+      <UncontrolledForm.TextInput
         label={t("Temat")}
         name="topic"
         placeholder={t("Temat Twojej wiadomości")}
       />
-      <Form.TextArea
+      <UncontrolledForm.TextArea
         label="Wiadomość"
         required
         name="message"
@@ -58,7 +62,7 @@ const ContactForm = () => {
       >
         {t("Wyślij")}
       </SpotlightButton>
-    </Form>
+    </UncontrolledForm>
   );
 };
 

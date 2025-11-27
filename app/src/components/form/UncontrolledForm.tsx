@@ -8,7 +8,11 @@ type Props<T extends object> = {
   onFinish: (data: T) => void;
 };
 
-const Form = <T extends object>({ children, style, onFinish }: Props<T>) => {
+const UncontrolledForm = <T extends object>({
+  children,
+  style,
+  onFinish,
+}: Props<T>) => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -28,7 +32,7 @@ const Form = <T extends object>({ children, style, onFinish }: Props<T>) => {
   );
 };
 
-Form.TextInput = TextInput;
-Form.TextArea = TextArea;
+UncontrolledForm.TextInput = TextInput;
+UncontrolledForm.TextArea = TextArea;
 
-export default Form;
+export default UncontrolledForm;
