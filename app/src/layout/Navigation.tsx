@@ -7,6 +7,7 @@ import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
 import LogoNav from "./LogoNav";
 import ShowMobileNav from "./ShowMobileNav";
+import { NavContactBar } from "@src/components/navigation";
 
 const Navigation = () => {
   const navRef = useRef<HTMLDivElement>(null);
@@ -26,10 +27,16 @@ const Navigation = () => {
       bg={isScrolled ? "white" : "transparent"}
       zIndex="1000"
       transition="background-color 0.3s ease"
-      height={formatToRem(navigationHeightRem)}
-      px={{ base: 4, lg: 12 }}
     >
-      <Flex justify="space-between" align="center" wrap="wrap" h="full">
+      <NavContactBar />
+      <Flex
+        justify="space-between"
+        align="center"
+        wrap="wrap"
+        h="full"
+        px={{ base: 4, lg: 12 }}
+        height={formatToRem(navigationHeightRem)}
+      >
         <LogoNav navMode={navMode} />
         <DesktopNav navMode={navMode} />
         <ShowMobileNav navMode={navMode} showNav={showNav} />
