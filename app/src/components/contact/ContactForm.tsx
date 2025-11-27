@@ -83,7 +83,7 @@ const ContactForm = () => {
           name="message"
           placeholder={t("Twoja wiadomość")}
         />
-        {!isSent ? (
+        {isSent ? (
           <Alert
             status="success"
             title={t("Udało się!")}
