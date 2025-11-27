@@ -44,7 +44,10 @@ const ServicePageTemplate = ({ pageContext, children, uri }: Props) => {
   ];
 
   return (
-    <MainContainerWithBreadcrumbs breadcrumbs={breadcrumbs}>
+    <MainContainerWithBreadcrumbs
+      withBackground={true}
+      breadcrumbs={breadcrumbs}
+    >
       <Flex pb={{ base: 4, lg: 6 }} gap={4} align="center">
         <Link aria-label={t("Klinkij, aby wrócić")} to={segments[0]}>
           <FiArrowLeft size={32} />

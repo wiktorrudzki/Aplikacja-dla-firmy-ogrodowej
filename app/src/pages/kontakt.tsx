@@ -9,12 +9,18 @@ import { SEO } from "@src/components/seo";
 import { HeadFC } from "gatsby";
 import { useResponsiveValues } from "@src/hooks";
 import { formatToRem } from "@src/helpers";
-import { MainContainer } from "@src/components/main-container";
+import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
 
 const Contact: GatsbyPageWithLayout = () => {
   const { contactCardIconOffsetRem } = useResponsiveValues();
   return (
-    <MainContainer>
+    <NavigationMarginContainer
+      py={{
+        base: 8,
+        md: 8,
+        lg: 12,
+      }}
+    >
       <Stack
         gap={{ base: 8, md: 16 }}
         justifyContent="space-between"
@@ -30,7 +36,7 @@ const Contact: GatsbyPageWithLayout = () => {
         <ContactCards />
         <GoogleMap />
       </Stack>
-    </MainContainer>
+    </NavigationMarginContainer>
   );
 };
 
