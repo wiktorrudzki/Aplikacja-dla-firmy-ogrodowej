@@ -1,107 +1,103 @@
 import React from "react";
-import { Flex, VStack, HStack, Link } from "@chakra-ui/react";
+import { Flex, HStack, Link, Box, Image } from "@chakra-ui/react";
 import { MdLocationOn, MdMail, MdPhoneIphone } from "react-icons/md";
-import { BsFacebook, BsInstagram } from "react-icons/bs";
+import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
+
 import { t } from "@i18n";
-import { FooterContactDetail, FooterLink } from "@src/components/footer";
-import { Heading2, Paragraph } from "@src/components/typography";
+import {
+  FooterColumn,
+  FooterContactDetail,
+  FooterLink,
+} from "@src/components/footer";
+import { Heading3, Paragraph } from "@src/components/typography";
 import { LINKS, ROUTES } from "@src/constants";
-import grass from "../assets/images/grass.jpg";
+import logo from "@src/assets/icons/logo-white.svg";
 
 const Footer = () => {
   return (
-    <footer>
+    <Box as="footer" bgColor="primary.500" color="white">
       <Flex
         direction={{ base: "column", md: "row" }}
         justifyContent="space-between"
-        gap={[10, 5]}
-        px={[5, 20]}
-        py={[20, 70]}
+        px={{ base: 5, md: 10, xl: 20 }}
+        py={[20]}
         color="white"
-        style={{ position: "relative" }}
       >
-        <img
-          src={grass}
-          alt="Wiosenna, zielona trawa"
-          style={{
-            objectFit: "cover",
-            width: "100%",
-            height: "100%",
-            position: "absolute",
-            zIndex: -1,
-            top: 0,
-            left: 0,
-          }}
-        />
-        <VStack align="start">
-          <Heading2 fontWeight={600}>{t("contact-details")}</Heading2>
-          <FooterContactDetail icon={MdLocationOn}>
-            {t("adress-details")}
-          </FooterContactDetail>
-          <FooterContactDetail icon={MdMail}>
-            <Link
-              aria-label={t("Napisz maila")}
-              href={`mailto:${t("email-address")}`}
-              color="white"
-            >
-              {t("email-address")}
-            </Link>
-          </FooterContactDetail>
-          <FooterContactDetail icon={MdPhoneIphone}>
-            <Link
-              aria-label={t("Zadzwoń")}
-              href={`tel:${t("telephone-number")}`}
-              color="white"
-            >
-              {t("telephone-number")}
-            </Link>
-          </FooterContactDetail>
-        </VStack>
+        <Flex
+          gap={[16, 10]}
+          direction={{ base: "column", md: "row" }}
+          flexWrap="wrap"
+        >
+          <FooterColumn title={t("contact-details")}>
+            <Heading3>{t("company-name")}</Heading3>
+            <FooterContactDetail icon={MdLocationOn}>
+              {t("adress-details")}
+            </FooterContactDetail>
+            <FooterContactDetail icon={MdMail}>
+              <Link
+                aria-label={t("Napisz maila")}
+                href={`mailto:${t("email-address")}`}
+                color="white"
+              >
+                {t("email-address")}
+              </Link>
+            </FooterContactDetail>
+            <FooterContactDetail icon={MdPhoneIphone}>
+              <Link
+                aria-label={t("Zadzwoń")}
+                href={`tel:${t("telephone-number")}`}
+                color="white"
+              >
+                {t("telephone-number")}
+              </Link>
+            </FooterContactDetail>
+          </FooterColumn>
 
-        <VStack align="start">
-          <Heading2 fontWeight={600}>{t("useful-links")}</Heading2>
-          <FooterLink to={ROUTES.HOME}>{t("homepage")}</FooterLink>
-          <FooterLink to={ROUTES.O_NAS}>{t("about-us")}</FooterLink>
-          <FooterLink to={ROUTES.GALERIA}>{t("gallery")}</FooterLink>
-          <FooterLink to={ROUTES.KONTAKT}>{t("contact")}</FooterLink>
-          <FooterLink to={ROUTES.POLITYKA_PRYWATNOSCI}>
-            {t("policy-privacy")}
-          </FooterLink>
-        </VStack>
+          <FooterColumn title={t("useful-links")}>
+            <FooterLink to={ROUTES.HOME}>{t("homepage")}</FooterLink>
+            <FooterLink to={ROUTES.O_NAS}>{t("about-us")}</FooterLink>
+            <FooterLink to={ROUTES.GALERIA}>{t("gallery")}</FooterLink>
+            <FooterLink to={ROUTES.KONTAKT}>{t("contact")}</FooterLink>
+            <FooterLink to={ROUTES.POLITYKA_PRYWATNOSCI}>
+              {t("policy-privacy")}
+            </FooterLink>
+          </FooterColumn>
 
-        <VStack align="start">
-          <Heading2 fontWeight={600}>{t("offer")}</Heading2>
-          <FooterLink to={ROUTES.DLA_FIRM}>{t("for-companies")}</FooterLink>
-          <FooterLink to={ROUTES.KLIENT_INDYWIDUALNY}>
-            {t("for-individuals")}
-          </FooterLink>
-        </VStack>
+          <FooterColumn title={t("offer")}>
+            <FooterLink to={ROUTES.DLA_FIRM}>{t("for-companies")}</FooterLink>
+            <FooterLink to={ROUTES.KLIENT_INDYWIDUALNY}>
+              {t("for-individuals")}
+            </FooterLink>
+          </FooterColumn>
+        </Flex>
 
-        <VStack align="start">
-          <Heading2 fontWeight={600}>{t("our-social-media")}</Heading2>
-          <HStack>
+        <FooterColumn alignItems="end" width="100%" maxW="sm">
+          <Image src={logo} alt={t("company-name")} />
+          <HStack gap="4">
             <Link
               href={LINKS.Facebook}
               target="_blank"
               aria-label={t("Kliknij, aby przejść do Facebooka")}
             >
-              <BsFacebook color="white" size="2rem" />
+              <FaFacebookSquare color="white" size="2rem" />
             </Link>
             <Link
               href={LINKS.Instagram}
               target="_blank"
               aria-label={t("Kliknij, aby przejść do Instagrama")}
             >
-              <BsInstagram color="white" size="2rem" />
+              <FaInstagram color="white" size="2rem" />
             </Link>
           </HStack>
-        </VStack>
+        </FooterColumn>
       </Flex>
 
-      <Paragraph color="white" bgColor="primary.500" textAlign="center" p={2}>
+      <Box as="hr" borderColor={"primary.400"} mx="20" />
+
+      <Paragraph textAlign="center" p={2} m={5}>
         {t("footer-copyright")}
       </Paragraph>
-    </footer>
+    </Box>
   );
 };
 
