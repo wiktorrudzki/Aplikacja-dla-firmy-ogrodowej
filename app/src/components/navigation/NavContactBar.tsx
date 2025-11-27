@@ -1,5 +1,5 @@
 import React from "react";
-import { HStack, Link } from "@chakra-ui/react";
+import { Flex, HStack, Link } from "@chakra-ui/react";
 import { MdMail, MdPhoneIphone } from "react-icons/md";
 
 import { t } from "@i18n";
@@ -7,14 +7,14 @@ import NavContactBarItem from "./NavContactBarItem";
 
 const NavContactBar = () => {
   return (
-    <HStack
-      textAlign="right"
+    <Flex
       bgColor="primary.500"
       color="white"
       px="10"
       py="2"
-      gap="6"
+      gap={[2, 6]}
       justifyContent="end"
+      flexWrap="wrap"
     >
       <Link
         aria-label={t("email-address")}
@@ -35,7 +35,7 @@ const NavContactBar = () => {
           {t("telephone-number")}
         </NavContactBarItem>
       </Link>
-    </HStack>
+    </Flex>
   );
 };
 
