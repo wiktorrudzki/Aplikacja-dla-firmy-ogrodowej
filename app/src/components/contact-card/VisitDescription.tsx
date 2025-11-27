@@ -7,7 +7,9 @@ const VisitDescription = () => {
   return (
     <Stack alignItems="center" gap={0}>
       <Paragraph>
-        <chakra.span color="primary.500">{t("Usługi ogrodnicze")}</chakra.span>{" "}
+        <chakra.span color="secondary.500">
+          {t("Usługi ogrodnicze")}
+        </chakra.span>{" "}
         <chakra.span color="secondary.500">Mateusz Bernacki</chakra.span>
       </Paragraph>
       <Paragraph width="100%" textAlign="center" whiteSpace="pre-line">
