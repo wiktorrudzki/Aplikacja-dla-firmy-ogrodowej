@@ -60,6 +60,7 @@ const CustomLink = ({
         <Heading3
           className={isActive ? "active navLink" : "navLink"}
           fontSize="lg"
+          _after={{ backgroundColor: isDark ? "primary.500" : "white" }}
           transition="color 0.2s ease-in-out"
         >
           {children}
