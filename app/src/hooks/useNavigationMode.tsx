@@ -39,7 +39,9 @@ const useNavigationMode = (ref: RefObject<HTMLDivElement>): NavigationMode => {
     [location.pathname, isScrolled],
   );
 
-  return { isScrolled, hidden, navMode, showNav, hideNav };
+  const showNavContactBar = navMode === NAVIGATION_MODE.DARK;
+
+  return { isScrolled, hidden, navMode, showNavContactBar, showNav, hideNav };
 };
 
 export default useNavigationMode;

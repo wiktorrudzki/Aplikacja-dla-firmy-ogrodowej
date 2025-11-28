@@ -13,7 +13,7 @@ import { Heading2, Paragraph } from "../typography";
 import { t } from "@src/utils/i18n";
 import { LuGripVertical } from "react-icons/lu";
 
-const MotionBox = motion(Box);
+const MotionBox = motion.create(Box);
 
 const EstimateCard = () => {
   const [primary] = useToken("colors", ["primary.500"]);
