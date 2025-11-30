@@ -1,21 +1,15 @@
-import { Container, Span, useToken, Wrap } from "@chakra-ui/react";
+import { Span, Wrap } from "@chakra-ui/react";
 import React from "react";
 import { Heading1 } from "../typography";
 import { NumberCard } from "../number-card";
 import { t } from "@i18n";
 import useOurNumbers from "@src/hooks/useOurNumbers";
+import { RadialBackgroundContainer } from "../radial-background-container";
 
 function OurCompanyInNumbers() {
   const { ourNumbers } = useOurNumbers();
-  const secondary = useToken("colors", ["secondary.100"]);
   return (
-    <Container
-      py={[12, 20]}
-      bgGradient={{
-        base: `radial-gradient(circle, ${secondary} 50%, white)`,
-        lg: `radial-gradient(circle farthest-side, ${secondary} 50%, white)`,
-      }}
-    >
+    <RadialBackgroundContainer py={[12, 20]}>
       <Heading1 textTransform="uppercase" textAlign="center">
         <Span color="primary.500">{t("our-company")}</Span>
         {" " + t("in-numbers")}
@@ -29,7 +23,7 @@ function OurCompanyInNumbers() {
           />
         ))}
       </Wrap>
-    </Container>
+    </RadialBackgroundContainer>
   );
 }
 
