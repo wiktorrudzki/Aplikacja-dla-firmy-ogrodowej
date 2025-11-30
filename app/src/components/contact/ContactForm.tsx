@@ -46,7 +46,6 @@ const ContactForm = () => {
         display="flex"
         flexDirection="column"
         py={8}
-        gradientWidth="75%"
       >
         <Box display="flex" gap={8}>
           <UncontrolledForm.TextInput
