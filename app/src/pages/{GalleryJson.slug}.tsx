@@ -3,9 +3,10 @@ import { graphql, HeadFC, PageProps } from "gatsby";
 import { t } from "@i18n";
 
 import { SEO } from "@src/components/seo";
-import { GalleryJsonNode, ImageJsonNode } from "@src/types/graphql";
+import { ClientType, GalleryJsonNode, ImageJsonNode } from "@src/types/graphql";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import GalleryWithCategoriesPage from "@src/templates/GalleryWithCategoriesPage";
+import GalleryPage from "@src/templates/GalleryPage";
 
 type PageQuery = {
   galleryJson: GalleryJsonNode<
@@ -34,13 +35,16 @@ const GallerySubCategory: GatsbyPageWithLayout<PageProps<PageQuery>> = ({
 }) => {
   const { galleryJson } = data;
 
-  return (
-    <GalleryWithCategoriesPage
-      currentCategory={galleryJson.category}
-      clientType={galleryJson.clientType}
-      imageJsonArray={galleryJson.imageJsons}
-    />
-  );
+  if (galleryJson.clientType === ClientType.INDIVIDUAL_CLIENT) {
+    return (
+      <GalleryWithCategoriesPage
+        currentCategory={galleryJson.category}
+        clientType={galleryJson.clientType}
+        imageJsonArray={galleryJson.imageJsons}
+      />
+    );
+  }
+  return <GalleryPage imageJsonArray={galleryJson.imageJsons} />;
 };
 
 export const Head: HeadFC = ({ location }) => (
