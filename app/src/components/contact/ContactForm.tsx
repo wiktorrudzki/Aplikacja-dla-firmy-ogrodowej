@@ -6,11 +6,16 @@ import { Box } from "@chakra-ui/react";
 import { ContactFormInputs, ContactFromResponse } from "@src/types/form";
 import { RadialBackgroundContainer } from "../radial-background-container";
 import { useWithLoader } from "@src/hooks";
+<<<<<<< HEAD
 import { Alert } from "../alert";
+=======
+import { toaster } from "../ui/toaster";
+>>>>>>> a2715b2 (add: contact form validation and onFinish)
 
 const CONTACT_FORM_API = process.env.GATSBY_CONTACT_FORM_API;
 
 const ContactForm = () => {
+<<<<<<< HEAD
   const [isSent, setIsSent] = useState(false);
 
   const [onFinish, isLoading] = useWithLoader(
@@ -19,6 +24,12 @@ const ContactForm = () => {
 
       if (!CONTACT_FORM_API) return;
 
+=======
+  const [onFinish, isLoading] = useWithLoader(
+    async (values: ContactFormInputs) => {
+      if (!CONTACT_FORM_API) return;
+
+>>>>>>> a2715b2 (add: contact form validation and onFinish)
       await fetch(CONTACT_FORM_API, {
         method: "POST",
         headers: {
@@ -28,7 +39,18 @@ const ContactForm = () => {
         body: JSON.stringify(values),
       })
         .then((res: Response) => res.json())
+<<<<<<< HEAD
         .then((data: ContactFromResponse) => data.success && setIsSent(true))
+=======
+        .then(
+          (data: ContactFromResponse) =>
+            data.success &&
+            toaster.create({
+              title: t("Sukces!"),
+              description: t("Twoja wiadomość została wysłana."),
+            }),
+        )
+>>>>>>> a2715b2 (add: contact form validation and onFinish)
         .catch((err) => console.error(err));
     },
   );
@@ -46,6 +68,7 @@ const ContactForm = () => {
         display="flex"
         flexDirection="column"
         py={8}
+        gradientWidth="75%"
       >
         <Box display="flex" gap={8}>
           <UncontrolledForm.TextInput
