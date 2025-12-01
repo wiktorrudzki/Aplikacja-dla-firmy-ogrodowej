@@ -12,8 +12,8 @@ const RadialBackgroundContainer = ({ gradientWidth, ...props }: Props) => {
     <Container
       {...props}
       bgGradient={{
-        base: `radial-gradient(circle, ${secondary} ${gradientWidth ?? 50}%, white)`,
-        lg: `radial-gradient(circle farthest-side, ${secondary} ${gradientWidth ?? "75%"}, white)`,
+        base: `radial-gradient(circle, ${secondary} ${gradientWidth ?? "50%"}, white)`,
+        lg: `radial-gradient(circle farthest-side, ${secondary} ${gradientWidth ?? "50%"}, white)`,
       }}
     />
   );
