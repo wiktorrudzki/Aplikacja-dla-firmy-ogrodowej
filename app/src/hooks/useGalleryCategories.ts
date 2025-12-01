@@ -1,5 +1,6 @@
 import { ROUTES } from "@src/constants";
 import {
+  ClientType,
   GalleryCategory,
   GalleryJsonNode,
   GraphQLNodes,
@@ -8,7 +9,7 @@ import { graphql, useStaticQuery } from "gatsby";
 
 type Query = GraphQLNodes<
   "allGalleryJson",
-  GalleryJsonNode<"slug" | "category">
+  GalleryJsonNode<"slug" | "category" | "clientType">
 >;
 
 type Category = {
@@ -16,13 +17,14 @@ type Category = {
   slug: string;
 };
 
-const useGalleryCategories = () => {
+const useGalleryCategories = (clientType: ClientType) => {
   const { allGalleryJson } = useStaticQuery<Query>(graphql`
     {
       allGalleryJson(sort: { order: ASC }) {
         nodes {
           slug
           category
+          clientType
         }
       }
     }
@@ -33,6 +35,8 @@ const useGalleryCategories = () => {
   ];
 
   allGalleryJson.nodes.forEach((galleryJson) => {
+    if (galleryJson.clientType !== clientType) return;
+
     const category: Category = {
       key: galleryJson.category,
       slug: galleryJson.slug,

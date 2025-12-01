@@ -1,6 +1,7 @@
 {
   "order": 1,
   "category": "LAWNS",
+  "clientType": "INDIVIDUAL_CLIENT",
   "imageTitles": [
     "Garden maintenance",
     "Garden automation 4",

@@ -1,6 +1,7 @@
 {
   "order": 4,
   "category": "VEGETATION",
+  "clientType": "INDIVIDUAL_CLIENT",
   "imageTitles": [
     "Garden care 1",
     "Garden care 4",

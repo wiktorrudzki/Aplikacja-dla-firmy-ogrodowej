@@ -1,6 +1,7 @@
 {
   "order": 3,
   "category": "OUR_WORK",
+  "clientType": "INDIVIDUAL_CLIENT",
   "imageTitles": [
     "Trimming thuja trees",
     "Garden maintenance",
