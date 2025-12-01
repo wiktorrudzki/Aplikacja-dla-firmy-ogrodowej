@@ -7,7 +7,7 @@ import {
   MdxNode,
   ServiceFrontmatter,
   GraphQLNodes,
-  ServiceCategory,
+  ClientType,
 } from "@src/types/graphql";
 import path from "path";
 
@@ -29,7 +29,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
   ({ actions, schema, getNode }) => {
     const typeDefs = [
       schema.buildEnumType({
-        name: "ServiceCategory",
+        name: "ClientType",
         values: {
           INDIVIDUAL_CLIENT: { value: "INDIVIDUAL_CLIENT" },
           BUSINESS_CLIENT: { value: "BUSINESS_CLIENT" },
@@ -48,7 +48,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
           iconMapKey: "String!",
           orderBusiness: "Int",
           orderIndividual: "Int",
-          categories: "[ServiceCategory!]!",
+          categories: "[ClientType!]!",
         },
       }),
       schema.buildObjectType({
@@ -93,7 +93,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
             },
           },
           iconMapKey: "String!",
-          categories: "[ServiceCategory!]!",
+          categories: "[ClientType!]!",
         },
       }),
       schema.buildObjectType({
@@ -140,8 +140,9 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
               return `/galeria${slug}`;
             },
           },
-          category: "GalleryCategory!",
+          category: "GalleryCategory",
           imageTitles: "[String!]!",
+          clientType: "ClientType!",
           imageJsons: {
             type: "[ImageJson!]!",
             resolve: async (source, _args, context) => {
@@ -258,7 +259,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
   if (result.errors) throw result.errors;
 
-  const categorySlugMap: Record<ServiceCategory, string> = {
+  const categorySlugMap: Record<ClientType, string> = {
     INDIVIDUAL_CLIENT: "klient-indywidualny",
     BUSINESS_CLIENT: "dla-firm",
   };
