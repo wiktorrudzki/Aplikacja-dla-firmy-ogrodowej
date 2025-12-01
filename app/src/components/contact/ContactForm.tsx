@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { UncontrolledForm } from "../form";
 import { SpotlightButton } from "../button";
 import { t } from "@src/utils/i18n";
@@ -6,13 +6,17 @@ import { Box } from "@chakra-ui/react";
 import { ContactFormInputs, ContactFromResponse } from "@src/types/form";
 import { RadialBackgroundContainer } from "../radial-background-container";
 import { useWithLoader } from "@src/hooks";
-import { toaster } from "../ui/toaster";
+import { Alert } from "../alert";
 
 const CONTACT_FORM_API = process.env.GATSBY_CONTACT_FORM_API;
 
 const ContactForm = () => {
+  const [isSent, setIsSent] = useState(false);
+
   const [onFinish, isLoading] = useWithLoader(
     async (values: ContactFormInputs) => {
+      console.log("dasdassad");
+
       if (!CONTACT_FORM_API) return;
 
       await fetch(CONTACT_FORM_API, {
@@ -24,14 +28,7 @@ const ContactForm = () => {
         body: JSON.stringify(values),
       })
         .then((res: Response) => res.json())
-        .then(
-          (data: ContactFromResponse) =>
-            data.success &&
-            toaster.create({
-              title: t("Sukces!"),
-              description: t("Twoja wiadomość została wysłana."),
-            }),
-        )
+        .then((data: ContactFromResponse) => data.success && setIsSent(true))
         .catch((err) => console.error(err));
     },
   );
@@ -86,14 +83,22 @@ const ContactForm = () => {
           name="message"
           placeholder={t("Twoja wiadomość")}
         />
-        <SpotlightButton
-          isLoading={isLoading}
-          size="xl"
-          type="submit"
-          style={{ width: "33%", marginLeft: "auto" }}
-        >
-          {t("Wyślij")}
-        </SpotlightButton>
+        {!isSent ? (
+          <Alert
+            status="success"
+            title={t("Udało się!")}
+            message={t("Twoja wiadomość została wysłana.")}
+          />
+        ) : (
+          <SpotlightButton
+            isLoading={isLoading}
+            size="xl"
+            type="submit"
+            style={{ width: "33%", marginLeft: "auto" }}
+          >
+            {t("Wyślij")}
+          </SpotlightButton>
+        )}
       </RadialBackgroundContainer>
     </UncontrolledForm>
   );
