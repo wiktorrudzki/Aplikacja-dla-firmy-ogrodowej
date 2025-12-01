@@ -11,7 +11,7 @@ import { Alert } from "../alert";
 const CONTACT_FORM_API = process.env.GATSBY_CONTACT_FORM_API;
 
 const ContactForm = () => {
-  const [isSent, setIsSent] = useState(false);
+  const [response, setResponse] = useState<ContactFromResponse | null>(null);
 
   const [onFinish, isLoading] = useWithLoader(
     async (values: ContactFormInputs) => {
@@ -26,8 +26,13 @@ const ContactForm = () => {
         body: JSON.stringify(values),
       })
         .then((res: Response) => res.json())
-        .then((data: ContactFromResponse) => data.success && setIsSent(true))
-        .catch((err) => console.error(err));
+        .then(setResponse)
+        .catch(() =>
+          setResponse({
+            success: false,
+            error: t("Wystąpił niespodziewany błąd"),
+          }),
+        );
     },
   );
 
@@ -81,13 +86,7 @@ const ContactForm = () => {
           name="message"
           placeholder={t("Twoja wiadomość")}
         />
-        {isSent ? (
-          <Alert
-            status="success"
-            title={t("Udało się!")}
-            message={t("Twoja wiadomość została wysłana.")}
-          />
-        ) : (
+        {response == null ? (
           <SpotlightButton
             isLoading={isLoading}
             size="xl"
@@ -96,6 +95,16 @@ const ContactForm = () => {
           >
             {t("Wyślij")}
           </SpotlightButton>
+        ) : (
+          <Alert
+            status={response.success ? "success" : "error"}
+            title={response.success ? t("Udało się!") : t("Coś poszło nie tak")}
+            message={
+              response.success
+                ? t("Twoja wiadomość została wysłana.")
+                : response.error
+            }
+          />
         )}
       </RadialBackgroundContainer>
     </UncontrolledForm>
