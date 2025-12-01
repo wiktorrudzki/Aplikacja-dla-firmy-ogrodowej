@@ -35,7 +35,16 @@ const config: GatsbyConfig = {
         },
       },
     },
-    `gatsby-transformer-json`,
+    {
+      resolve: "gatsby-transformer-json",
+      options: {
+        // Force all gallery JSON (including nested) into one type so GraphQL exposes every node
+        typeName: ({ node }) =>
+          node.relativeDirectory.startsWith("gallery")
+            ? "GalleryJson"
+            : "ImageJson",
+      },
+    },
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",

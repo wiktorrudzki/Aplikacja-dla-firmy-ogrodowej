@@ -38,7 +38,9 @@ export const pageQuery = graphql`
   }
 `;
 
-const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
+const IndividualClientGallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({
+  data,
+}) => {
   const { allGalleryJson } = data;
   const imageJsons = distinctById(
     allGalleryJson.nodes.flatMap((galleryJson) => galleryJson.imageJsons),
@@ -53,7 +55,7 @@ const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
   );
 };
 
-export default Gallery;
+export default IndividualClientGallery;
 
 export const Head: HeadFC = ({ location }) => (
   <SEO title={t("gallery")} path={location.pathname} />
