@@ -7,13 +7,10 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const NavContactBarItem = ({ icon, children }: Props) => {
-  return (
-    <HStack gap="1">
-      <Icon as={icon} size="sm" />
-      {children}
-    </HStack>
-  );
-};
-
+const NavContactBarItem = ({ icon, children }: Props) => (
+  <HStack gap="1">
+    <Icon as={icon} size="sm" />
+    {children}
+  </HStack>
+);
 export default NavContactBarItem;
