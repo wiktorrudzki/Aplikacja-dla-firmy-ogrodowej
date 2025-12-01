@@ -1,6 +1,8 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
 require("dotenv").config();
 
 const app = express();
@@ -22,6 +24,8 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.json());
+app.use(helmet());
+app.enable("trust proxy");
 
 const validateEmail = (email) => {
   return String(email)
@@ -31,12 +35,43 @@ const validateEmail = (email) => {
     );
 };
 
-app.post("/mail/send", async (req, res) => {
-  const { name, email, message } = req.body;
+const validatePhone = (phone) => {
+  return String(phone).match(/^[0-9\-\+]{9,15}$/);
+};
+
+const postLimiter = rateLimit({
+  windowMs: 60 * 1000, // minuta
+  max: 5,
+  message: { success: false, error: "Za dużo żądań, spróbuj później" },
+});
+
+function requireHTTPS(req, res, next) {
+  if (req.secure || req.headers["x-forwarded-proto"] === "https") return next();
+  res.status(403).json({ success: false, error: "HTTPS wymagane" });
+}
+
+app.post("/mail/send", requireHTTPS, postLimiter, async (req, res) => {
+  const { firstName, lastName, email, phoneNumber, topic, message } = req.body;
 
   if (!validateEmail(email)) {
     console.log("Nieprawidłowy email:", email);
-    return res.status(400).json({ success: false });
+    return res
+      .status(400)
+      .json({ success: false, message: "Nieprawidłowy email" });
+  }
+
+  if (!validatePhone(phoneNumber)) {
+    console.log("Nieprawidłowy numer telefonu:", phoneNumber);
+    return res
+      .status(400)
+      .json({ success: false, message: "Nieprawidłowy numer telefonu" });
+  }
+
+  if (!message || message.trim() === "") {
+    console.log("Wiadomość jest pusta");
+    return res
+      .status(400)
+      .json({ success: false, message: "Wiadomość jest pusta" });
   }
 
   const transporter = nodemailer.createTransport({
@@ -53,11 +88,13 @@ app.post("/mail/send", async (req, res) => {
     await transporter.sendMail({
       from: `"Formularz" <${process.env.MAIL_SMTP}>`,
       to: process.env.MAIL,
-      subject: "Nowa wiadomość z formularza",
+      subject: topic ?? "Nowa wiadomość z formularza",
       html: `
         <h3>Nowa wiadomość</h3>
-        <p><strong>Imię:</strong> ${name}</p>
+        <p><strong>Imię:</strong> ${firstName ?? "-"}</p>
+        <p><strong>Nazwisko:</strong> ${lastName ?? "-"}</p>
         <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Numer telefonu:</strong> ${phoneNumber}</p>
         <p><strong>Wiadomość:</strong><br>${message}</p>
       `,
     });
