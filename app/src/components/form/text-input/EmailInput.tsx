@@ -17,9 +17,7 @@ const EmailInput = ({ name, required, placeholder, label }: Props) => (
     placeholder={placeholder}
     onInvalid={(e) => {
       if (e.currentTarget.validity.typeMismatch) {
-        return t(
-          "Podaj poprawny numer telefonu (9–15 znaków w tym dopuszczalne +, -, spacje).",
-        );
+        return t("Podaj poprawny adres email.");
       }
     }}
   />
