@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput } from "./text-input";
+import { EmailInput, PhoneInput, TextInput } from "./text-input";
 import { TextArea } from "./text-area";
 
 type Props<T extends object> = {
@@ -34,5 +34,7 @@ const UncontrolledForm = <T extends object>({
 
 UncontrolledForm.TextInput = TextInput;
 UncontrolledForm.TextArea = TextArea;
+UncontrolledForm.PhoneInput = PhoneInput;
+UncontrolledForm.EmailInput = EmailInput;
 
 export default UncontrolledForm;

@@ -3,26 +3,38 @@ import { UncontrolledForm } from "../form";
 import { SpotlightButton } from "../button";
 import { t } from "@src/utils/i18n";
 import { Box } from "@chakra-ui/react";
-import { ContactFormInputs } from "@src/types/form";
+import { ContactFormInputs, ContactFromResponse } from "@src/types/form";
 import { RadialBackgroundContainer } from "../radial-background-container";
+import { useWithLoader } from "@src/hooks";
+import { toaster } from "../ui/toaster";
 
 const CONTACT_FORM_API = process.env.GATSBY_CONTACT_FORM_API;
 
 const ContactForm = () => {
-  const onFinish = (values: ContactFormInputs) => {
-    if (!CONTACT_FORM_API) return;
+  const [onFinish, isLoading] = useWithLoader(
+    async (values: ContactFormInputs) => {
+      if (!CONTACT_FORM_API) return;
 
-    fetch(CONTACT_FORM_API, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
-  };
+      await fetch(CONTACT_FORM_API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Origin: globalThis.location.origin,
+        },
+        body: JSON.stringify(values),
+      })
+        .then((res: Response) => res.json())
+        .then(
+          (data: ContactFromResponse) =>
+            data.success &&
+            toaster.create({
+              title: t("Sukces!"),
+              description: t("Twoja wiadomość została wysłana."),
+            }),
+        )
+        .catch((err) => console.error(err));
+    },
+  );
 
   return (
     <UncontrolledForm
@@ -37,6 +49,7 @@ const ContactForm = () => {
         display="flex"
         flexDirection="column"
         py={8}
+        gradientWidth="75%"
       >
         <Box display="flex" gap={8}>
           <UncontrolledForm.TextInput
@@ -50,18 +63,16 @@ const ContactForm = () => {
             placeholder={t("Twoje nazwisko")}
           />
         </Box>
-        <UncontrolledForm.TextInput
-          label={t("Numer telefonu")}
+        <UncontrolledForm.PhoneInput
           required
+          label={t("Numer telefonu")}
           name="phoneNumber"
-          type="tel"
           placeholder={t("Twój numer telefonu")}
         />
-        <UncontrolledForm.TextInput
-          label={t("Email")}
+        <UncontrolledForm.EmailInput
           required
+          label={t("Email")}
           name="email"
-          type="email"
           placeholder={t("Twój adres e-mail")}
         />
         <UncontrolledForm.TextInput
@@ -70,12 +81,13 @@ const ContactForm = () => {
           placeholder={t("Temat Twojej wiadomości")}
         />
         <UncontrolledForm.TextArea
-          label="Wiadomość"
           required
+          label="Wiadomość"
           name="message"
           placeholder={t("Twoja wiadomość")}
         />
         <SpotlightButton
+          isLoading={isLoading}
           size="xl"
           type="submit"
           style={{ width: "33%", marginLeft: "auto" }}

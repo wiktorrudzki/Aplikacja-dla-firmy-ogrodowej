@@ -4,17 +4,21 @@ import React from "react";
 
 type Props = InputRootProps & {
   children: React.ReactNode;
+  errorMessage?: string;
 };
 
-const InputRoot = ({ children, required, label }: Props) => {
+const InputRoot = ({ children, required, label, errorMessage }: Props) => {
+  const isInvalid = errorMessage != null;
+
   return (
-    <Field.Root required={required}>
+    <Field.Root invalid={isInvalid} required={required}>
       {label && (
         <Field.Label>
           {label} {required && <Field.RequiredIndicator />}
         </Field.Label>
       )}
       {children}
+      {isInvalid && <Field.ErrorText>{errorMessage}</Field.ErrorText>}
     </Field.Root>
   );
 };

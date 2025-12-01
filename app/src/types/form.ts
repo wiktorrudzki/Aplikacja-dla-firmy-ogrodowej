@@ -11,3 +11,7 @@ export type ContactFormInputs = {
   topic?: string;
   message: string;
 };
+
+export type ContactFromResponse = {
+  success: boolean;
+};
