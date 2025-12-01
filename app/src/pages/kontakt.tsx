@@ -10,6 +10,8 @@ import { HeadFC } from "gatsby";
 import { useResponsiveValues } from "@src/hooks";
 import { formatToRem } from "@src/helpers";
 import { NavigationMarginContainer } from "@src/components/navigation-margin-container";
+import { Form } from "@src/components/form";
+import { SpotlightButton } from "@src/components/button";
 
 const Contact: GatsbyPageWithLayout = () => {
   const { contactCardIconOffsetRem } = useResponsiveValues();
@@ -34,6 +36,12 @@ const Contact: GatsbyPageWithLayout = () => {
           {t("Chcesz się z nami skontaktować?")}
         </Heading1>
         <ContactCards />
+        <Form onFinish={() => {}}>
+          {/* TODO: build an actual form */}
+          <Form.TextInput label="Email" required name="email" />
+          <Form.TextArea label="Wiadomość" required name="message" />
+          <SpotlightButton type="submit">{t("Wyślij")}</SpotlightButton>
+        </Form>
         <GoogleMap />
       </Stack>
     </NavigationMarginContainer>

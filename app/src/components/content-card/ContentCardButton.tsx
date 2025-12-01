@@ -1,8 +1,8 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { ROUTES } from "@src/constants";
 import { Link } from "gatsby";
 import React from "react";
-import { AnimateCursorSpotlightOnHover } from "../animations";
+import { SpotlightButton } from "../button";
 
 type Props = {
   to: ROUTES;
@@ -11,20 +11,13 @@ type Props = {
 };
 
 const ContentCardButton = ({ to, ariaLabel, children }: Props) => (
-  <AnimateCursorSpotlightOnHover rounded="full" spotlightColor="primary.400">
-    <Button
-      colorPalette="primary"
-      rounded="full"
-      aria-label={ariaLabel}
-      paddingX={[4, 12, 16]}
-    >
-      <Box zIndex={0} asChild>
-        <Link to={to} aria-label={ariaLabel}>
-          {children}
-        </Link>
-      </Box>
-    </Button>
-  </AnimateCursorSpotlightOnHover>
+  <SpotlightButton>
+    <Box zIndex={0} asChild>
+      <Link to={to} aria-label={ariaLabel}>
+        {children}
+      </Link>
+    </Box>
+  </SpotlightButton>
 );
 
 export default ContentCardButton;
