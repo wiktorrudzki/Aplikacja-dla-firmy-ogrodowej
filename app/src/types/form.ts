@@ -12,6 +12,11 @@ export type ContactFormInputs = {
   message: string;
 };
 
-export type ContactFromResponse = {
-  success: boolean;
-};
+export type ContactFromResponse =
+  | {
+      success: true;
+    }
+  | {
+      success: false;
+      error: string;
+    };

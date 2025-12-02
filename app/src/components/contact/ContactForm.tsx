@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { UncontrolledForm } from "../form";
 import { SpotlightButton } from "../button";
 import { t } from "@src/utils/i18n";
@@ -6,11 +6,13 @@ import { Box } from "@chakra-ui/react";
 import { ContactFormInputs, ContactFromResponse } from "@src/types/form";
 import { RadialBackgroundContainer } from "../radial-background-container";
 import { useWithLoader } from "@src/hooks";
-import { toaster } from "../ui/toaster";
+import { Alert } from "../alert";
 
 const CONTACT_FORM_API = process.env.GATSBY_CONTACT_FORM_API;
 
 const ContactForm = () => {
+  const [response, setResponse] = useState<ContactFromResponse | null>(null);
+
   const [onFinish, isLoading] = useWithLoader(
     async (values: ContactFormInputs) => {
       if (!CONTACT_FORM_API) return;
@@ -24,15 +26,13 @@ const ContactForm = () => {
         body: JSON.stringify(values),
       })
         .then((res: Response) => res.json())
-        .then(
-          (data: ContactFromResponse) =>
-            data.success &&
-            toaster.create({
-              title: t("Sukces!"),
-              description: t("Twoja wiadomość została wysłana."),
-            }),
-        )
-        .catch((err) => console.error(err));
+        .then(setResponse)
+        .catch(() =>
+          setResponse({
+            success: false,
+            error: t("Wystąpił niespodziewany błąd"),
+          }),
+        );
     },
   );
 
@@ -86,14 +86,26 @@ const ContactForm = () => {
           name="message"
           placeholder={t("Twoja wiadomość")}
         />
-        <SpotlightButton
-          isLoading={isLoading}
-          size="xl"
-          type="submit"
-          style={{ width: "33%", marginLeft: "auto" }}
-        >
-          {t("Wyślij")}
-        </SpotlightButton>
+        {response == null ? (
+          <SpotlightButton
+            isLoading={isLoading}
+            size="xl"
+            type="submit"
+            style={{ width: "33%", marginLeft: "auto" }}
+          >
+            {t("Wyślij")}
+          </SpotlightButton>
+        ) : (
+          <Alert
+            status={response.success ? "success" : "error"}
+            title={response.success ? t("Udało się!") : t("Coś poszło nie tak")}
+            message={
+              response.success
+                ? t("Twoja wiadomość została wysłana.")
+                : response.error
+            }
+          />
+        )}
       </RadialBackgroundContainer>
     </UncontrolledForm>
   );
