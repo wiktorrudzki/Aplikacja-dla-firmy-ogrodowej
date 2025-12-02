@@ -51,7 +51,42 @@ function requireHTTPS(req, res, next) {
 }
 
 app.post("/mail/send", requireHTTPS, postLimiter, async (req, res) => {
-  const { firstName, lastName, email, phoneNumber, topic, message } = req.body;
+  const { firstName, lastName, email, phoneNumber, topic, message, token } =
+    req.body;
+
+  if (!token) {
+    console.log("Brak tokenu reCAPTCHA");
+    return res
+      .status(400)
+      .json({ success: false, message: "Brak tokenu reCAPTCHA" });
+  }
+
+  try {
+    const response = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (!data.success) {
+      return res.status(400).json({
+        success: false,
+        message: "Nieprawidłowy token reCAPTCHA",
+      });
+    }
+  } catch (error) {
+    console.error("Błąd weryfikacji reCAPTCHA:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Nieoczekiwany błąd podczas weryfikacji reCAPTCHA",
+    });
+  }
 
   if (!validateEmail(email)) {
     console.log("Nieprawidłowy email:", email);
