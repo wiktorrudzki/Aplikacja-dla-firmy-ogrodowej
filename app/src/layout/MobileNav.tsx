@@ -18,9 +18,11 @@ type Props = {
 const MobileNav = ({ hidden, onClose }: Props) => {
   const { navigationHeightRem } = useResponsiveValues();
   const servicesCollapsibleRef = React.useRef<MobileCollapsibleActions>(null);
+  const galleryCollapsibleRef = React.useRef<MobileCollapsibleActions>(null);
 
   const handleClose = useCallback(() => {
     servicesCollapsibleRef?.current?.close();
+    galleryCollapsibleRef?.current?.close();
     onClose();
   }, [onClose]);
 
@@ -75,9 +77,14 @@ const MobileNav = ({ hidden, onClose }: Props) => {
             {t("individual-client")}
           </Link>
         </MobileCollapsibleLink>
-        <Link onClick={handleClose} to={ROUTES.GALERIA}>
-          {t("Galeria")}
-        </Link>
+        <MobileCollapsibleLink label={t("Galeria")} ref={galleryCollapsibleRef}>
+          <Link onClick={handleClose} to={ROUTES.GALERIA_FIRMOWA}>
+            {t("business-client")}
+          </Link>
+          <Link onClick={handleClose} to={ROUTES.GALERIA}>
+            {t("individual-client")}
+          </Link>
+        </MobileCollapsibleLink>
         <Link onClick={handleClose} to={ROUTES.KONTAKT}>
           {t("Kontakt")}
         </Link>

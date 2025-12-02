@@ -24,9 +24,14 @@ const DesktopNav = ({ navMode }: Props) => {
           {t("individual-client")}
         </Link>
       </DesktopNavDropDown>
-      <Link mode={navMode} to={ROUTES.GALERIA}>
-        {t("Galeria")}
-      </Link>
+      <DesktopNavDropDown label={t("Galeria")} mode={navMode}>
+        <Link mode={navMode} to={ROUTES.GALERIA_FIRMOWA}>
+          {t("business-client")}
+        </Link>
+        <Link mode={navMode} to={ROUTES.GALERIA}>
+          {t("individual-client")}
+        </Link>
+      </DesktopNavDropDown>
       <Link mode={navMode} to={ROUTES.KONTAKT}>
         {t("Kontakt")}
       </Link>

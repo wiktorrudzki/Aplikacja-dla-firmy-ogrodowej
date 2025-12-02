@@ -26,7 +26,7 @@ const CustomLink = ({
 }: Props) => {
   const location = useLocation();
   const { isMobile } = useResponsiveValues();
-  const isActive = location.pathname.includes(to);
+  const isActive = location.pathname.slice(0, -1) === to;
 
   const isDark = mode === NAVIGATION_MODE.DARK;
 
