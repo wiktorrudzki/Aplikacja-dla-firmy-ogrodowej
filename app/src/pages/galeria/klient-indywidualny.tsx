@@ -1,18 +1,18 @@
 import React from "react";
 import { graphql, HeadFC, PageProps } from "gatsby";
+import { t } from "@i18n";
+
+import { distinctById } from "@src/helpers";
 import { GatsbyPageWithLayout } from "@src/types/page";
 import { SEO } from "@src/components/seo";
-import { t } from "@i18n";
+import GalleryWithCategoriesPage from "@src/templates/GalleryWithCategoriesPage";
 import {
+  ClientType,
   GalleryCategory,
   GalleryJsonNode,
   GraphQLNodes,
   ImageJsonNode,
 } from "@src/types/graphql";
-import { GalleryImages } from "@src/components/gallery-images";
-import { GalleryTabs } from "@src/components/gallery";
-import { distinctById } from "@src/helpers";
-import { MainContainer } from "@src/components/main-container";
 
 type QueryType = GraphQLNodes<
   "allGalleryJson",
@@ -38,22 +38,24 @@ export const pageQuery = graphql`
   }
 `;
 
-const Gallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({ data }) => {
+const IndividualClientGallery: GatsbyPageWithLayout<PageProps<QueryType>> = ({
+  data,
+}) => {
   const { allGalleryJson } = data;
   const imageJsons = distinctById(
     allGalleryJson.nodes.flatMap((galleryJson) => galleryJson.imageJsons),
   );
 
   return (
-    <MainContainer>
-      <GalleryTabs currentCategory={GalleryCategory.ALL}>
-        <GalleryImages imageJsons={imageJsons} />
-      </GalleryTabs>
-    </MainContainer>
+    <GalleryWithCategoriesPage
+      currentCategory={GalleryCategory.ALL}
+      clientType={ClientType.INDIVIDUAL_CLIENT}
+      imageJsonArray={imageJsons}
+    />
   );
 };
 
-export default Gallery;
+export default IndividualClientGallery;
 
 export const Head: HeadFC = ({ location }) => (
   <SEO title={t("gallery")} path={location.pathname} />

@@ -1,16 +1,17 @@
 import { Tabs } from "@chakra-ui/react";
 import useGalleryCategories from "@src/hooks/useGalleryCategories";
-import { GalleryCategory } from "@src/types/graphql";
+import { ClientType, GalleryCategory } from "@src/types/graphql";
 import { t } from "@src/utils/i18n";
 import { Link as GatsbyLink } from "gatsby";
 import React, { PropsWithChildren } from "react";
 
 type Props = PropsWithChildren & {
   currentCategory: GalleryCategory;
+  clientType: ClientType;
 };
 
-const GalleryTabs = ({ currentCategory, children }: Props) => {
-  const categories = useGalleryCategories();
+const GalleryTabs = ({ currentCategory, clientType, children }: Props) => {
+  const categories = useGalleryCategories(clientType);
   return (
     <Tabs.Root
       colorPalette="primary"

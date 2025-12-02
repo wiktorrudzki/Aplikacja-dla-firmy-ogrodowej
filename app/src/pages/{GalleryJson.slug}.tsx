@@ -1,16 +1,16 @@
-import { GalleryTabs } from "@src/components/gallery";
-import { GalleryImages } from "@src/components/gallery-images";
-import { SEO } from "@src/components/seo";
-import { GalleryJsonNode, ImageJsonNode } from "@src/types/graphql";
-import { GatsbyPageWithLayout } from "@src/types/page";
-import { t } from "@i18n";
-import { graphql, HeadFC, PageProps } from "gatsby";
 import React from "react";
-import { MainContainer } from "@src/components/main-container";
+import { graphql, HeadFC, PageProps } from "gatsby";
+import { t } from "@i18n";
+
+import { SEO } from "@src/components/seo";
+import { ClientType, GalleryJsonNode, ImageJsonNode } from "@src/types/graphql";
+import { GatsbyPageWithLayout } from "@src/types/page";
+import GalleryWithCategoriesPage from "@src/templates/GalleryWithCategoriesPage";
+import GalleryPage from "@src/templates/GalleryPage";
 
 type PageQuery = {
   galleryJson: GalleryJsonNode<
-    "order" | "category" | "imageJsons",
+    "order" | "category" | "imageJsons" | "clientType",
     ImageJsonNode<"id" | "altKey" | "childImageSharp">
   >;
 };
@@ -20,6 +20,7 @@ export const pageQuery = graphql`
     galleryJson(id: { eq: $id }) {
       order
       category
+      clientType
       imageJsons {
         id
         altKey
@@ -34,13 +35,16 @@ const GallerySubCategory: GatsbyPageWithLayout<PageProps<PageQuery>> = ({
 }) => {
   const { galleryJson } = data;
 
-  return (
-    <MainContainer>
-      <GalleryTabs currentCategory={galleryJson.category}>
-        <GalleryImages imageJsons={galleryJson.imageJsons} />
-      </GalleryTabs>
-    </MainContainer>
-  );
+  if (galleryJson.clientType === ClientType.INDIVIDUAL_CLIENT) {
+    return (
+      <GalleryWithCategoriesPage
+        currentCategory={galleryJson.category}
+        clientType={galleryJson.clientType}
+        imageJsonArray={galleryJson.imageJsons}
+      />
+    );
+  }
+  return <GalleryPage imageJsonArray={galleryJson.imageJsons} />;
 };
 
 export const Head: HeadFC = ({ location }) => (

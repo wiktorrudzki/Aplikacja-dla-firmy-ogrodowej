@@ -32,6 +32,7 @@ type GalleryJson<T = ImageJson> = {
   slug?: string;
   category?: GalleryCategory;
   imageTitles?: string[];
+  clientType?: ClientType;
   imageJsons?: T[];
 };
 
@@ -73,7 +74,7 @@ type Service<T = ImageJson, S = MdxNode> = {
   iconMapKey?: string;
   orderBusiness?: number;
   orderIndividual?: number;
-  categories?: ServiceCategory[];
+  categories?: ClientType[];
 };
 
 export type ServiceNode<
@@ -81,7 +82,7 @@ export type ServiceNode<
   T = ImageJson,
 > = PickRequired<Node & Service<T>, K>;
 
-export enum ServiceCategory {
+export enum ClientType {
   INDIVIDUAL_CLIENT = "INDIVIDUAL_CLIENT",
   BUSINESS_CLIENT = "BUSINESS_CLIENT",
 }
