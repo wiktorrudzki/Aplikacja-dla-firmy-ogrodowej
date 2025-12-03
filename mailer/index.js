@@ -51,8 +51,23 @@ function requireHTTPS(req, res, next) {
 }
 
 app.post("/mail/send", requireHTTPS, postLimiter, async (req, res) => {
-  const { firstName, lastName, email, phoneNumber, topic, message, token } =
-    req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    topic,
+    message,
+    token,
+    agreement,
+  } = req.body;
+
+  if (!agreement) {
+    console.log("Brak zgody na przetwarzanie danych");
+    return res
+      .status(400)
+      .json({ success: false, message: "Brak zgody na przetwarzanie danych" });
+  }
 
   if (!token) {
     console.log("Brak tokenu reCAPTCHA");

@@ -22,6 +22,7 @@ const CookiesModal = () => {
       }}
       buttonText={t("Rozumiem")}
       style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+      cookieName="CookieConsentV2"
     >
       <Paragraph>
         {t(
