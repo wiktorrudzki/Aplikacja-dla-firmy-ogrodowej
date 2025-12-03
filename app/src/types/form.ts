@@ -18,5 +18,5 @@ export type ContactFromResponse =
     }
   | {
       success: false;
-      error: string;
+      message: string;
     };

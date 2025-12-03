@@ -7,15 +7,22 @@ import { ContactFormInputs, ContactFromResponse } from "@src/types/form";
 import { RadialBackgroundContainer } from "../radial-background-container";
 import { useWithLoader } from "@src/hooks";
 import { Alert } from "../alert";
+import { Recaptcha } from "../recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const CONTACT_FORM_API = process.env.GATSBY_CONTACT_FORM_API;
 
 const ContactForm = () => {
   const [response, setResponse] = useState<ContactFromResponse | null>(null);
 
+  const captchaRef = React.useRef<ReCAPTCHA>(null);
+
   const [onFinish, isLoading] = useWithLoader(
     async (values: ContactFormInputs) => {
       if (!CONTACT_FORM_API) return;
+
+      const token = captchaRef?.current?.getValue();
+      captchaRef?.current?.reset();
 
       await fetch(CONTACT_FORM_API, {
         method: "POST",
@@ -23,14 +30,14 @@ const ContactForm = () => {
           "Content-Type": "application/json",
           Origin: globalThis.location.origin,
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, token }),
       })
         .then((res: Response) => res.json())
         .then(setResponse)
         .catch(() =>
           setResponse({
             success: false,
-            error: t("Wystąpił niespodziewany błąd"),
+            message: t("Wystąpił niespodziewany błąd"),
           }),
         );
     },
@@ -86,7 +93,9 @@ const ContactForm = () => {
           name="message"
           placeholder={t("Twoja wiadomość")}
         />
-        {response == null ? (
+        <Recaptcha ref={captchaRef} />
+
+        {!response?.success && (
           <SpotlightButton
             isLoading={isLoading}
             size="xl"
@@ -95,14 +104,15 @@ const ContactForm = () => {
           >
             {t("Wyślij")}
           </SpotlightButton>
-        ) : (
+        )}
+        {response != null && (
           <Alert
             status={response.success ? "success" : "error"}
-            title={response.success ? t("Udało się!") : t("Coś poszło nie tak")}
+            title={response.success ? t("Udało się!") : response.message}
             message={
               response.success
                 ? t("Twoja wiadomość została wysłana.")
-                : response.error
+                : response.message
             }
           />
         )}
