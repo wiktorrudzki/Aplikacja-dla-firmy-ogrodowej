@@ -24,7 +24,10 @@ type QueryType = GraphQLNodes<
 
 export const pageQuery = graphql`
   {
-    allGalleryJson(sort: { order: ASC }) {
+    allGalleryJson(
+      sort: { order: ASC }
+      filter: { clientType: { eq: INDIVIDUAL_CLIENT } }
+    ) {
       nodes {
         order
         category
