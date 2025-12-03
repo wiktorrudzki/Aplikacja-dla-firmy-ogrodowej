@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { UncontrolledForm } from "../form";
 import { SpotlightButton } from "../button";
 import { t } from "@src/utils/i18n";
-import { Box, Link as ChakraLink } from "@chakra-ui/react";
+import { Box, Link as ChakraLink, Flex } from "@chakra-ui/react";
 import { ContactFormInputs, ContactFromResponse } from "@src/types/form";
 import { RadialBackgroundContainer } from "../radial-background-container";
 import { useWithLoader } from "@src/hooks";
@@ -52,15 +52,16 @@ const ContactForm = () => {
       }}
       onFinish={onFinish}
     >
-      <RadialBackgroundContainer
+      <Flex
         gap={4}
         width="100%"
-        display="flex"
         flexDirection="column"
-        py={8}
-        gradientWidth="75%"
+        p={8}
+        borderRadius={32}
+        boxShadow="2xl"
+        bg="white"
       >
-        <Box display="flex" gap={8}>
+        <Flex gap={8}>
           <UncontrolledForm.TextInput
             label={t("Imię")}
             name="firstName"
@@ -71,7 +72,7 @@ const ContactForm = () => {
             name="secondName"
             placeholder={t("Twoje nazwisko")}
           />
-        </Box>
+        </Flex>
         <UncontrolledForm.PhoneInput
           required
           label={t("Numer telefonu")}
@@ -127,7 +128,7 @@ const ContactForm = () => {
             }
           />
         )}
-      </RadialBackgroundContainer>
+      </Flex>
     </UncontrolledForm>
   );
 };

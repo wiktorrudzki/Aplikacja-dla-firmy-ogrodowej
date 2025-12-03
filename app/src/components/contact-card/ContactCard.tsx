@@ -23,9 +23,8 @@ const ContactCard = ({
 
   return (
     <Container
-      borderColor="primary.500"
-      borderWidth={2}
-      borderStyle="solid"
+      backgroundColor="primary.500"
+      color="white"
       borderRadius={32}
       width="fit-content"
       maxW="100%"
@@ -48,8 +47,8 @@ const ContactCard = ({
           aria-label={iconAriaLabel}
           width={contactCardIconSizeRem * 4}
           height={contactCardIconSizeRem * 4}
-          fill={iconMode === "fill" ? "primary.500" : "transparent"}
-          color={iconMode === "color" ? "primary.500" : "transparent"}
+          fill={iconMode === "fill" ? "white" : "transparent"}
+          color={iconMode === "color" ? "white" : "transparent"}
         />
         <Heading2 fontWeight="medium">{title}</Heading2>
         {description}
