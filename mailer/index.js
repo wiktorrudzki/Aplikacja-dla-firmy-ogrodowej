@@ -6,7 +6,7 @@ const helmet = require("helmet");
 require("dotenv").config();
 
 const app = express();
-const allowedOrigin = "https://ogrody.rybnik.pl";
+const allowedOrigin = process.env.ALLOWED_ORIGIN ?? "";
 
 app.use(
   cors({
