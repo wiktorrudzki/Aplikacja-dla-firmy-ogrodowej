@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { Box, Flex } from "@chakra-ui/react";
 
 import { useNavigationMode, useResponsiveValues } from "@src/hooks";
@@ -29,23 +29,20 @@ const Navigation = () => {
       transition="background-color 0.3s ease"
     >
       <AnimatePresence>
-        {showNavContactBar && <NavContactBar key="nav-contact-bar" />}
-        <Flex
-          ref={navRef}
-          justify="space-between"
-          align="center"
-          wrap="wrap"
-          height={formatToRem(navigationHeightRem)}
-          px={{ base: 4, lg: 12 }}
-          asChild
-        >
-          <motion.div key="nav-menu" layout>
-            <LogoNav navMode={navMode} />
-            <DesktopNav navMode={navMode} />
-            <ShowMobileNav navMode={navMode} showNav={showNav} />
-          </motion.div>
-        </Flex>
+        {showNavContactBar && <NavContactBar />}
       </AnimatePresence>
+      <Flex
+        ref={navRef}
+        justify="space-between"
+        align="center"
+        wrap="wrap"
+        height={formatToRem(navigationHeightRem)}
+        px={{ base: 4, lg: 12 }}
+      >
+        <LogoNav navMode={navMode} />
+        <DesktopNav navMode={navMode} />
+        <ShowMobileNav navMode={navMode} showNav={showNav} />
+      </Flex>
 
       {isMobile && <MobileNav hidden={hidden} onClose={hideNav} />}
     </Box>

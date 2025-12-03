@@ -15,7 +15,6 @@ const NavContactBar = () => (
     }}
     initial="hidden"
     animate="visible"
-    layout
   >
     <Flex
       bgColor="primary.500"
