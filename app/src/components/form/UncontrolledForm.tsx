@@ -1,6 +1,7 @@
 import React from "react";
 import { EmailInput, PhoneInput, TextInput } from "./text-input";
 import { TextArea } from "./text-area";
+import { CheckboxInput } from "./checkbox";
 
 type Props<T extends object> = {
   children: React.ReactNode;
@@ -36,5 +37,6 @@ UncontrolledForm.TextInput = TextInput;
 UncontrolledForm.TextArea = TextArea;
 UncontrolledForm.PhoneInput = PhoneInput;
 UncontrolledForm.EmailInput = EmailInput;
+UncontrolledForm.CheckboxInput = CheckboxInput;
 
 export default UncontrolledForm;

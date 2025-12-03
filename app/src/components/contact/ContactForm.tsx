@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { UncontrolledForm } from "../form";
 import { SpotlightButton } from "../button";
 import { t } from "@src/utils/i18n";
-import { Box } from "@chakra-ui/react";
+import { Box, Link as ChakraLink } from "@chakra-ui/react";
 import { ContactFormInputs, ContactFromResponse } from "@src/types/form";
 import { RadialBackgroundContainer } from "../radial-background-container";
 import { useWithLoader } from "@src/hooks";
 import { Alert } from "../alert";
 import { Recaptcha } from "../recaptcha";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Link } from "gatsby";
+import { ROUTES } from "@src/constants";
 
 const CONTACT_FORM_API = process.env.GATSBY_CONTACT_FORM_API;
 
@@ -93,6 +95,15 @@ const ContactForm = () => {
           name="message"
           placeholder={t("Twoja wiadomość")}
         />
+        <UncontrolledForm.CheckboxInput required name="agreement">
+          {t("Zaakceptuj")}{" "}
+          <ChakraLink textDecorationColor="primary.500" asChild>
+            <Link to={ROUTES.POLITYKA_PRYWATNOSCI}>
+              {t("Politykę Prywatności")}
+            </Link>
+          </ChakraLink>
+        </UncontrolledForm.CheckboxInput>
+
         <Recaptcha ref={captchaRef} />
 
         {!response?.success && (
